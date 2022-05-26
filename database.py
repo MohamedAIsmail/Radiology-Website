@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root"
+    passwd="123456"
   )
 
   mycursor = mydb.cursor()
@@ -15,7 +15,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -69,7 +69,7 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 
