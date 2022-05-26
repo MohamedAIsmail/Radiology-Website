@@ -2,8 +2,15 @@ from flask import Flask, redirect, url_for, request, render_template, session, f
 
 import database
 from werkzeug.utils import secure_filename
+import mysql.connector  
 
-mycursor, mydb = database.connect()
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="123456",
+    database="Raddb"
+  )
+mycursor = mydb.cursor()
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -26,8 +33,13 @@ def Register():
         val = (patientFname, patientLname, Email, patientpassword)
         mycursor.execute(sql, val)
         mydb.commit()
-        msg = 'You have successfully registered !'
-        return render_template('Login.html', msg=msg)
+        
+        
+        mycursor.execute("SELECT * FROM patients ORDER BY PID DESC")
+        record = mycursor.fetchone()
+        id=record[2]
+        message = "You have successfully registered ! \n" + "Your ID is: " + str(id)
+        flash(message)
 
     return render_template('Login.html')
 
@@ -111,12 +123,12 @@ def adminlogin():
 
 # ---- Logout ----
 
-@app.route('/logout')
-def logout():
-    session.pop('loggedin', None)
-    session.pop('PID', None)
-    session.pop('patientpassword', None)
-    return redirect(url_for('Home'))
+# @app.route('/logout')
+# def logout():
+#     session.pop('loggedin', None)
+#     session.pop('PID', None)
+#     session.pop('patientpassword', None)
+#     return redirect(url_for('Home'))
 
 
 

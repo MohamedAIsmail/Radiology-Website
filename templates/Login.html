@@ -35,8 +35,8 @@
                         </div>
 
                         <div class="name-container">
-                            <input type="text" placeholder="First name" required />
-                            <input type="text" placeholder="Last name" required class="last-name" />
+                            <input type="text" placeholder="First name" name="patientFname"required />
+                            <input type="text" placeholder="Last name" name="patientLname" required class="last-name" />
                         </div>
                         
                     </div>
@@ -56,7 +56,13 @@
                     </div>
 
                     <button type="submit">Sign Up</button>
-
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <h3>{{ message }}</h3>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 </form>
             </div>
 

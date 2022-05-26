@@ -20,6 +20,7 @@ def recreatedb(bool):
   )
 
   mycursor = mydb.cursor()
+  
 
   mycursor.execute("CREATE TABLE DOCTORS (doctorFname VARCHAR(100), doctorLname VARCHAR(100), DID VARCHAR(20), doctorpassword VARCHAR(100),clinicname VARCHAR(100),age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30),PRIMARY KEY(DID))")
 
