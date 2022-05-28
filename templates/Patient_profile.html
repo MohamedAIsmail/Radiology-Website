@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Patient profile</title>
+    <link rel="stylesheet" href="../static/css/Patient_profile.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+
+    <body>
+
+        <!-- side barrr -->
+
+        <div class="sidebar">
+            <div class="logo-details">
+                <div class="logo_name">
+                    <h2>Radisphere<span class="dot">. </h2></span>
+                </div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            <ul class="nav-list">
+
+                <li class="active" id="Admin">
+                    <a href="#">
+                        <i class="fa-solid fa-user"></i>
+                        <span class="links_name">Profile</span>
+                        <span class="tooltip">Profile</span>
+
+                    </a>
+                </li>
+
+                <li id="Adoctor">
+                    <a href="#">
+                        <i class="fa-solid fa-user-doctor"></i>
+                        <span class="links_name">View apointments</span>
+                    </a>
+                    <span class="tooltip">View apointments</span>
+                </li>
+                <li id="Vdoctor">
+                    <a href="#">
+                        <i class="fa-solid fa-hospital-user"></i></i>
+                        <span class="links_name">Reserve apointment</span>
+                    </a>
+                    <span class="tooltip">Reserve apointment</span>
+                </li>
+                <li class="profile">
+                    <div class="profile-details">
+                        <img src="../static/img/patient.png" alt="profileImg">
+                        <div class="name_job">
+                            <div class="name">Camila</div>
+                            <div class="job">Patient</div>
+                        </div>
+                    </div>
+                    <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+                </li>
+            </ul>
+        </div>
+
+
+        <!-- Box info -->
+
+
+
+
+
+        
+        <script src="../static/js/Admin_profile.js"></script>
+    
+    </body>
+    
+</html>
