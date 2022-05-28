@@ -7,10 +7,10 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="3669",
     database="Raddb"
   )
-mycursor = mydb.cursor()
+mycursor = mydb.cursor(buffered=True)
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -108,18 +108,37 @@ def Register():
             patientLname = request.form['patientLname']
             Email = request.form['patientEmail']
             patientpassword = request.form['patientpassword']
-            sql = "INSERT INTO patients (patientFname, patientLname, Email, patientpassword) VALUES(%s,%s,%s,%s)"
-            val = (patientFname, patientLname, Email, patientpassword)
-            mycursor.execute(sql, val)
-            mydb.commit()
+
+
+            #for no duplicate emails
+            mycursor.execute("SELECT Email FROM patients")
+            allemails = mycursor.fetchall()
+            for x in range(0,len(allemails)):
+                em=allemails[x]
+                if em[0]==Email:
+                    flag=False                              #email already exists we shall display a message for that
+                    break
+                else:
+                    flag=True
+            if(flag):     
+                sql = "INSERT INTO patients (patientFname, patientLname, Email, patientpassword) VALUES(%s,%s,%s,%s)"
+                val = (patientFname, patientLname, Email, patientpassword)
+                mycursor.execute(sql, val)
+                mydb.commit()
+
+        # -- This part contains an error which we will solve later but it works fine!
+
+                mycursor.execute("SELECT PID FROM patients ORDER BY PID DESC")
+                record = mycursor.fetchone()
+                id=record[0]
+                message = "You have successfully registered ! \n" + "Your ID is: " + str(id)
+                flash(message)
             
-            # -- This part contains an error which we will solve later but it works fine!
+
             
-            mycursor.execute("SELECT * FROM patients ORDER BY PID DESC")
-            record = mycursor.fetchone()
-            id=record[2]
-            message = "You have successfully registered ! \n" + "Your ID is: " + str(id)
-            flash(message)  
+            
+           
+                    
         
     return render_template('Login.html')    
 
@@ -152,6 +171,27 @@ def Admin_profile():
 
 
 
+
+
+
+
+#------- VIEW DOCTORS ---------
+
+@app.route('/View-doctor', methods = ['POST', 'GET'])
+def viewdoctor():
+
+   if request.method == 'POST':
+      return render_template('Admin_profile.html')
+   else:
+      mycursor.execute("SELECT DID, doctorFname, clinicname,mobilephone,Email,salary FROM doctors")
+      row_headers=[x[0] for x in mycursor.description] 
+      myresult = mycursor.fetchall()
+      data={
+         'message':"data retrieved",
+         'rec':myresult,
+         'header':row_headers
+            }
+      return render_template('View-doctor.html',data=myresult)
 
 if __name__ == '__main__':
     app.run(debug=True)

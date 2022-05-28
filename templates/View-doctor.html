@@ -28,7 +28,7 @@
         <ul class="nav-list">
 
             <li id="Admin">
-                <a href="Admin_profile.html" class=" active">
+                <a href="http://localhost:5000/Admin_profile" class=" active">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Admin profile</span>
                     <span class="tooltip">Admin profile</span>
@@ -44,7 +44,7 @@
                 <span class="tooltip">Add doctor</span>
             </li>
             <li id="Vdoctor">
-                <a href="View-doctor.html">
+                <a href="http://localhost:5000/View-doctor">
                     <i class="fa-solid fa-hospital-user"></i></i>
                     <span class="links_name">View doctor</span>
                 </a>
@@ -91,27 +91,35 @@
 
             <!-- box info -->
 
-            <table>
+            <table action="http://localhost:5000/View-doctor" method="POST" >
 
 
 
                 <tr>
 
                     <th>ID</th>
-
-
                     <th>doctors' name</th>
                     <th>Clinics' Name</th>
-
                     <th>Mobile Phone </th>
-
                     <th>Email </th>
-
                     <th>salary</th>
 
                 </tr>
 
+                {% for r in data %}
+                <tr>
+                    <td>{{r.0}}</td>
+                    <td>{{r.1}}</td>
+                    <td>{{r.2}}</td>
+                    <td>{{r.3}}</td>
+                    <td>{{r.4}}</td>
+                    <td>{{r.5}}</td>
 
+
+                </tr>
+                {% endfor %}
+
+<!-- 
                 <tr>
 
                     <td>1</td>
@@ -262,7 +270,7 @@
 
                     <td>6300$</td>
 
-                </tr>
+                </tr> -->
 
             </table>
         </div>
