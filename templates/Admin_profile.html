@@ -77,7 +77,7 @@
                         <div class="job">Admin</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
             </li>
         </ul>
     </div>
@@ -98,28 +98,28 @@
                 <h1>Admin inforamtion</h1>
                 <div class="row">
                     <div class="bio-row">
-                        <p><span>First Name </span>: Camila</p>
+                        <p><span>First Name </span>: {{ data.0 }}</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Last Name </span>: Smith</p>
+                        <p class="right-box"><span>Last Name </span>: {{ data.1 }}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Country </span>: Australia</p>
+                        <p><span>Admin ID </span>: {{ data.2 }}</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Birthday</span>: 13 July 1983</p>
+                        <p class="right-box"><span>Age</span>: {{ data.4 }}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>ID </span>: #2222</p>
+                        <p><span>Gender </span>: {{ data.5 }}</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Email </span>: jsmith@flatlab.com</p>
+                        <p class="right-box"><span>Email </span>: {{ data.8 }}</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Mobile </span>: (12) 03 4567890</p>
+                        <p><span>Mobile </span>: {{ data.6 }}</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Phone </span>: 88 (02) 123456</p>
+                        <p class="right-box"><span>Salary </span>: {{ data.7 }}</p>
                     </div>
                 </div>
             </div>

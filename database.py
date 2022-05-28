@@ -58,8 +58,8 @@ def recreatedb(bool):
   # *********************************** ADD TO ADMIN *******************************************
   sql = "INSERT INTO ADMINS (adminFname , adminLname , AID , adminpassword , age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
-    ('Maha', 'Mohammed', 'A7', '3333', '22', 'female', '012111111111', '5000', 'dmaha@gmail.com'),
-    ('Mohamed', 'Gamal', 'A8', '9999', '29', 'male', '010555777777', '7000', 'mgamal@gmail.com'),
+    ('Maha', 'Mohammed', '7', '3333', '22', 'female', '012111111111', '5000', 'dmaha@gmail.com'),
+    ('Mohamed', 'Gamal', '8', '9999', '29', 'male', '010555777777', '7000', 'mgamal@gmail.com'),
 
   ]
 
