@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Open+Sans|Roboto') * {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+
+
+table {
+    background-color: #11101D;
+    transform: translate(25%, 20%);
+    width: 1000px;
+    border-collapse: collapse;
+    border-spacing: 0;
+    box-shadow: 0 2px 15px rgba(64, 64, 64, .7);
+    border-radius: 12px 12px 12px 12px;
+
+}
+
+td,
+th {
+    padding: 15px 20px;
+    text-align: center;
+
+
+}
+
+th {
+    background-color: #11101D;
+    color: #fafafa;
+    font-family: "Poppins", sans-serif;
+
+    font-weight: 200;
+    text-transform: uppercase;
+
+}
+
+tr {
+    width: 100%;
+    background-color: #fafafa;
+    font-family: 'Montserrat', sans-serif;
+}
+
+tr:nth-child(even) {
+    background-color: #eeeeee;
+}
