@@ -7,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 mycursor = mydb.cursor()
@@ -33,9 +33,10 @@ def login():
 # ----- ADMIN LOGIN -----
 
     if request.method == 'POST':
-
-        if request.form.get('action') == 'Admin': 
-            AID = request.form['RID']
+        ID = request.form['RID']
+        if ID[0]=='A':
+            AID = ID
+            print(AID[0])
             adminpassword = request.form['Pass']
             mycursor = mydb.cursor (buffered=True)
             mycursor.execute('SELECT * FROM ADMINS WHERE AID=%s AND adminpassword=%s', (AID, adminpassword,))
@@ -44,8 +45,6 @@ def login():
             
             if account:
                 print(account)
-
-            if account:
                 session['loggedin'] = True
                 session['RID'] = account[2]
                 session['Pass'] = account[3]
@@ -53,11 +52,33 @@ def login():
             else:
                 msg = 'Incorrect username/password!'
 
-# ---- PATIENT LOGIN ----
 
-        if request.form.get('action') == 'Patient':    
-            if request.method == 'POST':
-                PID = request.form['RID']
+
+# ----- DOCTOR LOGIN -----
+
+        elif ID[0]=='D':
+
+            DID = ID
+            doctorpassword = request.form['Pass']
+            mycursor = mydb.cursor(buffered=True)
+            mycursor.execute(
+                'SELECT * FROM DOCTORS WHERE DID=%s AND doctorpassword=%s', (DID, doctorpassword))
+            account = mycursor.fetchone()
+            mydb.commit()
+
+            if account:
+                print(account)
+                session['loggedin'] = True
+                session['DID'] = account[2]
+                session['doctorpassword'] = account[3]
+                return redirect(url_for('doctorProfile'))
+            else:
+                msg = 'Incorrect username/password!'
+                # ---- PATIENT LOGIN ----
+
+        else:
+
+                PID = ID
                 patientpassword = request.form['Pass']
                 mycursor = mydb.cursor(buffered=True)
                 mycursor.execute(
@@ -65,32 +86,12 @@ def login():
                 account = mycursor.fetchone()
                 mydb.commit()
                 print(PID, patientpassword)
-
+                print(account)
                 if account:
                     session['loggedin'] = True
                     session['PID'] = account[2]
                     session['patientpassword'] = account[3]
                     return redirect(url_for('patientProfile'))
-                else:
-                    msg = 'Incorrect username/password!'
-            
-
-# ----- DOCTOR LOGIN -----
-
-        if request.form.get('action') == 'Doctor':
-            if request.method == 'POST':
-                DID = request.form['RID']
-                doctorpassword = request.form['Pass']
-                mycursor = mydb.cursor(buffered=True)
-                mycursor.execute(
-                    'SELECT * FROM DOCTORS WHERE DID=%s AND doctorpassword=%s', (DID, doctorpassword))
-                account = mycursor.fetchone()
-                mydb.commit()
-                if account:
-                    session['loggedin'] = True
-                    session['DID'] = account[2]
-                    session['doctorpassword'] = account[3]
-                    return redirect(url_for('doctorProfile'))
                 else:
                     msg = 'Incorrect username/password!'
 

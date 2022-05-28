@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456"
+    passwd="root"
   )
 
   mycursor = mydb.cursor()
@@ -15,7 +15,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
@@ -37,7 +37,7 @@ def recreatedb(bool):
   sql="INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
     ('Dina','Salama','D1','1234', 'Dina','21','female','011266672701','99999999','dinakhalid404@gmail.com'),
-    ('Fady', 'Nour', 'D6', '1324', 'Fady', '33', 'male', '010555672701', '100000', 'fady20@gmail.com'),
+    ('Fady', 'Nour', 'D2', '1324', 'Fady', '33', 'male', '010555672701', '100000', 'fady20@gmail.com'),
 
   ]
   mycursor.executemany(sql,value)
@@ -47,10 +47,10 @@ def recreatedb(bool):
 
   sql = "INSERT INTO PATIENTS (patientFname , patientLname , PID , patientpassword , age , gender , mobilephone,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
-    ('Ereny', 'Eleya', '2', '9876', '21', 'female', '012888888888', 'ereny2022@gmail.com'),
-    ('Ahmed', 'Mohammed', '3', '1368', '25', 'male', '012123456789', 'amohammed@gmail.com'),
-    ('Maryam', 'Ahmed', '4', '1111', '30', 'female', '010888834888', 'maro2020@gmail.com'),
-    ('Nour', 'Emad', '5', '1212', '23', 'female', '011888888222', 'nonoemad@gmail.com'),
+    ('Ereny', 'Eleya', '1', '9876', '21', 'female', '012888888888', 'ereny2022@gmail.com'),
+    ('Ahmed', 'Mohammed', '2', '1368', '25', 'male', '012123456789', 'amohammed@gmail.com'),
+    ('Maryam', 'Ahmed', '3', '1111', '30', 'female', '010888834888', 'maro2020@gmail.com'),
+    ('Nour', 'Emad', '4', '1212', '23', 'female', '011888888222', 'nonoemad@gmail.com'),
   ]
   mycursor.executemany(sql,value)
   mydb.commit()
@@ -58,8 +58,8 @@ def recreatedb(bool):
   # *********************************** ADD TO ADMIN *******************************************
   sql = "INSERT INTO ADMINS (adminFname , adminLname , AID , adminpassword , age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
-    ('Maha', 'Mohammed', 'A7', '3333', '22', 'female', '012111111111', '5000', 'dmaha@gmail.com'),
-    ('Mohamed', 'Gamal', 'A8', '9999', '29', 'male', '010555777777', '7000', 'mgamal@gmail.com'),
+    ('Maha', 'Mohammed', 'A1', '3333', '22', 'female', '012111111111', '5000', 'dmaha@gmail.com'),
+    ('Mohamed', 'Gamal', 'A2', '9999', '29', 'male', '010555777777', '7000', 'mgamal@gmail.com'),
 
   ]
 
@@ -70,10 +70,9 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
   mycursor = mydb.cursor()
   return mycursor, mydb
-
