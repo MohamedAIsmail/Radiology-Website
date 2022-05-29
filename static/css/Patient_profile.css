@@ -7,6 +7,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+html {
+    background-color: #E4E9F7;
+}
+
 .sidebar {
     position: fixed;
     left: 0;
@@ -345,7 +349,6 @@
     float: left;
     margin-bottom: 5px;
     padding: 0 15px;
-
 }
 
 .bio-row p span {
@@ -355,7 +358,8 @@
 
 .med-row p span {
     width: 100px;
-    display: inline-block;
+    font-size: 18px;
+    color: rgb(51, 173, 137);
 }
 
 .row {
@@ -366,7 +370,7 @@
 .box1 {
     padding: 0 30px;
     width: 60%;
-    height: 460px;
+    height: 365px;
     background: white;
     margin-left: 80px;
     box-shadow: 10px 5px 5px rgb(227, 219, 219);
@@ -381,6 +385,7 @@
 .medical {
     transform: translate(120px, 160px);
     width: 70%;
+    height: 680px;
 }
 
 .effect {
@@ -419,6 +424,14 @@
     z-index: 2;
 }
 
+.medical h1 {
+    font-size: 40px;
+    margin-bottom: 100px;
+}
+
+.medical i {
+    margin-right: 10px;
+}
 
 .box1 h1 {
     font-family: "Poppins", sans-serif;
@@ -431,7 +444,7 @@
     font-family: "Popaspins", sans-serif;
     font-weight: bold;
     text-align: left;
-    line-height: 60px;
+    line-height: 30px;
     margin-left: 20px;
     font-family: "Open Sans", sans-serif;
     color: #444444;
