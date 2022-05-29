@@ -38,7 +38,7 @@
 
                 <li id="Adoctor">
                     <a href="#">
-                        <i class="fa-solid fa-user-doctor"></i>
+                        <i class="fa-solid fa-calendar-check"></i>
                         <span class="links_name">View apointments</span>
                     </a>
                     <span class="tooltip">View apointments</span>
@@ -65,6 +65,61 @@
 
 
         <!-- Box info -->
+    <section class="home-section">
+    
+            <!-- box info -->
+    
+            <div class="box1 effect">
+                <!-- profile picture -->
+                <div class="circular--landscape"> <img
+                        src="https://filmdaze.net/wp-content/uploads/2018/03/ladybird825.jpg" />
+                </div>
+                <!-- info -->
+                <h1>Patient inforamtion</h1>
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>First Name </span>: {{ data.0 }}</p>
+                    </div>
+                    <div class="bio-row ">
+                        <p class="right-box"><span>Last Name </span>: {{ data.1 }}</p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Gender</span>: {{ data.2 }}</p>
+                    </div>
+                    <div class="bio-row ">
+                        <p class="right-box"><span>Age</span>: {{ data.4 }}</p>
+                    </div>
+                    <div class="bio-row">
+                        <p><span>Mobile </span>: {{ data.6 }}</p>
+                    </div>
+                    <div class="bio-row ">
+                        <p class="right-box"><span>Account ID </span>: {{ data.7 }}</p>
+                    </div>
+                </div>
+                <a href="#"><button>Edit</button></a>
+                
+            </div>
+
+            <div class="box1 effect medical">
+                <!-- info -->
+                <h1>Admin inforamtion</h1>
+                <div class="row">
+                    <div class="med-row">
+                        <p><span>First Name </span>: {{ data.0 }}</p>
+                    </div>
+                    <div class="med-row">
+                        <p><span>Gender</span>: {{ data.2 }}</p>
+                    </div>
+                    <div class="med-row">
+                        <p><span>Mobile </span>: {{ data.6 }}</p>
+                    </div>
+                </div>
+                <a href="#"><button>Edit</button></a>
+            
+            </div>
+
+    
+    </section>
 
 
 

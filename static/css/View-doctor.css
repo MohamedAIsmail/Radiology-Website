@@ -4,11 +4,13 @@
     outline: 0;
 }
 
-
+html {
+    background-color: #E4E9F7;
+}
 
 table {
     background-color: #11101D;
-    transform: translate(25%, 20%);
+    transform: translate(25%, 50px);
     width: 1000px;
     border-collapse: collapse;
     border-spacing: 0;
