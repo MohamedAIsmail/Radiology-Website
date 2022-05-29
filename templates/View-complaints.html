@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>View complaints</title>
+    <link rel="stylesheet" href="../static/css/Admin_profile.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/View-doctor.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li id="Admin">
+                <a href="http://localhost:5000/Admin_profile" class=" active">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="links_name">Admin profile</span>
+                    <span class="tooltip">Admin profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="#">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span class="links_name">Add doctor</span>
+                </a>
+                <span class="tooltip">Add doctor</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="http://localhost:5000/View-doctor">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">View doctor</span>
+                </a>
+                <span class="tooltip">View doctor</span>
+            </li>
+            <li id="Analytics">
+                <a href="#">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+
+            <li id="Vclinic">
+                <a href="#">
+                    <i class="fa-solid fa-triangle-exclamation"></i> <span class="links_name">View complains</span>
+                </a>
+                <span class="tooltip">View complains</span>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/admin.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="name">Camila</div>
+                        <div class="job">Admin</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="panel">
+
+
+
+
+            <!-- box info -->
+
+            <table action="http://localhost:5000/View-doctor" method="POST">
+
+
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Email</th>
+
+                    <th>Mobile Phone </th>
+                    <th>Subject</th>
+                    <th>complaints</th>
+
+                </tr>
+
+                <tr>
+                    <td>ghobsha</td>
+                    <td>uremail@gmail.com</td>
+                    <td>0101002050505</td>
+                    <td>ta3baaaaan</td>
+                    <td>DR atef bta3 el thermoo W ANA bakrhh mn kol 2alby</td>
+
+
+                </tr>
+
+                <!-- 
+                <tr>
+
+                    <td>1</td>
+
+                    <td>Jean</td>
+
+                    <td>leBon</td>
+
+                    <td>131151568</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>5000$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>jack</td>
+
+                    <td>Duppont</td>
+
+                    <td>131151568</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>2000$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Jean</td>
+
+                    <td>leBon</td>
+
+                    <td>13624525458</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>4200$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>Nadia</td>
+
+                    <td>leBon</td>
+
+                    <td>1325452452468</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>6300$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>5</td>
+
+                    <td>Nadia</td>
+
+                    <td>leBon</td>
+
+                    <td>145254254368</td>
+
+                    <td>18 Mar 1982</td>
+
+                    <td>6300$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>6</td>
+
+                    <td>Nadia</td>
+
+                    <td>leBon</td>
+
+                    <td>135443545353368</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>6300$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>7</td>
+
+                    <td>Nadia</td>
+
+                    <td>leBon</td>
+
+                    <td>135
+                        33434334543568</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>6300$</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>8</td>
+
+                    <td>Nadia</td>
+
+                    <td>leBon</td>
+
+                    <td>135435453368</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>6300$</td>
+
+                </tr>
+                <tr>
+
+                    <td>8</td>
+
+                    <td>Nadia</td>
+
+                    <td>leBon</td>
+
+                    <td>135435453368</td>
+
+                    <td>mohab.ali01@eng-st.cu.edu.eg
+                    </td>
+
+                    <td>6300$</td>
+
+                </tr> -->
+
+            </table>
+        </div>
+
+
+
+
+    </section>
+
+
+    <script src="../static/js/Admin_profile.js"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

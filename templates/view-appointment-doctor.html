@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>View appointment</title>
+    <link rel="stylesheet" href="../static/css/Admin_profile.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/View-doctor.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li id="Admin">
+                <a href="http://localhost:5000/Admin_profile" class=" active">
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span class="links_name">Doctor profile</span>
+                    <span class="tooltip"> Doctor profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="#">
+                    <i class="fa-solid fa-user"></i>
+
+                    <span class="links_name">View patient</span>
+                </a>
+                <span class="tooltip">View patient</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="http://localhost:5000/View-doctor">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">View apointments</span>
+                </a>
+                <span class="tooltip">View apointmentsr</span>
+            </li>
+
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="panel">
+
+
+
+
+            <!-- box info -->
+
+            <table action="http://localhost:5000/View-doctor" method="POST">
+
+
+
+                <tr>
+
+                    <th>Doctor's name</th>
+                    <th>patien's name</th>
+                    <th>Appointment's Day </th>
+                    <th>Appointment's Time</th>
+
+
+                </tr>
+
+                <tr>
+                    <td>1234</td>
+                    <td>mohab</td>
+                    <td>Sunday, May 29, 2022</td>
+                    <td>4:24 PM </td>
+
+
+                </tr>
+
+
+            </table>
+        </div>
+
+
+
+
+    </section>
+
+
+    <script src="../static/js/Admin_profile.js"></script>
+
+
+
+
+
+
+
+
+</body>
+
+</html>

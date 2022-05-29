@@ -359,7 +359,7 @@
 .box1 {
     padding: 0 30px;
     width: 70%;
-    height: 460px;
+    height: 490px;
     background: white;
     margin-left: 80px;
     box-shadow: 10px 5px 5px rgb(227, 219, 219);
@@ -402,9 +402,15 @@
 .effect:hover p,
 .effect:hover h2,
 .effect:hover h1,
-.effect:hover .phone {
+.effect:hover .phone,
+.effect:hover button {
     color: white;
     z-index: 2;
+}
+
+.effect:hover button {
+    background-color: white;
+    color: #11101D;
 }
 
 
@@ -458,4 +464,29 @@
     margin-left: -50px;
 }
 
-.active {}
+button {
+    border-radius: 20px;
+    border: 1px solid rgb(20 36 44);
+    background-color: rgb(20 36 44);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 60ms ease-in;
+    cursor: pointer;
+    transform: translate(0, -40px)
+}
+
+button:hover {
+    background-color: rgb(35, 64, 79);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
