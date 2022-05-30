@@ -7,6 +7,10 @@
     font-family: "Poppins", sans-serif;
 }
 
+html {
+    background-color: #E4E9F7 ;
+}
+
 .sidebar {
     position: fixed;
     left: 0;
