@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669"
+    passwd="123456"
   )
 
   mycursor = mydb.cursor()
@@ -15,7 +15,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -40,6 +40,7 @@ def recreatedb(bool):
     ('Fady', 'Nour', 'D2', '1324', 'Fady', '33', 'male', '010555672701', '100000', 'fady20@gmail.com'),
 
   ]
+
   mycursor.executemany(sql,value)
   mydb.commit()
   
@@ -52,6 +53,7 @@ def recreatedb(bool):
     ('Maryam', 'Ahmed', '3', '1111', '30', 'female', '010888834888', 'maro2020@gmail.com'),
     ('Nour', 'Emad', '4', '1212', '23', 'female', '011888888222', 'nonoemad@gmail.com'),
   ]
+
   mycursor.executemany(sql,value)
   mydb.commit()
 
@@ -60,7 +62,6 @@ def recreatedb(bool):
   value = [
     ('Maha', 'Mohammed', 'A1', '3333', '22', 'female', '012111111111', '5000', 'dmaha@gmail.com'),
     ('Mohamed', 'Gamal', 'A2', '9999', '29', 'male', '010555777777', '7000', 'mgamal@gmail.com'),
-
   ]
 
   mycursor.executemany(sql,value)
@@ -70,9 +71,11 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
   mycursor = mydb.cursor()
   return mycursor, mydb
+
+# recreatedb(1)

@@ -7,9 +7,10 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
+
 mycursor = mydb.cursor(buffered=True)
 
 app = Flask(__name__)
@@ -36,12 +37,13 @@ def login():
         ID = request.form['RID']
         if ID[0]=='A':
             AID = ID
-            print(AID[0])
             adminpassword = request.form['Pass']
             mycursor = mydb.cursor (buffered=True)
             mycursor.execute('SELECT * FROM ADMINS WHERE AID=%s AND adminpassword=%s', (AID, adminpassword,))
             account = mycursor.fetchone()
             mydb.commit()
+            print(account)
+
             
             if account:
                 print(account)
@@ -116,7 +118,7 @@ def Register():
             for x in range(0,len(allemails)):
                 em=allemails[x]
                 if em[0]==Email:
-                    flag=False                              #email already exists we shall display a message for that
+                    flag=False        # -- Email already exists we shall display a message for that
                     break
                 else:
                     flag=True
@@ -192,6 +194,29 @@ def viewdoctor():
          'header':row_headers
             }
       return render_template('View-doctor.html',data=myresult)
+
+
+@app.route('/Analysis', methods = ['POST', 'GET'])
+def analysis():
+    if request.method == 'POST':
+     return render_template('Admin_profile.html')
+
+    else:
+
+        # Get the number of doctors, patients in the hospital
+
+     mycursor.execute("SELECT COUNT(*) FROM admins")
+     adminNumbers = mycursor.fetchone()
+     mycursor.execute("SELECT COUNT(*) FROM doctors")
+     doctorNumbers = mycursor.fetchone()
+     mycursor.execute("SELECT COUNT(*) FROM patients")
+     patientNumbers = mycursor.fetchone()
+
+        # Get the highest doctor's salary
+        
+     mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
+     docdata=mycursor.fetchmany(size=3)
+     return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, docdatas=docdata)
 
 if __name__ == '__main__':
     app.run(debug=True)

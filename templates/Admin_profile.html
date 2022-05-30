@@ -26,7 +26,7 @@
         <ul class="nav-list">
 
             <li id="Admin">
-                <a href="http://localhost:5000/Admin_profile" class=" active">
+                <a href="{{url_for('Admin_profile')}}" class=" active">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Admin profile</span>
                     <span class="tooltip">Admin profile</span>
@@ -42,14 +42,14 @@
                 <span class="tooltip">Add doctor</span>
             </li>
             <li id="Vdoctor">
-                <a href="http://localhost:5000/View-doctor">
+                <a href="{{url_for('viewdoctor')}}">
                     <i class="fa-solid fa-hospital-user"></i></i>
                     <span class="links_name">View doctor</span>
                 </a>
                 <span class="tooltip">View doctor</span>
             </li>
             <li id="Analytics">
-                <a href="#">
+                <a href="{{url_for('analysis')}}">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span class="links_name">Analytics</span>
                 </a>
