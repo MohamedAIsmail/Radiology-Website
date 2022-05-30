@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <title> Admin page</title>
+
+    <title>View patient</title>
     <link rel="stylesheet" href="../static/css/Admin_profile.css">
+
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/View-doctor.css">
+
 </head>
 
 <body>
-    <!-- side barrr -->
-
     <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">
@@ -27,49 +29,39 @@
 
             <li id="Admin">
                 <a href="http://localhost:5000/Admin_profile" class=" active">
-                    <i class="fa-solid fa-user"></i>
-                    <span class="links_name">Admin profile</span>
-                    <span class="tooltip">Admin profile</span>
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span class="links_name">Doctor profile</span>
+                    <span class="tooltip"> Doctor profile</span>
 
                 </a>
             </li>
 
             <li id="Adoctor">
                 <a href="#">
-                    <i class="fa-solid fa-user-doctor"></i>
-                    <span class="links_name">Add doctor</span>
+                    <i class="fa-solid fa-user"></i>
+
+                    <span class="links_name">View patient</span>
                 </a>
-                <span class="tooltip">Add doctor</span>
+                <span class="tooltip">View patient</span>
             </li>
             <li id="Vdoctor">
                 <a href="http://localhost:5000/View-doctor">
                     <i class="fa-solid fa-hospital-user"></i></i>
-                    <span class="links_name">View doctor</span>
+                    <span class="links_name">View apointments</span>
                 </a>
-                <span class="tooltip">View doctor</span>
-            </li>
-            <li id="Analytics">
-                <a href="#">
-                    <i class="fa-solid fa-chart-pie"></i>
-                    <span class="links_name">Analytics</span>
-                </a>
-                <span class="tooltip">Analytics</span>
+                <span class="tooltip">View appointments</span>
             </li>
 
-            <li id="Vclinic">
-                <a href="#">
-                    <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
-                <span class="tooltip">View feedback</span>
-            </li>
             <li class="profile">
                 <div class="profile-details">
-                    <img src="../static/img/admin.png" alt="profileImg">
+                    <img src="../static/img/patient.png" alt="profileImg">
                     <div class="name_job">
                         <div class="name">Camila</div>
-                        <div class="job">Admin</div>
+                        <div class="job">Patient</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
             </li>
         </ul>
     </div>
@@ -87,32 +79,33 @@
                         src="https://filmdaze.net/wp-content/uploads/2018/03/ladybird825.jpg" />
                 </div>
                 <!-- info -->
-                <h1>Admin inforamtion</h1>
+                <h1>Doctor inforamtion</h1>
                 <div class="row">
                     <div class="bio-row">
-                        <p><span>First Name </span>: {{ data.0 }}</p>
+                        <p><span>First Name </span>: ghobshaa</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Last Name </span>: {{ data.1 }}</p>
+                        <p class="right-box"><span>Last Name </span>: mohab</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Admin ID </span>: {{ data.2 }}</p>
+                        <p><span> ID </span>: 123</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Age</span>: {{ data.4 }}</p>
+                        <p class="right-box"><span>Age</span>: 40</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Gender </span>: {{ data.5 }}</p>
+                        <p><span>Gender </span>: male</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Email </span>: {{ data.8 }}</p>
+                        <p class="right-box"><span>Email </span>: uremail@gmail.com</p>
                     </div>
                     <div class="bio-row">
-                        <p><span>Mobile </span>: {{ data.6 }}</p>
+                        <p><span>Mobile </span>: 010051111818</p>
                     </div>
                     <div class="bio-row ">
-                        <p class="right-box"><span>Salary </span>: {{ data.7 }}</p>
+                        <p class="right-box"><span>Salary </span>: 50000$</p>
                     </div>
+
                 </div>
                 <a href="#"><button>Edit</button></a>
 

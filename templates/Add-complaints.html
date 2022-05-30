@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Add feedback</title>
+    <link rel="stylesheet" href="../static/css/Add-complaints.css">
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+</head>
+
+
+<body>
+
+    <!-- side barrr -->
+
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li class="active" id="Admin">
+                <a href="#">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="links_name">Profile</span>
+                    <span class="tooltip">Profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="#">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="links_name">View apointments</span>
+                </a>
+                <span class="tooltip">View apointments</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="#">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">Reserve apointment</span>
+                </a>
+                <span class="tooltip">Reserve apointment</span>
+            <li id="Vclinic">
+                <a href="#">
+                    <i class="fa-solid fa-comment"></i></i> <span class="links_name">View feedback</span>
+                </a>
+                <span class="tooltip">View feedback</span>
+            </li>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/patient.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="name">Camila</div>
+                        <div class="job">Patient</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- Box info -->
+    <section class="home-section h-75">
+
+        <div class="container h-75">
+
+            <div class="row justify-content-center h-75">
+                <div class="col-md-14 h-75">
+                    <div class="wrapper h-75">
+
+                        <div class="row no-gutters h-75">
+                            <div class="col-md-8 h-75">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Patient feedback</h3>
+                                    <div id="form-message-warning" class="mb-4"></div>
+                                    <div id="form-message-success" class="mb-4">
+                                        Your message was sent, thank you!
+                                    </div>
+                                    <form method="POST" id="contactForm" name="contactForm" class="contactForm">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="name">Full Name</label>
+                                                    <input type="text" class="form-control" name="name" id="name"
+                                                        placeholder="Name">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="label" for="name">Contact number</label>
+                                                    <input type="text" class="form-control" name="name" id="name"
+                                                        placeholder="Contact number">
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="label" for="email">Email Address</label>
+                                                    <input type="email" class="form-control" name="email" id="email"
+                                                        placeholder="Email">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Subject</label>
+                                                    <input type="text" class="form-control" name="subject" id="subject"
+                                                        placeholder="Subject">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#">Message</label>
+                                                    <textarea name="message" class="form-control" id="message" cols="30"
+                                                        rows="4" placeholder="Message"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit" value="Send Message" class="btn btn-primary">
+                                                    <div class="submitting"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-stretch">
+                                <div class="info-wrap w-100 p-5 img" style="background-image: url(images/img.jpg);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+    <script src="../static/js/Admin_profile.js"></script>
+
+</body>
+
+</html>
