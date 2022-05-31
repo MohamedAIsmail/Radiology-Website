@@ -6,7 +6,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="3669",
     database="Raddb"
   )
 
@@ -36,13 +36,12 @@ def login():
         ID = request.form['RID']
         if ID[0]=='A':
             AID = ID
+            print(AID[0])
             adminpassword = request.form['Pass']
             mycursor = mydb.cursor (buffered=True)
             mycursor.execute('SELECT * FROM ADMINS WHERE AID=%s AND adminpassword=%s', (AID, adminpassword,))
             account = mycursor.fetchone()
             mydb.commit()
-            print(account)
-
             
             if account:
                 print(account)
@@ -70,9 +69,9 @@ def login():
             if account:
                 print(account)
                 session['loggedin'] = True
-                session['DID'] = account[2]
+                session['RID'] = account[2]
                 session['doctorpassword'] = account[3]
-                return redirect(url_for('doctorProfile'))
+                return redirect(url_for('doctor_profile'))
             else:
                 msg = 'Incorrect username/password!'
                 # ---- PATIENT LOGIN ----
@@ -90,9 +89,9 @@ def login():
                 print(account)
                 if account:
                     session['loggedin'] = True
-                    session['PID'] = account[2]
+                    session['RID'] = account[2]
                     session['patientpassword'] = account[3]
-                    return render_template("Patient_profile.html")
+                    return redirect(url_for('Patient_profile'))
                 else:
                     msg = 'Incorrect username/password!'
 
@@ -151,6 +150,37 @@ def Admin_profile():
         mycursor.execute(sql, val)
         account = mycursor.fetchone() 
         return render_template("Admin_profile.html", data=account) 
+
+    return redirect(url_for('login')) 
+
+
+# ---- DOCTOR PROFILE ----
+
+@app.route("/doctor_profile", methods =['GET', 'POST']) 
+def doctor_profile(): 
+    if 'loggedin' in session:
+         
+        DID = session['RID']
+        sql ="SELECT * FROM DOCTORS WHERE DID=%s"
+        val= (DID,)
+        mycursor.execute(sql, val)
+        account = mycursor.fetchone() 
+        return render_template("doctor_profile.html", data=account) 
+
+    return redirect(url_for('login')) 
+
+
+# ---- PATIENT PROFILE ----
+
+@app.route("/Patient_profile", methods =['GET', 'POST']) 
+def Patient_profile(): 
+    if 'loggedin' in session:  
+        PID = session['RID']
+        sql ="SELECT * FROM patients WHERE PID = %s"
+        val= (PID,)
+        mycursor.execute(sql, val)
+        account = mycursor.fetchone() 
+        return render_template("Patient_profile.html", data=account) 
 
     return redirect(url_for('login')) 
 
