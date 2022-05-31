@@ -3,8 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Patient profile</title>
+    <title> edit ur medical info</title>
     <link rel="stylesheet" href="../static/css/Patient_profile.css">
+    <link rel="stylesheet" href="../static/css/medical-info-edit.css">
+
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,58 +76,34 @@
 
         <!-- box info -->
 
-        <div class="box1 effect">
-            <!-- profile picture -->
-            <div class="circular--landscape"> <img
-                    src="https://filmdaze.net/wp-content/uploads/2018/03/ladybird825.jpg" />
-            </div>
-            <!-- info -->
-            <h1>Patient inforamtion</h1>
-            <div class="row">
-                <div class="bio-row">
-                    <p><span>First Name </span>: {{ data.0 }}</p>
-                </div>
-                <div class="bio-row ">
-                    <p class="right-box"><span>Last Name </span>: {{ data.1 }}</p>
-                </div>
-                <div class="bio-row">
-                    <p><span>Gender</span>: {{ data.5 }}</p>
-                </div>
-                <div class="bio-row ">
-                    <p class="right-box"><span>Age</span>: {{ data.4 }}</p>
-                </div>
-                <div class="bio-row">
-                    <p><span>Mobile </span>: {{ data.6 }}</p>
-                </div>
-                <div class="bio-row ">
-                    <p class="right-box"><span>Account ID </span>: {{ data.2 }}</p>
-                </div>
-            </div>
-            <button onclick="window.location = 'edit_patient_profile.html';">Edit</button>
 
-        </div>
 
         <div class="box1 effect medical">
             <!-- Medical info -->
             <h1><i class="fa-solid fa-briefcase-medical"></i> Medical inforamtion</h1>
             <div class="row">
                 <div class="med-row">
-                    <p>Taking any kind of medicine?<br><span class="green">No</span></p>
+                    <p>Taking any kind of medicine?<br><span class="green"> <input type="text" id="fname" name="fname">
+                        </span></p>
                 </div>
                 <div class="med-row">
-                    <p>Had surgery before?<br><span>No</span></p>
+                    <p>Had surgery before?<br><span> <input type="text" id="fname" name="fname">
+                        </span></p>
                 </div>
                 <div class="med-row">
-                    <p>Had blood transfer soon?<br><span>la walahy</span></p>
+                    <p>Had blood transfer soon?<br><span> <input type="text" id="fname" name="fname">
+                        </span></p>
                 </div>
                 <div class="med-row">
-                    <p>Have virus C or B?<br><span>Mohab Ghobashy</span></p>
+                    <p>Have virus C or B?<br><span> <input type="text" id="fname" name="fname">
+                        </span></p>
                 </div>
                 <div class="med-row">
-                    <p>Suffer from any disease?<br><span>7amthla7</span></p>
+                    <p>Suffer from any disease?<br><span> <input type="text" id="fname" name="fname">
+                        </span></p>
                 </div>
             </div>
-            <button onclick="window.location = 'edit.-medical-info.html';">Edit</button>
+            <button>update</button>
 
         </div>
 

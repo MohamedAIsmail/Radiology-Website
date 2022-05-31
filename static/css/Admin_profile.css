@@ -8,7 +8,7 @@
 }
 
 html {
-    background-color: #E4E9F7 ;
+    background-color: #E4E9F7;
 }
 
 .sidebar {
@@ -363,7 +363,7 @@ html {
 .box1 {
     padding: 0 30px;
     width: 70%;
-    height: 490px;
+    height: 510px;
     background: white;
     margin-left: 80px;
     box-shadow: 10px 5px 5px rgb(227, 219, 219);
@@ -480,7 +480,7 @@ button {
     text-transform: uppercase;
     transition: transform 60ms ease-in;
     cursor: pointer;
-    transform: translate(0, -40px)
+    margin-right: 60px;
 }
 
 button:hover {
