@@ -251,17 +251,25 @@ def analysis():
 
 @app.route("/Add-complaints", methods =['POST', 'GET'])
 def Addcomplaints():
-    if request.method == 'POST':
-        name = request.form['Name']
-        email = request.form['email']
-        subject = request.form['subject']
-        message = request.form['message']
-        contactNum = request.form['ContactNumber']
-        sql = "INSERT INTO complaints (Name , EMAIL , SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s, %s)"
-        val = (name, email, subject, message, contactNum)
-        mycursor.execute(sql, val)
-        mydb.commit()
-        print(val)
+    if 'loggedin' in session:  
+        PID = session['RID']
+        if request.method == 'POST':
+            sql = "SELECT patientFname, Email, mobilephone FROM PATIENTS WHERE PID=%s"
+            val=(PID,)
+            mycursor.execute(sql,val)
+            patients=mycursor.fetchall()
+
+            subject = request.form['subject']
+            message = request.form['message']
+
+            print(patients[0])
+
+            sql = "INSERT INTO complaints (Name , EMAIL , SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s, %s)"
+            for x in patients:
+                val = (x[0], x[1], subject, message, x[2])
+            mycursor.execute(sql, val)
+            mydb.commit()
+            print(val)
 
     return render_template('Add-complaints.html')
 

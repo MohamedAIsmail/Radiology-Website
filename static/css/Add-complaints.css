@@ -268,6 +268,10 @@ input {
     overflow: visible;
 }
 
+button {
+    margin-left: -2550px;
+}
+
 button,
 select {
     text-transform: none;
@@ -407,6 +411,8 @@ h2,
 h3,
 .h3 {
     font-size: 1.75rem;
+    color: #11101D;
+
 }
 
 h4,
@@ -2884,6 +2890,7 @@ textarea.form-control.is-invalid {
     -o-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    position: relative;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2920,6 +2927,7 @@ fieldset:disabled a.btn {
     color: #fff;
     background-color: #007bff;
     border-color: #007bff;
+    margin-left: 350px;
 }
 
 .btn-primary:hover {
@@ -9309,6 +9317,8 @@ button.bg-dark:focus {
 .my-4 {
     margin-bottom: 1.5rem !important;
     font-family: sans-serif;
+    margin-left: 300px;
+
 }
 
 .ml-4,
@@ -12297,4 +12307,8 @@ html {
     font-weight: 600;
     letter-spacing: 0.8px;
     font-family: "Poppins", sans-serif;
+}
+
+.bx-log-out:hover {
+    cursor: pointer;
 }
