@@ -379,8 +379,8 @@ html {
 
 .overlay p {
     position: absolute;
-    top: 24%;
-    left: 60px;
+    top: 27%;
+    left: 88px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -578,7 +578,7 @@ input {
 .avatar {
     width: 380px;
     margin-left: 12px;
-    margin-top: 260px;
+    margin-top: 350px;
 }
 
 .radio-container {

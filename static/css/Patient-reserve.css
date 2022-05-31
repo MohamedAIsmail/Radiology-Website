@@ -379,7 +379,7 @@ text-align: center;
 }
 
 .reserve-box {
-    left: 570px;
+    left: 420px;
     top: 60px;
     background-color: #fff;
     border-radius: 20px;
@@ -394,7 +394,7 @@ text-align: center;
 }
 
 .picture-container {
-    left: 1030px;
+    left: 880px;
     top: 170px;
     background-color: #fff;
     border-radius: 20px;
@@ -414,7 +414,7 @@ text-align: center;
 }
 
 .overlay {
-    left: 1030px;
+    left: 880px;
     top: 170px;
     position: absolute;
     width: 400px;
