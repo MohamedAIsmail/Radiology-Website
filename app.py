@@ -7,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -37,12 +37,13 @@ def login():
         ID = request.form['RID']
         if ID[0]=='A':
             AID = ID
-            print(AID[0])
             adminpassword = request.form['Pass']
             mycursor = mydb.cursor (buffered=True)
             mycursor.execute('SELECT * FROM ADMINS WHERE AID=%s AND adminpassword=%s', (AID, adminpassword,))
             account = mycursor.fetchone()
             mydb.commit()
+            print(account)
+
             
             if account:
                 print(account)
@@ -70,9 +71,9 @@ def login():
             if account:
                 print(account)
                 session['loggedin'] = True
-                session['RID'] = account[2]
+                session['DID'] = account[2]
                 session['doctorpassword'] = account[3]
-                return redirect(url_for('doctor_profile'))
+                return redirect(url_for('doctorProfile'))
             else:
                 msg = 'Incorrect username/password!'
                 # ---- PATIENT LOGIN ----
@@ -90,13 +91,14 @@ def login():
                 print(account)
                 if account:
                     session['loggedin'] = True
-                    session['RID'] = account[2]
+                    session['PID'] = account[2]
                     session['patientpassword'] = account[3]
-                    return redirect(url_for('Patient_profile'))
+                    return render_template("Patient_profile.html")
                 else:
                     msg = 'Incorrect username/password!'
 
     return render_template('Login.html')
+
 # ---------------------- REGISTERING ----------------------
 
 @app.route('/Register', methods=['POST', 'GET'])
@@ -134,12 +136,7 @@ def Register():
                 message = "You have successfully registered ! \n" + "Your ID is: " + str(id)
                 flash(message)
             
-
-            
-            
-           
-                    
-        
+   
     return render_template('Login.html')    
 
 
@@ -157,35 +154,7 @@ def Admin_profile():
         return render_template("Admin_profile.html", data=account) 
 
     return redirect(url_for('login')) 
-# ---- DOCTOR PROFILE ----
 
-@app.route("/doctor_profile", methods =['GET', 'POST']) 
-def doctor_profile(): 
-    if 'loggedin' in session:
-         
-        DID = session['RID']
-        sql ="SELECT * FROM DOCTORS WHERE DID=%s"
-        val= (DID,)
-        mycursor.execute(sql, val)
-        account = mycursor.fetchone() 
-        return render_template("doctor_profile.html", data=account) 
-
-    return redirect(url_for('login')) 
-
-
-# ---- PATIENT PROFILE ----
-
-@app.route("/Patient_profile", methods =['GET', 'POST']) 
-def Patient_profile(): 
-    if 'loggedin' in session:  
-        PID = session['RID']
-        sql ="SELECT * FROM patients WHERE PID = %s"
-        val= (PID,)
-        mycursor.execute(sql, val)
-        account = mycursor.fetchone() 
-        return render_template("Patient_profile.html", data=account) 
-
-    return redirect(url_for('login')) 
 
 
 # ---- Logout ----
@@ -243,6 +212,23 @@ def analysis():
      mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
      docdata=mycursor.fetchmany(size=3)
      return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, docdatas=docdata)
+
+@app.route("/Add-complaints", methods =['POST', 'GET'])
+def Addcomplaints():
+    if request.method == 'POST':
+        name = request.form['Name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+        contactNum = request.form['ContactNumber']
+        sql = "INSERT INTO complaints (Name , EMAIL , SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s, %s)"
+        val = (name, email, subject, message, contactNum)
+        mycursor.execute(sql, val)
+        mydb.commit()
+        print(val)
+
+    return render_template('Add-complaints.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)

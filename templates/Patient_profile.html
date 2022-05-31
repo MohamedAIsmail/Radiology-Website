@@ -28,7 +28,7 @@
         <ul class="nav-list">
 
             <li class="active" id="Admin">
-                <a href="http://localhost:5000/Patient_profile">
+                <a href="#">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Profile</span>
                     <span class="tooltip">Profile</span>
@@ -50,7 +50,7 @@
                 </a>
                 <span class="tooltip">Reserve apointment</span>
             <li id="Vclinic">
-                <a href="#">
+                <a href="{{url_for('Addcomplaints')}}">
                     <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
                 </a>
                 <span class="tooltip">Add feedback</span>
@@ -60,10 +60,11 @@
                 <div class="profile-details">
                     <img src="../static/img/patient.png" alt="profileImg">
                     <div class="name_job">
+                        <div class="name">Camila</div>
                         <div class="job">Patient</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
             </li>
         </ul>
     </div>
@@ -83,25 +84,25 @@
             <h1>Patient inforamtion</h1>
             <div class="row">
                 <div class="bio-row">
-                    <p><span>First Name </span>: {{ data.0 }}</p>
+                    <p><span>First Name </span>:حامو </p>
                 </div>
                 <div class="bio-row ">
-                    <p class="right-box"><span>Last Name </span>: {{ data.1 }}</p>
+                    <p class="right-box"><span>Last Name </span>: الطيخا</p>
                 </div>
                 <div class="bio-row">
-                    <p><span>Gender</span>: {{ data.5 }}</p>
+                    <p><span>Gender</span>: شايب</p>
                 </div>
                 <div class="bio-row ">
-                    <p class="right-box"><span>Age</span>: {{ data.4 }}</p>
+                    <p class="right-box"><span>Age</span>: 139</p>
                 </div>
                 <div class="bio-row">
-                    <p><span>Mobile </span>: {{ data.6 }}</p>
+                    <p><span>Mobile </span>: 011</p>
                 </div>
                 <div class="bio-row ">
-                    <p class="right-box"><span>Account ID </span>: {{ data.2 }}</p>
+                    <p class="right-box"><span>Account ID </span>: #ID</p>
                 </div>
             </div>
-            <button onclick="window.location = 'edit_patient_profile.html';">Edit</button>
+            <a href="#"><button>Edit</button></a>
 
         </div>
 
@@ -125,7 +126,7 @@
                     <p>Suffer from any disease?<br><span>7amthla7</span></p>
                 </div>
             </div>
-            <button onclick="window.location = 'edit.-medical-info.html';">Edit</button>
+            <a href="#"><button>Edit</button></a>
 
         </div>
 

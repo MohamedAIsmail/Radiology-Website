@@ -4,18 +4,21 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669"
+    passwd="123456"
   )
 
   mycursor = mydb.cursor()
+
   if bool:
     mycursor.execute("DROP DATABASE Raddb")
+ 
   mycursor.execute("CREATE DATABASE Raddb")
+  
 
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -30,9 +33,16 @@ def recreatedb(bool):
 
   mycursor.execute("CREATE TABLE REPORT (DoctorName VARCHAR(200), PatientName VARCHAR(200), Date DATE NOT NULL, Diagnosis VARCHAR(300), Procedures VARCHAR(300), img VARCHAR(300), mimetype VARCHAR(300))")
 
+  mycursor.execute("CREATE TABLE COMPLAINTS (Name VARCHAR(200), CONTACTNUMBER VARCHAR(12), EMAIL VARCHAR(200), SUBJECT VARCHAR(100), MESSAGE VARCHAR(300))")
+
   #mycursor.execute("CREATE TABLE APPOINTMENT (PFname VARCHAR(100), PLname VARCHAR(100), Date&Time DATETIME NOT NULL, mobilephone VARCHAR(12), Department VARCHAR(100))")
 
-
+  mycursor.execute("Show tables;")
+ 
+  myresult = mycursor.fetchall()
+ 
+  for x in myresult:
+      print(x)
   # *********************************** ADD TO DOCTOR *******************************************
   sql="INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
@@ -71,7 +81,7 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
