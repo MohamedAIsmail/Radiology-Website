@@ -29,7 +29,7 @@
             <ul class="nav-list">
     
                 <li class="active" id="Admin">
-                    <a href="#">
+                    <a href="{{url_for('Patient_profile')}}">
                         <i class="fa-solid fa-user"></i>
                         <span class="links_name">Profile</span>
                         <span class="tooltip">Profile</span>
@@ -38,20 +38,20 @@
                 </li>
     
                 <li id="Adoctor">
-                    <a href="#">
+                    <a href="{{url_for('viewAppointment')}}">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span class="links_name">View apointments</span>
                     </a>
                     <span class="tooltip">View apointments</span>
                 </li>
                 <li id="Vdoctor">
-                    <a href="#">
+                    <a href="{{url_for('Returningdoc')}}">
                         <i class="fa-solid fa-hospital-user"></i></i>
                         <span class="links_name">Reserve apointment</span>
                     </a>
                     <span class="tooltip">Reserve apointment</span>
                 <li id="Vclinic">
-                    <a href="#">
+                    <a href="{{url_for('Addcomplaints')}}">
                         <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
                     </a>
                     <span class="tooltip">Add feedback</span>
@@ -61,11 +61,10 @@
                     <div class="profile-details">
                         <img src="../static/img/patient.png" alt="profileImg">
                         <div class="name_job">
-                            <div class="name">Camila</div>
                             <div class="job">Patient</div>
                         </div>
                     </div>
-                    <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+                    <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
                 </li>
             </ul>
         </div>
@@ -124,25 +123,7 @@
 
                 <div class="reserve-box">
                     <div class="form-container">
-                        <form action="#">
-                            <div class="patient-info">
-                            <h1> Patient Info </h1>
-                            <span>Name</span>
-                            <div class="name-container">
-                                <input type="text" placeholder="First name" name="patientFname" required />
-                                <input type="text" placeholder="Last name" name="patientLname" required class="last-name" />
-                            </div>
-                            <div class="double">
-                                <div class="input-container">
-                                    <span>Mobile</span>
-                                    <input type="text" placeholder="+20110912039" name="Mobile" required/>
-                                </div>
-                                <div class="input-container">
-                                    <span>ID</span>
-                                    <input type="text" placeholder="First name" name="patientFname" required/>
-                                </div>
-                            </div>
-                            </div>
+                        <form method="POST" action="{{url_for('ReserveAppointment')}}">
                             <h1>Appointment Request</h1>
                             <div class="double">
                                 <div class="input-container">
@@ -157,18 +138,15 @@
                             
                             <span>Doctor</span>
                             <div class="input-container">
-                                <select name="Doctor" id="Doctor">
-                                    <option value="Doctor">Select Doctor</option>
-                                    <option value="Doctor">Mostafa</option>
-                                    <option value="Doctor">Mohab</option>
-                                    <option value="Doctor">Mostafa</option>
-                                    <option value="Doctor">Mohab</option>
-                                    <option value="Doctor">Mostafa</option>
-                                    <option value="Doctor">Mohab</option>
+                                <select name="doctorChosen" id="Doctor">                 
+                                    <option value="Doctor">Select Doctor</option>    
+                                    {% for r in data %}                              
+                                    <option value="{{ r.0 }}">{{ r.0 }}</option>
+                                    {% endfor %}
                                 </select>
                             </div>
 
-                            <button type="submit" name="action" value="Reg">Confirm Booking</button>
+                            <button type="submit" name="Booking">Confirm Booking</button>
 
                         </form>
                     </div>

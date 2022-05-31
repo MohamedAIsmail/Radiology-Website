@@ -28,7 +28,7 @@
         <ul class="nav-list">
 
             <li id="Admin">
-                <a href="http://localhost:5000/doctor_profile" class=" active">
+                <a href="{{url_for('doctor_profile')}}" class=" active">
                     <i class="fa-solid fa-user-doctor"></i>
 
                     <span class="links_name">Doctor profile</span>
@@ -38,7 +38,7 @@
             </li>
 
             <li id="Adoctor">
-                <a href="#">
+                <a href="{{url_for('viewPatient')}}">
                     <i class="fa-solid fa-user"></i>
 
                     <span class="links_name">View patient</span>
@@ -46,9 +46,9 @@
                 <span class="tooltip">View patient</span>
             </li>
             <li id="Vdoctor">
-                <a href="http://localhost:5000/patient-view">
+                <a href="{{url_for('viewDocAppointment')}}">
                     <i class="fa-solid fa-hospital-user"></i></i>
-                    <span class="links_name">View apointments</span>
+                    <span class="links_name">View appointments</span>
                 </a>
                 <span class="tooltip">View appointments</span>
             </li>

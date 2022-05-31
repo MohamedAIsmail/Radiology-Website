@@ -51,7 +51,7 @@
                 <span class="tooltip">View doctor</span>
             </li>
             <li id="Analytics">
-                <a href="#">
+                <a href="{{url_for('analysis')}}">
                     <i class="fa-solid fa-chart-pie"></i>
                     <span class="links_name">Analytics</span>
                 </a>
@@ -93,7 +93,7 @@
 
                     <th>Mobile Phone </th>
                     <th>Subject</th>
-                    <th>complaints</th>
+                    <th>Feedback</th>
 
                 </tr>
                 {% for r in data %}
@@ -103,7 +103,6 @@
                     <td>{{r.2}}</td>
                     <td>{{r.3}}</td>
                     <td>{{r.4}}</td>
-
 
                 </tr>
                 {% endfor %}

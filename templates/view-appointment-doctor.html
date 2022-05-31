@@ -28,7 +28,7 @@
         <ul class="nav-list">
 
             <li id="Admin">
-                <a href="http://localhost:5000/Admin_profile" class=" active">
+                <a href="{{url_for('doctor_profile')}}" class=" active">
                     <i class="fa-solid fa-user-doctor"></i>
 
                     <span class="links_name">Doctor profile</span>
@@ -38,7 +38,7 @@
             </li>
 
             <li id="Adoctor">
-                <a href="#">
+                <a href="{{url_for('viewPatient')}}">
                     <i class="fa-solid fa-user"></i>
 
                     <span class="links_name">View patient</span>
@@ -46,21 +46,20 @@
                 <span class="tooltip">View patient</span>
             </li>
             <li id="Vdoctor">
-                <a href="http://localhost:5000/View-doctor">
+                <a href="{{url_for('viewDocAppointment')}}">
                     <i class="fa-solid fa-hospital-user"></i></i>
-                    <span class="links_name">View apointments</span>
+                    <span class="links_name">View appointments</span>
                 </a>
-                <span class="tooltip">View apointmentsr</span>
+                <span class="tooltip">View appointments</span>
             </li>
             <li class="profile">
                 <div class="profile-details">
                     <img src="../static/img/patient.png" alt="profileImg">
                     <div class="name_job">
-                        <div class="name">Camila</div>
-                        <div class="job">Patient</div>
+                        <div class="job">Doctor</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
             </li>
         </ul>
     </div>
@@ -72,14 +71,13 @@
 
             <!-- box info -->
 
-            <table action="http://localhost:5000/View-doctor" method="POST">
-
-
+            <table action="{{url_for('viewDocAppointment')}}" method="POST">
 
                 <tr>
 
-                    <th>Doctor's name</th>
-                    <th>patien's name</th>
+                    <th>Appointment Number</th>
+                    <th>Patient's Name</th>
+
                     <th>Appointment's Day </th>
                     <th>Appointment's Time</th>
 
@@ -87,10 +85,13 @@
                 </tr>
 
                 <tr>
-                    <td>1234</td>
-                    <td>mohab</td>
-                    <td>Sunday, May 29, 2022</td>
-                    <td>4:24 PM </td>
+                    {% for r in data %} 
+                    
+                    <td>{{ r.0 }}</td>
+                    <td>{{ r.1 }}</td>
+                    <td>{{ r.2 }}</td>
+                    <td>{{ r.3 }}</td>
+                    {% endfor %}
 
 
                 </tr>

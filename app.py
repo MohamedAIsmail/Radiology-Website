@@ -1,3 +1,4 @@
+from pydoc import doc
 from flask import Flask, redirect, url_for, request, render_template, session, flash, jsonify
 import sys
 from werkzeug.utils import secure_filename
@@ -6,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -235,16 +236,19 @@ def analysis():
      doctorNumbers = mycursor.fetchone()
      mycursor.execute("SELECT COUNT(*) FROM patients")
      patientNumbers = mycursor.fetchone()
+     mycursor.execute("SELECT COUNT(*) FROM COMPLAINTS")
+     feedbackNumbers= mycursor.fetchone()
 
         # Get the highest doctor's salary
         
      mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
      docdata=mycursor.fetchmany(size=3)
-     return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, docdatas=docdata)
+     return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, docdatas=docdata, feedbackdata=feedbackNumbers)
 
 
 
-#----------- ADD COMPLAINT -------------
+# ------------------- ADD COMPLAINT -------------------
+
 @app.route("/Add-complaints", methods =['POST', 'GET'])
 def Addcomplaints():
     if request.method == 'POST':
@@ -263,7 +267,7 @@ def Addcomplaints():
 
 
 
-#----------- VIEW COMPLAINTS --------------
+#---------------------- VIEW COMPLAINTS -----------------------
 
 @app.route('/View-complaints.html', methods = ['POST', 'GET'])
 def Viewcomplaints():
@@ -281,8 +285,131 @@ def Viewcomplaints():
             }
       return render_template('View-complaints.html',data=myresult)
 
+# -------------- RESERVE APPOINTMENTS -------------
+
+@app.route("/Patient-reserve.html", methods =['GET', 'POST']) 
+
+def ReserveAppointment():
+    if 'loggedin' in session:  
+        PID = session['RID']
+
+        if request.method == 'POST':
+            doctorChosen = request.form.get('doctorChosen')
+            
+            DATE = request.form['date']
+            TIME = request.form['time']
+            print(doctorChosen)
+            
+            sql= "SELECT DID FROM Doctors where doctorFname = %s"
+            val= (doctorChosen,)
+            mycursor.execute(sql,val)
+            docID = mycursor.fetchone()
+            doctorID= docID[0]
 
 
+            sql ="SELECT patientFname,patientLname,mobilephone FROM patients WHERE PID = %s"
+            val= (PID,)
+            mycursor.execute(sql,val)
+            patientInfo=mycursor.fetchall()
+
+            for x in patientInfo:
+                Pfname = x[0]
+                Plname = x[1]
+                mobilephone= x[2]
+
+            sql ="INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            val = (Pfname, Plname , DATE, TIME, mobilephone, doctorID , PID)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+    return redirect(url_for('Returningdoc'))
+
+@app.route("/Returningdoc", methods =['GET', 'POST'])
+
+def Returningdoc():
+     mycursor.execute("SELECT doctorFname FROM doctors")
+     myresult = mycursor.fetchall()
+
+     return render_template('Patient-reserve.html', data=myresult)
+
+
+# -------------------------------- VIEW APPOINTMENT PATIENT -------------------------------------------
+
+@app.route("/ViewAppointment-Patient", methods =['GET', 'POST'])
+def viewAppointment():
+    if 'loggedin' in session:  
+        PID = session['RID']
+
+        # Exception handeling in case there are no appointments must be done!!!!
+
+        sql="SELECT DID FROM Appointment WHERE PID = %s"
+        val =(PID,)
+        mycursor.execute(sql,val)
+        docID=mycursor.fetchone()
+        print(docID)
+
+        sql = "SELECT doctorFname FROM DOCTORS WHERE DID = %s"
+        val =(docID,)
+        mycursor.executemany(sql,val)
+        result=mycursor.fetchall()
+
+        for x in result:
+            print(x)
+
+        sql = "SELECT APPNUMBER, PFname, Date, Time FROM Appointment WHERE PID = %s"
+        val =(PID,)
+        mycursor.execute(sql,val)
+        myresult=mycursor.fetchall()
+        
+
+    return render_template('view-appointment -patient.html', data=myresult, docname=result) 
+
+# -------------------------------- VIEW APPOINTMENT DOCTOR -------------------------------------------
+
+@app.route("/ViewAppointment-Doctor", methods =['GET', 'POST'])
+def viewDocAppointment():
+
+    if 'loggedin' in session:  
+        DID = session['RID']
+
+        # Exception handeling in case there are no appointments must be done!!!!
+
+        sql="SELECT PID FROM Appointment WHERE DID = %s"
+        val =(DID,)
+        mycursor.execute(sql,val)
+        patientID=mycursor.fetchone()
+        print(patientID)
+
+        sql = "SELECT APPNUMBER, PFname, Date, Time FROM Appointment WHERE DID = %s"
+        val =(DID,)
+        mycursor.execute(sql,val)
+        myresult=mycursor.fetchall()
+        
+
+    return render_template('view-appointment-doctor.html', data=myresult) 
+
+ # ------------------- VIEW PATIENT --------------------
+@app.route("/ViewPatient", methods =['GET', 'POST'])
+def viewPatient():
+
+    if 'loggedin' in session:  
+        DID = session['RID']
+
+        # Exception handeling in case there are no appointments must be done!!!!
+
+        sql="SELECT PID FROM Appointment WHERE DID = %s"
+        val =(DID,)
+        mycursor.execute(sql,val)
+        patientID=mycursor.fetchone()
+        print(patientID)
+
+        sql = "SELECT  PID, patientFname, mobilephone, Email FROM PATIENTS WHERE PID = %s"
+        val =(patientID,)
+        mycursor.executemany(sql,val)
+        myresult=mycursor.fetchall()
+        
+
+    return render_template('patient-view.html', data=myresult) 
 
 if __name__ == '__main__':
     app.run(debug=True)

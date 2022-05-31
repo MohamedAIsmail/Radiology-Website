@@ -319,10 +319,10 @@ html {
 
 .Contact-info {
     background: -webkit-linear-gradient(to right, rgb(57, 103, 126), rgb(20 36 44));
-        background: linear-gradient(to right, rgb(57, 103, 126), rgb(20 36 44));
+    background: linear-gradient(to right, rgb(57, 103, 126), rgb(20 36 44));
     position: absolute;
     width: 100%;
-    height: 450px;
+    height: 480px;
     top: 20%;
     padding: 30px 50px;
 }
@@ -339,13 +339,13 @@ html {
     padding: 20px;
     border-radius: 20px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
-            0 10px 10px rgba(0, 0, 0, 0.22);
+        0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .phone-img {
     width: 50px;
     height: 50px;
-    
+
 }
 
 .location-img {
@@ -354,16 +354,16 @@ html {
     height: 60px;
 }
 
-.clock-img{
+.clock-img {
     transform: translate(0, 8px);
     width: 50px;
     height: 50px;
 }
 
 .info h1 {
-color: black;
-font-size: 18px;
-text-align: center;
+    color: black;
+    font-size: 18px;
+    text-align: center;
 }
 
 .contact-box p {
@@ -375,12 +375,11 @@ text-align: center;
 
 /* Reserve */
 
-.reserve-container {
-}
+.reserve-container {}
 
 .reserve-box {
     left: 420px;
-    top: 60px;
+    top: 150px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
@@ -389,7 +388,7 @@ text-align: center;
     overflow: hidden;
     width: 700px;
     max-width: 100%;
-    min-height: 500px;
+    min-height: 400px;
     padding: 30px;
 }
 
@@ -443,10 +442,10 @@ text-align: center;
 .reserve-box span {
     font-size: 14px;
     font-weight: 600;
-    color:rgb(43, 78, 95);
+    color: rgb(43, 78, 95);
 }
 
-.patient-info{
+.patient-info {
     margin-bottom: 25px;
 }
 
@@ -501,17 +500,16 @@ button {
     border: 1px solid rgb(43, 78, 95);
     background-color: rgb(43, 78, 95);
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
-    padding: 12px 45px;
+    padding: 22px 42px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 60ms ease-in;
     cursor: pointer;
-    width: 35%;
-    position: absolute;
-    top: 500px;
-    left: 240px;
+    width: 40%;
+    transform: translate(0, 30px);
+    left: 490px;
 }
 
 button:hover {
@@ -525,3 +523,5 @@ button:active {
 button:focus {
     outline: none;
 }
+
+form {}

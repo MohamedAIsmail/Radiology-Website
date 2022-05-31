@@ -28,7 +28,7 @@
         <ul class="nav-list">
 
             <li class="active" id="Admin">
-                <a href="#">
+                <a href="{{url_for('Patient_profile')}}">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Profile</span>
                     <span class="tooltip">Profile</span>
@@ -37,34 +37,33 @@
             </li>
 
             <li id="Adoctor">
-                <a href="#">
+                <a href="{{url_for('viewAppointment')}}">
                     <i class="fa-solid fa-calendar-check"></i>
                     <span class="links_name">View apointments</span>
                 </a>
                 <span class="tooltip">View apointments</span>
             </li>
             <li id="Vdoctor">
-                <a href="#">
+                <a href="{{url_for('Returningdoc')}}">
                     <i class="fa-solid fa-hospital-user"></i></i>
                     <span class="links_name">Reserve apointment</span>
                 </a>
                 <span class="tooltip">Reserve apointment</span>
-            </li>
             <li id="Vclinic">
-                <a href="#">
+                <a href="{{url_for('Addcomplaints')}}">
                     <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
                 </a>
-                <span class="tooltip">add feedback</span>
+                <span class="tooltip">Add feedback</span>
+            </li>
             </li>
             <li class="profile">
                 <div class="profile-details">
                     <img src="../static/img/patient.png" alt="profileImg">
                     <div class="name_job">
-                        <div class="name">Camila</div>
                         <div class="job">Patient</div>
                     </div>
                 </div>
-                <i class='bx bx-log-out' id="log_out" onclick="location.href='login.html'"></i></i>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
             </li>
         </ul>
     </div>
@@ -76,29 +75,31 @@
 
             <!-- box info -->
 
-            <table action="http://localhost:5000/View-doctor" method="POST">
+            <table action="{{url_for('viewAppointment')}}" method="POST">
 
 
 
                 <tr>
 
-                    <th>ID</th>
-                    <th>patient's name</th>
+                    <th>Appointment Number</th>
 
-                    <th>Doctor's name</th>
                     <th>Appointment's Day </th>
                     <th>Appointment's Time</th>
-
+                    <th>Doctor's Name</th>
 
                 </tr>
 
                 <tr>
-                    <td>1234</td>
-                    <td>mohab</td>
-                    <td>Sunday, May 29, 2022</td>
-                    <td>12,Monday,2022</td>
-                    <td>4:24</td>
-
+                    {% for r in data %} 
+                    
+                    <td>{{ r.0 }}</td>
+                    
+                    <td>{{ r.2 }}</td>
+                    <td>{{ r.3 }}</td>
+                    {% endfor %}
+                    {% for x in docname%}
+                    <td>{{ x.0 }}</td>
+                    {% endfor %}
 
                 </tr>
 
