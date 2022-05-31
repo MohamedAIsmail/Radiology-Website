@@ -1,0 +1,15 @@
+.center-box {
+    width: 400px;
+    transform: translate(270px, 0);
+
+}
+
+.center-in {
+    width: 400px;
+
+}
+
+button {
+    transform: translate(-250px, 50px);
+
+}

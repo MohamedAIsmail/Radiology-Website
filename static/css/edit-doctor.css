@@ -1,0 +1,52 @@
+.bio-row {
+    width: 50%;
+    float: left;
+    margin-bottom: 5px;
+    padding: px;
+
+}
+
+.row {
+    position: relative;
+    margin-top: 75px;
+}
+
+input[type=text] {
+    width: 210px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    margin: 8px 0;
+    outline: none;
+    padding: 8px;
+    box-sizing: border-box;
+    transition: .3s;
+}
+
+input[type=text]:focus {
+    border-color: dodgerBlue;
+    box-shadow: 0 0 8px 0 dodgerBlue;
+}
+
+.right-box {
+    transform: translate(100px, 0);
+
+}
+
+button {
+    margin-top: 50px
+}
+
+.box1 {
+    padding: 0 30px;
+    width: 73%;
+    height: 450px;
+    background: white;
+    margin-left: 80px;
+    box-shadow: 10px 5px 5px rgb(227, 219, 219);
+    display: inline-block;
+    z-index: 1;
+    text-align: center;
+    border-radius: 10px;
+    transform: translate(100px, 130px);
+    position: relative;
+}

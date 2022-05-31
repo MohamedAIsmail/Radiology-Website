@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Edit your info </title>
+    <link rel="stylesheet" href="../static/css/Admin_profile.css">
+    <link rel="stylesheet" href="../static/css/edit-doctor.css">
+
+
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/View-doctor.css">
+
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li id="Admin">
+                <a href="http://localhost:5000/doctor_profile" class=" active">
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    <span class="links_name">Doctor profile</span>
+                    <span class="tooltip"> Doctor profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="#">
+                    <i class="fa-solid fa-user"></i>
+
+                    <span class="links_name">View patient</span>
+                </a>
+                <span class="tooltip">View patient</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="http://localhost:5000/patient-view">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">View apointments</span>
+                </a>
+                <span class="tooltip">View appointments</span>
+            </li>
+
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/patient.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="job">Doctor</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="panel">
+
+
+
+
+            <!-- box info -->
+
+            <div class="box1 effect" data-aos="fade-up" data-aos-duration="2000">
+                <!-- profile picture -->
+                <div class="circular--landscape"> <img
+                        src="https://filmdaze.net/wp-content/uploads/2018/03/ladybird825.jpg" />
+                </div>
+                <!-- info -->
+                <h1>Edit your inforamtion</h1>
+                <div class="row">
+                    <div class="bio-row">
+                        <p><span>First Name </span>:
+                            <input type="text" id="fname" name="fname">
+                        </p>
+                    </div>
+                    <div class="bio-row ">
+                        <p class="right-box"><span>Last Name </span>: <input type="text" id="fname" name="fname"></p>
+                    </div>
+
+                    <div class="bio-row ">
+                        <p><span>Age</span>: <input type="text" id="fname" name="fname"></p>
+                    </div>
+                    <div class="bio-row">
+                        <p class="right-box"><span>Gender </span>: <input type="text" id="fname" name="fname"></p>
+                    </div>
+                    <div class="bio-row ">
+                        <p><span>Email </span>: <input type="text" id="fname" name="fname"></p>
+                    </div>
+                    <div class="bio-row">
+                        <p class="right-box"><span>Mobile </span>: <input type="text" id="fname" name="fname"></p>
+                    </div>
+
+
+                </div>
+                <a href="#"><button>Update</button></a>
+
+            </div>
+        </div>
+
+
+
+
+    </section>
+
+
+    <script src="../static/js/Admin_profile.js"></script>
+
+</body>
+
+</html>
