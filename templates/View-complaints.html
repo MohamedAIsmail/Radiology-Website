@@ -59,7 +59,7 @@
             </li>
 
             <li id="Vclinic">
-                <a href="#">
+                <a href="{{url_for('Viewcomplaints')}}">
                     <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
                 <span class="tooltip">View feedback</span>
             </li>
@@ -83,7 +83,7 @@
 
             <!-- box info -->
 
-            <table action="http://localhost:5000/View-doctor" method="POST">
+            <table action="{{url_for('Viewcomplaints')}}" method="POST">
 
 
 
@@ -97,16 +97,17 @@
                     <th>complaints</th>
 
                 </tr>
-
+                {% for r in data %}
                 <tr>
-                    <td>ghobsha</td>
-                    <td>uremail@gmail.com</td>
-                    <td>0101002050505</td>
-                    <td>ta3baaaaan</td>
-                    <td>DR atef bta3 el thermoo W ANA bakrhh mn kol 2alby</td>
+                    <td>{{r.0}}</td>
+                    <td>{{r.1}}</td>
+                    <td>{{r.2}}</td>
+                    <td>{{r.3}}</td>
+                    <td>{{r.4}}</td>
 
 
                 </tr>
+                {% endfor %}
 
                 <!-- 
                 <tr>

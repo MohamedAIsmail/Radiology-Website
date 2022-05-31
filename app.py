@@ -1,13 +1,12 @@
 from flask import Flask, redirect, url_for, request, render_template, session, flash, jsonify
 import sys
-import database
 from werkzeug.utils import secure_filename
 import mysql.connector  
 
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
@@ -213,6 +212,9 @@ def analysis():
      docdata=mycursor.fetchmany(size=3)
      return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, docdatas=docdata)
 
+
+
+#----------- ADD COMPLAINT -------------
 @app.route("/Add-complaints", methods =['POST', 'GET'])
 def Addcomplaints():
     if request.method == 'POST':
@@ -228,6 +230,28 @@ def Addcomplaints():
         print(val)
 
     return render_template('Add-complaints.html')
+
+
+
+#----------- VIEW COMPLAINTS --------------
+
+@app.route('/View-complaints.html', methods = ['POST', 'GET'])
+def Viewcomplaints():
+
+   if request.method == 'POST':
+      return render_template('Admin_profile.html')
+   else:
+      mycursor.execute("SELECT Name, EMAIL, CONTACTNUMBER,SUBJECT,MESSAGE FROM COMPLAINTS")
+      row_headers=[x[0] for x in mycursor.description]
+      myresult = mycursor.fetchall()
+      data={
+         'message':"data retrieved",
+         'rec':myresult,
+         'header':row_headers
+            }
+      return render_template('View-complaints.html',data=myresult)
+
+
 
 
 if __name__ == '__main__':

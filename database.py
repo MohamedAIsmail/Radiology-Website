@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456"
+    passwd="root"
   )
 
   mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
@@ -77,15 +77,24 @@ def recreatedb(bool):
   mycursor.executemany(sql,value)
   mydb.commit()
 
+  sql="INSERT INTO  COMPLAINTS (Name , CONTACTNUMBER , EMAIL , SUBJECT, MESSAGE) VALUES (%s,%s,%s,%s,%s)"
+  value = [
+    ('Dina','01126672701','dina@gmail.com','تطبيل','اجمد بروجكت دا ولا ايه؟'),
+
+
+  ]
+  mycursor.executemany(sql,value)
+  mydb.commit()
+
 def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
   mycursor = mydb.cursor()
   return mycursor, mydb
 
-# recreatedb(1)
+recreatedb(1)
