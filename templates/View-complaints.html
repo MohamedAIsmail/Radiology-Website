@@ -96,9 +96,15 @@
                     <th>Feedback</th>
 
                 </tr>
+            <tbody>
                 {% for r in data %}
                 <tr>
-                    <td>{{r.0}}</td>
+                    <td class="people">
+                        <img src="../static/img/patient2.png" alt="">
+                        <div class="info">
+                            {{r.0}}
+                        </div>
+                    </td>
                     <td>{{r.1}}</td>
                     <td>{{r.2}}</td>
                     <td>{{r.3}}</td>
@@ -106,7 +112,7 @@
 
                 </tr>
                 {% endfor %}
-
+            </tbody>
 
 
             </table>

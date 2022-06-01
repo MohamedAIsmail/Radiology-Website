@@ -11920,15 +11920,17 @@ textarea.form-control {
 }
 
 .btn.btn-primary {
-    background: #46b5d1 !important;
-    border-color: #46b5d1 !important;
+    margin-top: 70px;
+    background: rgb(43, 78, 95) !important;
+    border-color: rgb(43, 78, 95) !important;
     color: #fff;
+    margin-bottom: -40px;
 }
 
 .btn.btn-primary:hover,
 .btn.btn-primary:focus {
-    border-color: #2d9bb7 !important;
-    background: #2d9bb7 !important;
+    border-color: rgb(20 36 44) !important;
+    background: rgb(20 36 44) !important;
 }
 
 .contactForm .label {
@@ -12311,4 +12313,49 @@ html {
 
 .bx-log-out:hover {
     cursor: pointer;
+}
+
+
+@media (min-width: 300px) {
+
+    .contact-wrap {
+        transform: translate(-400px,0);
+    }
+
+}
+
+@media (min-width: 576px) {
+
+    .contact-wrap {
+        transform: translate(-280px,0);
+    }
+
+}
+
+@media (min-width: 768px) {
+
+    .contact-wrap {
+        transform: translate(-250px,0);
+    }
+
+}
+
+@media (min-width: 992px) {
+
+    .contact-wrap {
+        transform: translate(-150px,0);
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .contact-wrap {
+        transform: translate(-100px,0);
+    }
+}
+
+@media (min-width: 1400px) {
+    .contact-wrap {
+        transform: translate(0,0);
+    }
 }

@@ -87,30 +87,35 @@
             <table action="http://localhost:5000/View-doctor" method="POST">
 
 
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>doctors' name</th>
+                        <th>Clinics' Name</th>
+                        <th>Mobile Phone </th>
+                        <th>Email </th>
+                        <th>salary</th>
+                    </tr>
+                </thead>
 
-                <tr>
-
-                    <th>ID</th>
-                    <th>doctors' name</th>
-                    <th>Clinics' Name</th>
-                    <th>Mobile Phone </th>
-                    <th>Email </th>
-                    <th>salary</th>
-
-                </tr>
-
+                <tbody>
                 {% for r in data %}
-                <tr>
-                    <td>{{r.0}}</td>
-                    <td>{{r.1}}</td>
-                    <td>{{r.2}}</td>
-                    <td>{{r.3}}</td>
-                    <td>{{r.4}}</td>
-                    <td>{{r.5}}</td>
-
-
-                </tr>
+                    <tr>
+                        <td>{{r.0}}</td>
+                        <td class="people">
+                            <img src="../static/img/doctor.png" alt="">
+                            <div class="info">
+                            {{r.1}}
+                            </div>
+                        </td>
+                        <td>{{r.2}}</td>
+                        <td>{{r.3}}</td>
+                        <td>{{r.4}}</td>
+                        <td>{{r.5}}</td>
+                    </tr>
                 {% endfor %}
+                </tbody>
+
 
             
             </table>

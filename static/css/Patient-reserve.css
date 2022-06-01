@@ -342,6 +342,11 @@ html {
         0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
+.contact-contain{
+    margin-top: 13px;
+}
+
+
 .phone-img {
     width: 50px;
     height: 50px;
@@ -378,8 +383,8 @@ html {
 .reserve-container {}
 
 .reserve-box {
-    left: 420px;
-    top: 150px;
+    left: 460px;
+    top: 180px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
@@ -393,31 +398,31 @@ html {
 }
 
 .picture-container {
-    left: 880px;
-    top: 170px;
+    left: 910px;
+    top: 225px;
     background-color: #fff;
     border-radius: 20px;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
         0 10px 10px rgba(0, 0, 0, 0.22);
     position: absolute;
-    width: 400px;
-    min-height: 350px;
+    width: 360px;
+    min-height: 310px;
     z-index: 2;
 }
 
 .picture-container img {
     position: absolute;
-    width: 400px;
-    height: 350px;
+    width: 360px;
+    height: 310px;
     border-radius: 20px;
 }
 
 .overlay {
-    left: 880px;
-    top: 170px;
+    left: 910px;
+    top: 225px;
     position: absolute;
-    width: 400px;
-    height: 350px;
+    width: 360px;
+    height: 310px;
     border-radius: 20px;
     background-color: rgb(2, 33, 49);
     opacity: 0.2;
@@ -440,7 +445,7 @@ html {
 }
 
 .reserve-box span {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     color: rgb(43, 78, 95);
 }
@@ -460,7 +465,8 @@ input {
     padding: 12px 15px;
     margin: 8px 0;
     font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
+    margin-right: 20px;
 }
 
 select {
@@ -469,7 +475,7 @@ select {
     padding: 10px 18px;
     margin: 4px 0;
     font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .input-container {
@@ -480,7 +486,7 @@ select {
     width: 310px;
     position: relative;
     display: flex;
-    grid-template-columns: 50% 50%;
+    /* grid-template-columns: 50% 50%; */
     grid-gap: 10px;
     padding: 5px 0;
 }
@@ -500,16 +506,17 @@ button {
     border: 1px solid rgb(43, 78, 95);
     background-color: rgb(43, 78, 95);
     color: #FFFFFF;
-    font-size: 13px;
+    font-size: 11px;
     font-weight: bold;
-    padding: 22px 42px;
+    padding: 15px 1px;
     letter-spacing: 1px;
     text-transform: uppercase;
+    position: absolute;
     transition: transform 60ms ease-in;
     cursor: pointer;
-    width: 40%;
-    transform: translate(0, 30px);
-    left: 490px;
+    width: 25%;
+    top: 320px;
+    left: 150px;
 }
 
 button:hover {
@@ -524,4 +531,85 @@ button:focus {
     outline: none;
 }
 
-form {}
+@media (min-width: 300px) {
+
+    button {
+        left: 215px;
+    }
+
+    .picture-container {
+        visibility: hidden;
+    }
+
+    .overlay {
+        visibility:hidden
+    }
+
+    .contact-box {
+        visibility: hidden;
+    }
+
+    .reserve-box {
+        left: 5px;
+    }
+
+    .reserve-box {
+        width: 300px;
+    }
+
+    .double {
+        flex-direction: column;
+    }
+
+}
+
+@media (min-width: 576px) {
+
+    button {
+        left: 150px;
+    }
+
+    .reserve-box {
+        width: 450px;
+    }
+
+    .reserve-box {
+        left: 30px;
+    }
+
+    .double {
+        flex-direction: row;
+    }
+}
+
+@media (min-width: 768px) {
+
+    .reserve-box {
+            left: 200px;
+    }
+
+}
+
+@media (min-width: 992px) {
+        .contact-box {
+                visibility: visible;
+            }
+
+        .reserve-box {
+            left: 460px;
+        }
+}
+
+@media (min-width: 1200px) {
+    .reserve-box {
+        width: 700px;
+    }
+
+    .picture-container {
+        visibility: visible;
+    }
+
+    .overlay {
+        visibility: visible;
+    }
+}

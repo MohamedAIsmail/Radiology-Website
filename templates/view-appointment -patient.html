@@ -88,21 +88,26 @@
                     <th>Doctor's Name</th>
 
                 </tr>
+                <tbody>
+                    <tr>
+                        {% for r in data %} 
+                        
+                        <td>{{ r.0 }}</td>
+                        
+                        <td>{{ r.2 }}</td>
+                        <td>{{ r.3 }}</td>
+                        {% endfor %}
+                        {% for x in docname%}
+                        <td class="people">
+                            <img src="../static/img/doctor.png" alt="">
+                            <div class="info">
+                                {{ x.0 }
+                            </div>
+                        </td>
+                        {% endfor %}
 
-                <tr>
-                    {% for r in data %} 
-                    
-                    <td>{{ r.0 }}</td>
-                    
-                    <td>{{ r.2 }}</td>
-                    <td>{{ r.3 }}</td>
-                    {% endfor %}
-                    {% for x in docname%}
-                    <td>{{ x.0 }}</td>
-                    {% endfor %}
-
-                </tr>
-
+                    </tr>
+                </tbody>
 
             </table>
         </div>
