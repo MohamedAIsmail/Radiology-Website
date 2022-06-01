@@ -101,7 +101,7 @@
                     <p class="right-box"><span>Account ID </span>: {{ data.2 }}</p>
                 </div>
             </div>
-            <a href="#"><button>Edit</button></a>
+            <button onclick="window.location = 'edit_patient_profile'">Edit</button></a>
 
         </div>
 
@@ -110,22 +110,22 @@
             <h1><i class="fa-solid fa-briefcase-medical"></i> Medical inforamtion</h1>
             <div class="row">
                 <div class="med-row">
-                    <p>Taking any kind of medicine?<br><span class="green">No</span></p>
+                    <p>Taking any kind of medicine?<br><span class="green">{{ data.8 }}</span></p>
                 </div>
                 <div class="med-row">
-                    <p>Had surgery before?<br><span>No</span></p>
+                    <p>Had surgery before?<br><span>{{ data.9 }}</span></p>
                 </div>
                 <div class="med-row">
-                    <p>Had blood transfer soon?<br><span>la walahy</span></p>
+                    <p>Had blood transfer soon?<br><span>{{ data.10 }}</span></p>
                 </div>
                 <div class="med-row">
-                    <p>Have virus C or B?<br><span>Mohab Ghobashy</span></p>
+                    <p>Have virus C or B?<br><span>{{ data.11 }}</span></p>
                 </div>
                 <div class="med-row">
-                    <p>Suffer from any disease?<br><span>7amthla7</span></p>
+                    <p>Suffer from any disease?<br><span>{{ data.12 }}</span></p>
                 </div>
             </div>
-            <a href="#"><button>Edit</button></a>
+            <button onclick="window.location = 'edit-medical-info'">Edit</button></a>
 
         </div>
 

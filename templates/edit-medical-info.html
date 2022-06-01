@@ -80,30 +80,46 @@
 
         <div class="box1 effect medical">
             <!-- Medical info -->
-            <h1><i class="fa-solid fa-briefcase-medical"></i> Medical inforamtion</h1>
-            <div class="row">
-                <div class="med-row">
-                    <p>Taking any kind of medicine?<br><span class="green"> <input type="text" id="fname" name="fname">
-                        </span></p>
+            <form method="POST" action="{{url_for('edit_medical_pinfo')}}">
+                <h1><i class="fa-solid fa-briefcase-medical"></i> Medical inforamtion</h1>
+                <div class="row">
+                    <div class="med-row">
+                        <p>Taking any kind of medicine?<br><span class="green"> 
+                            <input type="radio" name="med" id="option1" value="YES"> YES </input><br>
+                            <input type="radio" name="med" id="option2" value="NO"> NO </input><br>
+
+                            </span></p>
+                    </div>
+                    <div class="med-row">
+                        <p>Had surgery before?<br><span>
+                            <input type="radio" name="sur" id="option1" value="YES"> YES </input><br>
+                            <input type="radio" name="sur" id="option2" value="NO"> NO </input><br>
+                            </span></p>
+
+                            </span></p>
+                    </div>
+                    <div class="med-row">
+                        <p>Had blood transfer soon?<br><span> 
+                            <input type="radio" name="bt" id="option1" value="YES"> YES </input><br>
+                            <input type="radio" name="bt" id="option2" value="NO"> NO </input><br>
+                            </span></p>
+                    </div>
+                    <div class="med-row">
+                        <p>Have virus C or B?<br><span> 
+                            <input type="radio" name="v" id="option1" value="C"> C </input><br>
+                            <input type="radio" name="v" id="option2" value="B"> B </input><br>
+                            <input type="radio" name="v" id="option3" value="NO"> NO </input><br>
+                            </span></p>
+                    </div>
+                    <div class="med-row">
+                        <p>Suffer from any disease?<br><span> 
+                            <input type="radio" name="ds" id="option1" value="YES"> YES </input><br>
+                            <input type="radio" name="ds" id="option2" value="NO"> NO </input><br>
+                            </span></p>
+                    </div>
                 </div>
-                <div class="med-row">
-                    <p>Had surgery before?<br><span> <input type="text" id="fname" name="fname">
-                        </span></p>
-                </div>
-                <div class="med-row">
-                    <p>Had blood transfer soon?<br><span> <input type="text" id="fname" name="fname">
-                        </span></p>
-                </div>
-                <div class="med-row">
-                    <p>Have virus C or B?<br><span> <input type="text" id="fname" name="fname">
-                        </span></p>
-                </div>
-                <div class="med-row">
-                    <p>Suffer from any disease?<br><span> <input type="text" id="fname" name="fname">
-                        </span></p>
-                </div>
-            </div>
-            <button>update</button>
+                <button type="submit" name="action" value="update" >Update</button>
+            </form>    
 
         </div>
 

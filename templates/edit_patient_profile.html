@@ -83,33 +83,35 @@
                         src="https://filmdaze.net/wp-content/uploads/2018/03/ladybird825.jpg" />
                 </div>
                 <!-- info -->
-                <h1>Edit your inforamtion</h1>
-                <div class="row">
-                    <div class="bio-row">
-                        <p><span>First Name </span>:
-                            <input type="text" id="fname" name="fname">
-                        </p>
-                    </div>
-                    <div class="bio-row ">
-                        <p class="right-box"><span>Last Name </span>: <input type="text" id="fname" name="fname"></p>
-                    </div>
+                <form method="POST" action="{{url_for('edit_personal_pinfo')}}">
+                    <h1>Edit your inforamtion</h1>
+                    <div class="row">
+                        <div class="bio-row">
+                            <p><span>First Name </span>:
+                                <input type="text" id="fname" name="fname" required>
+                            </p>
+                        </div>
+                        <div class="bio-row ">
+                            <p class="right-box"><span>Last Name </span>: <input type="text" id="fname" name="lname" required></p>
+                        </div>
 
-                    <div class="bio-row ">
-                        <p><span>Age</span>: <input type="text" id="fname" name="fname"></p>
-                    </div>
-                    <div class="bio-row">
-                        <p class="right-box"><span>Gender </span>: <input type="text" id="fname" name="fname"></p>
-                    </div>
-                    <div class="bio-row ">
-                        <p><span>Email </span>: <input type="text" id="fname" name="fname"></p>
-                    </div>
-                    <div class="bio-row">
-                        <p class="right-box"><span>Mobile </span>: <input type="text" id="fname" name="fname"></p>
-                    </div>
+                        <div class="bio-row ">
+                            <p><span>Age</span>: <input type="text" id="fname" name="age" required></p>
+                        </div>
+                        <div class="bio-row">
+                            <p class="right-box"><span>Gender </span>: <input type="text" id="fname" name="gen" required></p>
+                        </div>
+                        <div class="bio-row ">
+                            <p><span>Email </span>: <input type="text" id="fname" name="email" required></p>
+                        </div>
+                        <div class="bio-row">
+                            <p class="right-box"><span>Mobile </span>: <input type="text" id="fname" name="mobile" required></p>
+                        </div>
 
 
-                </div>
-                <a href="#"><button>Update</button></a>
+                    </div>
+                    <button type="submit" name="action" value="update" >Update</button>
+                </form>    
 
             </div>
         </div>

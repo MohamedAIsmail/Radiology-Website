@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456"
+    passwd="3669"
   )
 
   mycursor = mydb.cursor()
@@ -18,14 +18,14 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="3669",
     database="Raddb"
   )
 
   mycursor = mydb.cursor()
   
 
-  mycursor.execute("CREATE TABLE PATIENTS (patientFname VARCHAR(100), patientLname VARCHAR(100), PID int NOT NULL AUTO_INCREMENT, patientpassword VARCHAR(100),age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12),  Email VARCHAR(30),PRIMARY KEY(PID))")
+  mycursor.execute("CREATE TABLE PATIENTS (patientFname VARCHAR(100), patientLname VARCHAR(100), PID int NOT NULL AUTO_INCREMENT, patientpassword VARCHAR(100),age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12),  Email VARCHAR(30), medicine VARCHAR(3), surgery VARCHAR(3), bloodTransfer VARCHAR(3), virusCorB VARCHAR(3), disease VARCHAR(3) ,PRIMARY KEY(PID))")
 
   mycursor.execute("CREATE TABLE DOCTORS (doctorFname VARCHAR(100), doctorLname VARCHAR(100), DID VARCHAR(20), PID int, doctorpassword VARCHAR(100), clinicname VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30),PRIMARY KEY(DID), FOREIGN KEY (PID) REFERENCES PATIENTS(PID))")
 
@@ -57,12 +57,12 @@ def recreatedb(bool):
   
   # *********************************** ADD TO PATIENT *******************************************
 
-  sql = "INSERT INTO PATIENTS (patientFname , patientLname , PID , patientpassword , age , gender , mobilephone,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+  sql = "INSERT INTO PATIENTS (patientFname , patientLname , PID , patientpassword , age , gender , mobilephone,  Email, medicine, surgery , bloodTransfer , virusCorB , disease ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
-    ('Ereny', 'Eleya', '1', '9876', '21', 'female', '012888888888', 'ereny2022@gmail.com'),
-    ('Ahmed', 'Mohammed', '2', '1368', '25', 'male', '012123456789', 'amohammed@gmail.com'),
-    ('Maryam', 'Ahmed', '3', '1111', '30', 'female', '010888834888', 'maro2020@gmail.com'),
-    ('Nour', 'Emad', '4', '1212', '23', 'female', '011888888222', 'nonoemad@gmail.com'),
+    ('Ereny', 'Eleya', '1', '9876', '21', 'female', '012888888888', 'ereny2022@gmail.com','NO','YES','NO','C','YES'),
+    ('Ahmed', 'Mohammed', '2', '1368', '25', 'male', '012123456789', 'amohammed@gmail.com','YES', 'NO','NO','B','YES'),
+    ('Maryam', 'Ahmed', '3', '1111', '30', 'female', '010888834888', 'maro2020@gmail.com','NO','YES','NO','C','YES'),
+    ('Nour', 'Emad', '4', '1212', '23', 'female', '011888888222', 'nonoemad@gmail.com','NO','NO','NO','NO','NO'),
   ]
 
   mycursor.executemany(sql,value)
@@ -91,11 +91,10 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="3669",
     database="Raddb"
   )
 
   mycursor = mydb.cursor()
   return mycursor, mydb
 
-# recreatedb(1)

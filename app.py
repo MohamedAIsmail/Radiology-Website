@@ -1,13 +1,14 @@
 from pydoc import doc
 from flask import Flask, redirect, url_for, request, render_template, session, flash, jsonify
 import sys
+from pyrsistent import m
 from werkzeug.utils import secure_filename
 import mysql.connector  
 
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="3669",
     database="Raddb"
   )
 
@@ -154,6 +155,30 @@ def Admin_profile():
 
     return redirect(url_for('login')) 
 
+#----------------EDIT ADMIN PROFILE--------------------------------------------------
+@app.route("/edit-admin-profile", methods =['GET', 'POST']) 
+def edit_admin_profile(): 
+    if request.method == 'POST':  ##check if there is post data
+        if request.form.get('action') == 'update': #All info must be filled!!!
+            AdminFname = request.form['fname']
+            AdminLname = request.form['lname']
+            Age = request.form['age']
+            gender = request.form['gen']
+            Email = request.form['email']
+            mobile= request.form['mobile']
+            
+            
+        if 'loggedin' in session:  
+            AID = session['RID'] 
+            sql = "UPDATE admins SET adminFname = %s, adminLname=%s, age=%s, gender=%s, Email=%s, mobilephone=%s WHERE AID = %s"
+            val = (AdminFname, AdminLname, Age, gender,Email, mobile,AID)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print(mycursor.rowcount, "record(s) affected")   
+
+    return render_template('edit-admin-profile.html')    
+
 
 # ---- DOCTOR PROFILE ----
 
@@ -170,6 +195,30 @@ def doctor_profile():
 
     return redirect(url_for('login')) 
 
+#----------------EDIT DOCTOR PROFILE--------------------------------------------------
+@app.route("/edit-doctor-profile", methods =['GET', 'POST']) 
+def edit_doctor_profile(): 
+    if request.method == 'POST':  ##check if there is post data
+        if request.form.get('action') == 'update': #All info must be filled!!!
+            doctorFname = request.form['fname']
+            doctorLname = request.form['lname']
+            Age = request.form['age']
+            gender = request.form['gen']
+            Email = request.form['email']
+            mobile= request.form['mobile']
+            
+            
+        if 'loggedin' in session:  
+            DID = session['RID'] 
+            sql = "UPDATE doctors SET doctorFname = %s, doctorLname=%s, age=%s, gender=%s, Email=%s, mobilephone=%s WHERE DID = %s"
+            val = (doctorFname, doctorLname, Age, gender,Email, mobile,DID)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print(mycursor.rowcount, "record(s) affected")   
+
+    return render_template('edit-doctor-profile.html') 
+
 
 # ---- PATIENT PROFILE ----
 
@@ -184,6 +233,57 @@ def Patient_profile():
         return render_template("Patient_profile.html", data=account) 
 
     return redirect(url_for('login')) 
+
+#----------------EDIT PATIENT PROFILE--------------------------------------------------
+
+#EDIT PERSONAL INFO
+@app.route("/edit_patient_profile", methods =['GET', 'POST']) 
+def edit_personal_pinfo(): 
+    if request.method == 'POST':  ##check if there is post data
+        if request.form.get('action') == 'update': #All info must be filled!!!
+            patientFname = request.form['fname']
+            patientLname = request.form['lname']
+            Age = request.form['age']
+            gender = request.form['gen']
+            Email = request.form['email']
+            mobile= request.form['mobile']
+            
+            
+        if 'loggedin' in session:  
+            PID = session['RID'] 
+            sql = "UPDATE patients SET patientFname = %s, patientLname=%s, age=%s, gender=%s, Email=%s, mobilephone=%s WHERE PID = %s"
+            val = (patientFname, patientLname, Age, gender,Email, mobile,PID)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print(mycursor.rowcount, "record(s) affected")   
+
+    return render_template('edit_patient_profile.html') 
+
+#EDIT MEDICAL INFO
+@app.route("/edit-medical-info", methods =['GET', 'POST']) 
+def edit_medical_pinfo(): 
+    if request.method == 'POST':  ##check if there is post data
+        if request.form.get('action') == 'update': #All info must be filled!!!
+            med = request.form['med']
+            sur = request.form['sur']
+            bt = request.form['bt']
+            v = request.form['v']
+            ds = request.form['ds']
+                   
+        if 'loggedin' in session:  
+            PID = session['RID'] 
+            sql = "UPDATE patients SET medicine = %s, surgery=%s, bloodTransfer=%s, virusCorB=%s, disease=%s WHERE PID = %s"
+            val = ( med, sur, bt, v, ds, PID)
+            mycursor.execute(sql, val)
+            mydb.commit()
+
+            print(mycursor.rowcount, "record(s) affected")   
+
+    return render_template('edit-medical-info.html')     
+
+    
+
 
 
 
