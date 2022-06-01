@@ -28,40 +28,40 @@
             <ul class="nav-list">
 
                 <li id="Admin">
-                    <a href="http://localhost:5000/Admin_profile" class=" active">
+                    <a href="{{url_for('Admin_profile')}}" class=" active">
                         <i class="fa-solid fa-user"></i>
                         <span class="links_name">Admin profile</span>
                         <span class="tooltip">Admin profile</span>
-
+    
                     </a>
                 </li>
-
+    
                 <li id="Adoctor">
-                    <a href="#">
+                    <a href="{{url_for('addDoctor')}}">
                         <i class="fa-solid fa-user-doctor"></i>
                         <span class="links_name">Add doctor</span>
                     </a>
                     <span class="tooltip">Add doctor</span>
                 </li>
                 <li id="Vdoctor">
-                    <a href="http://localhost:5000/View-doctor">
+                    <a href="{{url_for('viewdoctor')}}">
                         <i class="fa-solid fa-hospital-user"></i></i>
                         <span class="links_name">View doctor</span>
                     </a>
                     <span class="tooltip">View doctor</span>
                 </li>
                 <li id="Analytics">
-                    <a href="#">
+                    <a href="{{url_for('analysis')}}">
                         <i class="fa-solid fa-chart-pie"></i>
                         <span class="links_name">Analytics</span>
                     </a>
                     <span class="tooltip">Analytics</span>
                 </li>
-
+    
                 <li id="Vclinic">
-                    <a href="#">
+                    <a href="{{url_for('Viewcomplaints')}}">
                         <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
-                        <span class="tooltip">View feedback</span>
+                    <span class="tooltip">View feedback</span>
                 </li>
                 <li class="profile">
                     <div class="profile-details">
@@ -85,7 +85,7 @@
         <div class="container" id="container">
         
             <div class="form-container sign-in-container">
-                <form method="POST" action="{{url_for('login')}}" enctype="multipart/form-data">
+                <form method="POST" action="{{url_for('addDoctor')}}" enctype="multipart/form-data">
                     
                     <div class="input-container">
                         <div class="icon">
@@ -93,8 +93,8 @@
                         </div>
                     
                         <div class="name-container">
-                            <input type="text" placeholder="First name" name="patientFname" required />
-                            <input type="text" placeholder="Last name" name="patientLname" required class="last-name" />
+                            <input type="text" placeholder="First name" name="doctorFname" required />
+                            <input type="text" placeholder="Last name" name="doctorLname" required class="last-name" />
                         </div>
                     
                     </div>
@@ -103,28 +103,28 @@
                         <div class="icon">
                             <span>Mobile</span>
                         </div>
-                        <input type="text" placeholder="+20110909123" name="patientEmail" required />
+                        <input type="text" placeholder="+20110909123" name="docMob" required />
                     </div>
 
                     <div class="input-container">
                         <div class="icon">
                             <span>Email</span>
                         </div>
-                        <input type="email" placeholder="Doctor@clinic.com" name="patientEmail" required />
+                        <input type="email" placeholder="Doctor@clinic.com" name="docEmail" required />
                     </div>
                     
                     <div class="input-container">
                         <div class="icon">
                             <span>ID</span>
                         </div>
-                        <input type="text" placeholder="#D123" name="patientpassword" required />
+                        <input type="text" placeholder="#D123" name="RID" required />
                     </div>
 
                     <div class="input-container">
                         <div class="icon">
-                            <span>Passowrd</span>
+                            <span>Password</span>
                         </div>
-                        <input type="text" placeholder="Top_Secret123" name="patientpassword" required />
+                        <input type="text" placeholder="Top_Secret123" name="docPassword" required />
                     </div>
 
                     <div class="radio-container">
@@ -132,11 +132,11 @@
                             <span>Gender</span>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" name="radio" id="male" checked="checked">
+                            <input type="radio" name="Gender" id="male" checked="checked" value="Male">
                             <label for="male">Male</label>
                         </div>
                         <div class="radio-item">
-                            <input type="radio" name="radio" id="female">
+                            <input type="radio" name="Gender" id="female" value="Female">
                             <label for="female" class="female">Female</label>
                         </div>
                     </div>
@@ -145,24 +145,24 @@
                         <div class="icon">
                             <span>Age</span>
                         </div>
-                        <input type="text" placeholder="40 years" name="patientEmail" required />
+                        <input type="text" placeholder="40 years" name="docAge" required />
                     </div>
 
                     <div class="input-container">
                         <div class="icon">
                             <span>Clinic</span>
                         </div>
-                        <input type="text" placeholder="X-Ray" name="patientEmail" required />
+                        <input type="text" placeholder="X-Ray" name="docClinic" required />
                     </div>
 
                     <div class="input-container">
                         <div class="icon">
                             <span>Salary</span>
                         </div>
-                            <input type="text" placeholder="3000Egp" name="patientEmail" required />
+                            <input type="text" placeholder="3000Egp" name="Salary" required />
                     </div>
                     
-                    <button type="submit" name="action" value="Reg">Add</button>
+                    <button type="submit" name="action">Add</button>
                     </form>
                     </div>
         

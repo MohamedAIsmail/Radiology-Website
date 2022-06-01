@@ -8,7 +8,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="3669",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -236,7 +236,7 @@ def Patient_profile():
 
 #----------------EDIT PATIENT PROFILE--------------------------------------------------
 
-#EDIT PERSONAL INFO
+# EDIT PERSONAL INFO
 @app.route("/edit_patient_profile", methods =['GET', 'POST']) 
 def edit_personal_pinfo(): 
     if request.method == 'POST':  ##check if there is post data
@@ -260,7 +260,7 @@ def edit_personal_pinfo():
 
     return render_template('edit_patient_profile.html') 
 
-#EDIT MEDICAL INFO
+# EDIT MEDICAL INFO
 @app.route("/edit-medical-info", methods =['GET', 'POST']) 
 def edit_medical_pinfo(): 
     if request.method == 'POST':  ##check if there is post data
@@ -282,8 +282,26 @@ def edit_medical_pinfo():
 
     return render_template('edit-medical-info.html')     
 
-    
-
+    # ------ ADD DOCTOR -----
+@app.route('/addDoctor', methods=['GET','POST'])
+def addDoctor():
+    if request.method == 'POST':
+        doctorFname = request.form['doctorFname']
+        doctorLname = request.form['doctorLname']
+        DID = request.form['RID']
+        doctorpassword = request.form['docPassword']
+        clinicname = request.form['docClinic']
+        age = request.form['docAge']
+        gender = request.form['Gender']
+        mobilephone = request.form['docMob']
+        salary = request.form['Salary']
+        Email = request.form['docEmail']
+        sql = "INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = (doctorFname, doctorLname, DID, doctorpassword, clinicname, age, gender, mobilephone, salary, Email)
+        mycursor.execute(sql, val)
+        mydb.commit()
+       
+    return render_template('Admin-AddDoctor.html')
 
 
 
