@@ -45,9 +45,9 @@
             <span class="tooltip">Add doctor</span>
         </li>
         <li id="Vdoctor">
-            <a href="{{url_for('viewdoctor')}}">
-                <i class="fa-solid fa-hospital-user"></i></i>
-                <span class="links_name">View doctor</span>
+            <a href="{{url_for('viewdoctor')}}" style="background: white;"">
+                <i class=" fa-solid fa-hospital-user" style="color:#11101D;"></i></i>
+                <span class="links_name" style="color:#11101D;">View doctor</span>
             </a>
             <span class="tooltip">View doctor</span>
         </li>
@@ -82,52 +82,52 @@
 
 
 
-            <!-- box info -->
+        <!-- box info -->
 
-            <table action="http://localhost:5000/View-doctor" method="POST">
+        <table action="http://localhost:5000/View-doctor" method="POST">
 
 
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>doctors' name</th>
-                        <th>Clinics' Name</th>
-                        <th>Mobile Phone </th>
-                        <th>Email </th>
-                        <th>salary</th>
-                    </tr>
-                </thead>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>doctors' name</th>
+                    <th>Clinics' Name</th>
+                    <th>Mobile Phone </th>
+                    <th>Email </th>
+                    <th>salary</th>
+                </tr>
+            </thead>
 
-                <tbody>
+            <tbody>
                 {% for r in data %}
-                    <tr>
-                        <td>{{r.0}}</td>
-                        <td class="people">
-                            <img src="../static/img/doctor.png" alt="">
-                            <div class="info">
+                <tr>
+                    <td>{{r.0}}</td>
+                    <td class="people">
+                        <img src="../static/img/doctor.png" alt="">
+                        <div class="info">
                             {{r.1}}
-                            </div>
-                        </td>
-                        <td>{{r.2}}</td>
-                        <td>{{r.3}}</td>
-                        <td>{{r.4}}</td>
-                        <td>{{r.5}}</td>
-                    </tr>
+                        </div>
+                    </td>
+                    <td>{{r.2}}</td>
+                    <td>{{r.3}}</td>
+                    <td>{{r.4}}</td>
+                    <td>{{r.5}}</td>
+                </tr>
                 {% endfor %}
-                </tbody>
-
-
-            
-            </table>
-        </div>
+            </tbody>
 
 
 
+        </table>
+    </div>
 
-    </section>
 
 
-    <script src="../static/js/Admin_profile.js"></script>
+
+</section>
+
+
+<script src="../static/js/Admin_profile.js"></script>
 
 
 

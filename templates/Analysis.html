@@ -20,64 +20,64 @@
 <body>
     <!-- side barrr -->
 
- <div class="sidebar">
-    <div class="logo-details">
-        <div class="logo_name">
-            <h2>Radisphere<span class="dot">. </h2></span>
-        </div>
-        <i class='bx bx-menu' id="btn"></i>
-    </div>
-    <ul class="nav-list">
-
-        <li id="Admin">
-            <a href="{{url_for('Admin_profile')}}" class=" active">
-                <i class="fa-solid fa-user"></i>
-                <span class="links_name">Admin profile</span>
-                <span class="tooltip">Admin profile</span>
-
-            </a>
-        </li>
-
-        <li id="Adoctor">
-            <a href="{{url_for('addDoctor')}}">
-                <i class="fa-solid fa-user-doctor"></i>
-                <span class="links_name">Add doctor</span>
-            </a>
-            <span class="tooltip">Add doctor</span>
-        </li>
-        <li id="Vdoctor">
-            <a href="{{url_for('viewdoctor')}}">
-                <i class="fa-solid fa-hospital-user"></i></i>
-                <span class="links_name">View doctor</span>
-            </a>
-            <span class="tooltip">View doctor</span>
-        </li>
-        <li id="Analytics">
-            <a href="{{url_for('analysis')}}">
-                <i class="fa-solid fa-chart-pie"></i>
-                <span class="links_name">Analytics</span>
-            </a>
-            <span class="tooltip">Analytics</span>
-        </li>
-
-        <li id="Vclinic">
-            <a href="{{url_for('Viewcomplaints')}}">
-                <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
-            <span class="tooltip">View feedback</span>
-        </li>
-        <li class="profile">
-            <div class="profile-details">
-                <img src="../static/img/admin.png" alt="profileImg">
-                <div class="name_job">
-                    <div class="job">Admin</div>
-                </div>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
             </div>
-            <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
-        </li>
-    </ul>
-</div>
-<section class="home-section">
-    <div class="panel">
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li id="Admin">
+                <a href="{{url_for('Admin_profile')}}" class=" active">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="links_name">Admin profile</span>
+                    <span class="tooltip">Admin profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="{{url_for('addDoctor')}}">
+                    <i class="fa-solid fa-user-doctor"></i>
+                    <span class="links_name">Add doctor</span>
+                </a>
+                <span class="tooltip">Add doctor</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="{{url_for('viewdoctor')}}">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">View doctor</span>
+                </a>
+                <span class="tooltip">View doctor</span>
+            </li>
+            <li id="Analytics">
+                <a href="{{url_for('analysis')}}" style="background: white;"">
+                <i class=" fa-solid fa-chart-pie" style="color:#11101D;"></i>
+                    <span class="links_name" style="color:#11101D;">Analytics</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+
+            <li id="Vclinic">
+                <a href="{{url_for('Viewcomplaints')}}">
+                    <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
+                <span class="tooltip">View feedback</span>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/admin.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="job">Admin</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="panel">
 
 
 
@@ -95,7 +95,7 @@
                         <button>
                             <span>
                                 <span>
-                                    <span data-attr-span= {{ patientNum.0 }}>
+                                    <span data-attr-span={{ patientNum.0 }}>
                                         {{ patientNum.0 }}
                                     </span>
                                 </span>
@@ -114,7 +114,7 @@
                         <button>
                             <span>
                                 <span>
-                                    <span data-attr-span= {{ doctorNum.0 }}>
+                                    <span data-attr-span={{ doctorNum.0 }}>
                                         {{ doctorNum.0 }}
                                     </span>
                                 </span>

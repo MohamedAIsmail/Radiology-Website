@@ -59,8 +59,9 @@
             </li>
 
             <li id="Vclinic">
-                <a href="{{url_for('Viewcomplaints')}}">
-                    <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
+                <a href="{{url_for('Viewcomplaints')}}" style="background: white;">
+                    <i class="fa-solid fa-comment" style="color:#11101D;"></i> <span class="links_name"
+                        style="color:#11101D;">View feedback</span> </a>
                 <span class="tooltip">View feedback</span>
             </li>
             <li class="profile">
@@ -96,23 +97,23 @@
                     <th>Feedback</th>
 
                 </tr>
-            <tbody>
-                {% for r in data %}
-                <tr>
-                    <td class="people">
-                        <img src="../static/img/patient2.png" alt="">
-                        <div class="info">
-                            {{r.0}}
-                        </div>
-                    </td>
-                    <td>{{r.1}}</td>
-                    <td>{{r.2}}</td>
-                    <td>{{r.3}}</td>
-                    <td>{{r.4}}</td>
+                <tbody>
+                    {% for r in data %}
+                    <tr>
+                        <td class="people">
+                            <img src="../static/img/patient2.png" alt="">
+                            <div class="info">
+                                {{r.0}}
+                            </div>
+                        </td>
+                        <td>{{r.1}}</td>
+                        <td>{{r.2}}</td>
+                        <td>{{r.3}}</td>
+                        <td>{{r.4}}</td>
 
-                </tr>
-                {% endfor %}
-            </tbody>
+                    </tr>
+                    {% endfor %}
+                </tbody>
 
 
             </table>

@@ -1,104 +1,104 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-    <head>
-        <meta charset="UTF-8">
-        <title> Admin page</title>
+<head>
+    <meta charset="UTF-8">
+    <title> Admin page</title>
 
-        <link rel="stylesheet" href="../static/css/Admin-AddDoctor.css">
-        <!-- Boxicons CDN Link -->
-        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-        <link rel="stylesheet" type="text/css"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    </head>
+    <link rel="stylesheet" href="../static/css/Admin-AddDoctor.css">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
 
-    <body>
+<body>
 
-        <!-- side barrr -->
+    <!-- side barrr -->
 
-        <div class="sidebar">
-            <div class="logo-details">
-                <div class="logo_name">
-                    <h2>Radisphere<span class="dot">. </h2></span>
-                </div>
-                <i class='bx bx-menu' id="btn"></i>
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
             </div>
-            <ul class="nav-list">
-
-                <li id="Admin">
-                    <a href="{{url_for('Admin_profile')}}" class=" active">
-                        <i class="fa-solid fa-user"></i>
-                        <span class="links_name">Admin profile</span>
-                        <span class="tooltip">Admin profile</span>
-    
-                    </a>
-                </li>
-    
-                <li id="Adoctor">
-                    <a href="{{url_for('addDoctor')}}">
-                        <i class="fa-solid fa-user-doctor"></i>
-                        <span class="links_name">Add doctor</span>
-                    </a>
-                    <span class="tooltip">Add doctor</span>
-                </li>
-                <li id="Vdoctor">
-                    <a href="{{url_for('viewdoctor')}}">
-                        <i class="fa-solid fa-hospital-user"></i></i>
-                        <span class="links_name">View doctor</span>
-                    </a>
-                    <span class="tooltip">View doctor</span>
-                </li>
-                <li id="Analytics">
-                    <a href="{{url_for('analysis')}}">
-                        <i class="fa-solid fa-chart-pie"></i>
-                        <span class="links_name">Analytics</span>
-                    </a>
-                    <span class="tooltip">Analytics</span>
-                </li>
-    
-                <li id="Vclinic">
-                    <a href="{{url_for('Viewcomplaints')}}">
-                        <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
-                    <span class="tooltip">View feedback</span>
-                </li>
-                <li class="profile">
-                    <div class="profile-details">
-                        <img src="../static/img/admin.png" alt="profileImg">
-                        <div class="name_job">
-                            <div class="name">Camila</div>
-                            <div class="job">Admin</div>
-                        </div>
-                    </div>
-                    <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
-                </li>
-            </ul>
+            <i class='bx bx-menu' id="btn"></i>
         </div>
+        <ul class="nav-list">
+
+            <li id="Admin">
+                <a href="{{url_for('Admin_profile')}}" class=" active">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="links_name">Admin profile</span>
+                    <span class="tooltip">Admin profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="{{url_for('addDoctor')}}" style="background: white;"">
+                    <i class=" fa-solid fa-user-doctor" style="color:#11101D;"></i>
+                    <span class="links_name" style="color:#11101D;">Add doctor</span>
+                </a>
+                <span class="tooltip">Add doctor</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="{{url_for('viewdoctor')}}">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">View doctor</span>
+                </a>
+                <span class="tooltip">View doctor</span>
+            </li>
+            <li id="Analytics">
+                <a href="{{url_for('analysis')}}">
+                    <i class="fa-solid fa-chart-pie"></i>
+                    <span class="links_name">Analytics</span>
+                </a>
+                <span class="tooltip">Analytics</span>
+            </li>
+
+            <li id="Vclinic">
+                <a href="{{url_for('Viewcomplaints')}}">
+                    <i class="fa-solid fa-comment"></i> <span class="links_name">View feedback</span> </a>
+                <span class="tooltip">View feedback</span>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/admin.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="name">Camila</div>
+                        <div class="job">Admin</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+            </li>
+        </ul>
+    </div>
 
 
-        <!-- Section -->
+    <!-- Section -->
 
-        <section class="home-section">
+    <section class="home-section">
 
         <!-- add doctor box -->
         <div class="container" id="container">
-        
+
             <div class="form-container sign-in-container">
                 <form method="POST" action="{{url_for('addDoctor')}}" enctype="multipart/form-data">
-                    
+
                     <div class="input-container">
                         <div class="icon">
                             <span>Name</span>
                         </div>
-                    
+
                         <div class="name-container">
                             <input type="text" placeholder="First name" name="doctorFname" required />
                             <input type="text" placeholder="Last name" name="doctorLname" required class="last-name" />
                         </div>
-                    
+
                     </div>
-                    
+
                     <div class="input-container">
                         <div class="icon">
                             <span>Mobile</span>
@@ -112,7 +112,7 @@
                         </div>
                         <input type="email" placeholder="Doctor@clinic.com" name="docEmail" required />
                     </div>
-                    
+
                     <div class="input-container">
                         <div class="icon">
                             <span>ID</span>
@@ -159,15 +159,15 @@
                         <div class="icon">
                             <span>Salary</span>
                         </div>
-                            <input type="text" placeholder="3000Egp" name="Salary" required />
+                        <input type="text" placeholder="3000Egp" name="Salary" required />
                     </div>
-                    
+
                     <button type="submit" name="action">Add</button>
-                    </form>
-                    </div>
-        
+                </form>
+            </div>
+
             <div class="overlay-container">
-        
+
                 <div class="overlay">
                     <h1>Add Doctor</h1>
                     <p>Complete your doctor's <br> profile</p>
@@ -176,9 +176,9 @@
             </div>
         </div>
 
-        </section>
-        
-        <script src="../static/js/Admin_profile.js"></script>
-    </body>
-    
+    </section>
+
+    <script src="../static/js/Admin_profile.js"></script>
+</body>
+
 </html>

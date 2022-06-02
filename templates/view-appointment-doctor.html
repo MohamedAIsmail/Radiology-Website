@@ -46,9 +46,9 @@
                 <span class="tooltip">View patient</span>
             </li>
             <li id="Vdoctor">
-                <a href="{{url_for('viewDocAppointment')}}">
-                    <i class="fa-solid fa-hospital-user"></i></i>
-                    <span class="links_name">View appointments</span>
+                <a href="{{url_for('viewDocAppointment')}}" style="background: white;">
+                    <i class="fa-solid fa-hospital-user" style="color:#11101D;"></i></i>
+                    <span class="links_name" style="color:#11101D;">View appointments</span>
                 </a>
                 <span class="tooltip">View appointments</span>
             </li>
@@ -83,25 +83,25 @@
 
 
                 </tr>
-            <tbody>
-                <tr>
-                    {% for r in data %} 
-                    
-                    <td>{{ r.0 }}</td>
-                    <td class="people">
-                        <img src="../static/img/patient2.png" alt="">
-                        <div class="info">
-                            {{ r.1 }}
-                        </div>
-                    </td>
-                    <td>{{ r.2 }}</td>
-                    <td>{{ r.3 }}</td>
+                <tbody>
+                    <tr>
+                        {% for r in data %}
 
-                    {% endfor %}
+                        <td>{{ r.0 }}</td>
+                        <td class="people">
+                            <img src="../static/img/patient2.png" alt="">
+                            <div class="info">
+                                {{ r.1 }}
+                            </div>
+                        </td>
+                        <td>{{ r.2 }}</td>
+                        <td>{{ r.3 }}</td>
+
+                        {% endfor %}
 
 
-                </tr>
-            </tbody>
+                    </tr>
+                </tbody>
 
             </table>
         </div>

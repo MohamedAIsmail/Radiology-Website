@@ -37,9 +37,9 @@
             </li>
 
             <li id="Adoctor">
-                <a href="{{url_for('viewAppointment')}}">
-                    <i class="fa-solid fa-calendar-check"></i>
-                    <span class="links_name">View apointments</span>
+                <a href="{{url_for('viewAppointment')}}" style="background: white;"">
+                    <i class=" fa-solid fa-calendar-check" style="color:#11101D;"></i>
+                    <span class="links_name" style="color:#11101D;">View apointments</span>
                 </a>
                 <span class="tooltip">View apointments</span>
             </li>
@@ -92,10 +92,10 @@
                 <tbody>
 
                     <tr>
-                        {% for r in data %} 
-                        
+                        {% for r in data %}
+
                         <td>{{ r.0 }}</td>
-                        
+
                         <td>{{ r.2 }}</td>
                         <td>{{ r.3 }}</td>
                         {% endfor %}
@@ -109,7 +109,7 @@
                         {% endfor %}
 
                     </tr>
-                    
+
                 </tbody>
 
 
