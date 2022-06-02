@@ -98,3 +98,4 @@ def connect():
   mycursor = mydb.cursor()
   return mycursor, mydb
 
+recreatedb(1)
