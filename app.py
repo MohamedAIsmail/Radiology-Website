@@ -433,7 +433,7 @@ def ReserveAppointment():
             doctorID= docID[0]
 
 
-            sql ="SELECT patientFname,patientLname,mobilephone FROM patients WHERE PID = %s"
+            sql ="SELECT patientFname, patientLname, mobilephone, Email FROM patients WHERE PID = %s"
             val= (PID,)
             mycursor.execute(sql,val)
             patientInfo=mycursor.fetchall()
@@ -442,9 +442,10 @@ def ReserveAppointment():
                 Pfname = x[0]
                 Plname = x[1]
                 mobilephone= x[2]
+                Pemail=x[3]
 
-            sql ="INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-            val = (Pfname, Plname , DATE, TIME, mobilephone, doctorID , PID)
+            sql ="INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, Email, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            val = (Pfname, Plname , DATE, TIME, mobilephone, Pemail, doctorID , PID)
             mycursor.execute(sql, val)
             mydb.commit()
 
@@ -465,30 +466,16 @@ def Returningdoc():
 def viewAppointment():
     if 'loggedin' in session:  
         PID = session['RID']
-
-        # Exception handeling in case there are no appointments must be done!!!!
-
-        sql="SELECT DID FROM Appointment WHERE PID = %s"
+    
+        sql = "SELECT APPNUMBER, PFname, Date, Time , doctors.doctorFname FROM Appointment JOIN Doctors ON Appointment.DID = Doctors.DID AND Appointment.PID = %s"
         val =(PID,)
         mycursor.execute(sql,val)
-        docID=mycursor.fetchone()
-        print(docID)
-
-        sql = "SELECT doctorFname FROM DOCTORS WHERE DID = %s"
-        val =(docID,)
-        mycursor.executemany(sql,val)
-        result=mycursor.fetchall()
-
-        for x in result:
-            print(x)
-
-        sql = "SELECT APPNUMBER, PFname, Date, Time FROM Appointment WHERE PID = %s"
-        val =(PID,)
-        mycursor.execute(sql,val)
-        myresult=mycursor.fetchall()
+        myresult = mycursor.fetchall()
+        
         
 
-    return render_template('view-appointment -patient.html', data=myresult, docname=result) 
+    return render_template('view-appointment -patient.html', data=myresult) 
+
 
 # -------------------------------- VIEW APPOINTMENT DOCTOR -------------------------------------------
 
@@ -498,17 +485,9 @@ def viewDocAppointment():
     if 'loggedin' in session:  
         DID = session['RID']
 
-        # Exception handeling in case there are no appointments must be done!!!!
-
-        sql="SELECT PID FROM Appointment WHERE DID = %s"
-        val =(DID,)
-        mycursor.execute(sql,val)
-        patientID=mycursor.fetchone()
-        print(patientID)
-
         sql = "SELECT APPNUMBER, PFname, Date, Time FROM Appointment WHERE DID = %s"
         val =(DID,)
-        mycursor.execute(sql,val)
+        mycursor.executemany(sql,val)
         myresult=mycursor.fetchall()
         
 
@@ -521,17 +500,9 @@ def viewPatient():
     if 'loggedin' in session:  
         DID = session['RID']
 
-        # Exception handeling in case there are no appointments must be done!!!!
-
-        sql="SELECT PID FROM Appointment WHERE DID = %s"
+        sql = "SELECT  Appointment.PID, PFname, Appointment.mobilephone, Appointment.Email FROM APPOINTMENT JOIN PATIENTS ON APPOINTMENT.PID = PATIENTS.PID AND APPOINTMENT.DID = %s"
         val =(DID,)
         mycursor.execute(sql,val)
-        patientID=mycursor.fetchone()
-        print(patientID)
-
-        sql = "SELECT  PID, patientFname, mobilephone, Email FROM PATIENTS WHERE PID = %s"
-        val =(patientID,)
-        mycursor.executemany(sql,val)
         myresult=mycursor.fetchall()
         
 
