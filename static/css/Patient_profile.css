@@ -294,6 +294,8 @@ html {
 
 .home-section {
     position: relative;
+    display: flex;
+    flex-direction: column;
     background: #E4E9F7;
     min-height: 170vh;
     top: 0;
@@ -344,6 +346,8 @@ html {
     float: left;
     margin-bottom: 5px;
     padding: 0 15px;
+    display: flex;
+    flex-direction: row;
 
 }
 
@@ -386,8 +390,7 @@ html {
 }
 
 .medical {
-    transform: translate(120px, 160px);
-    width: 70%;
+    transform: translate(190px, 160px);
     height: 680px;
 }
 
@@ -482,4 +485,125 @@ button:active {
 
 button:focus {
     outline: none;
+}
+
+
+
+@media (min-width: 300px) {
+.box1 {
+    margin-left: -170px;
+    padding: 0;
+}
+
+.box1 p {
+    margin-left: 0px;
+    font-size: 12px;
+}
+
+button {
+    font-size: 8px;
+    padding: 5px 10px;
+    margin-top: -45px;
+}
+
+}
+
+@media (min-width: 576px) {
+
+button {
+    font-size: 10px;
+    padding: 10px 30px;
+    margin-top: -15px;
+}
+
+.box1 p {
+    font-size: 13px;
+}
+
+.medical h1 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.box1 h1 {
+    font-size: 16px;
+}
+
+}
+
+
+@media (min-width: 768px) {
+
+.box1 {
+    margin-left: -70px;
+}
+
+.bio-row p span {
+    width: 50px;
+}
+
+.box1 p {
+    font-size: 14px;
+}
+
+.medical h1 {
+    font-size: 20px;
+    margin-bottom: 70px;
+}
+
+.box1 h1 {
+    font-size: 20px;
+}
+
+button {
+    font-size: 10px;
+    padding: 10px 30px;
+    margin-top: -15px;
+}
+
+}
+
+@media (min-width: 992px) {
+
+button {
+    font-size: 12px;
+    padding: 12px 45px;
+    margin-top: 15px;
+}
+
+.medical h1 {
+    font-size: 30px;
+    margin-bottom: 100px;
+}
+
+.box1 h1 {
+    font-size: 30px;
+}
+
+.bio-row p span {
+    width: 100px;
+}
+
+.box1 {
+    margin-left: 30px;
+}
+
+.box1 p {
+    font-size: 15px;
+}
+
+}
+
+@media (min-width: 1200px) {
+
+.box1 {
+    padding: 0 30px;
+    margin-left: 80px;
+}
+
+.box1 p {
+    margin-left: 20px;
+    font-size: 16px;
+}
+
 }
