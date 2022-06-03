@@ -309,3 +309,7 @@ tr {
 tr:nth-child(even) {
     background-color: #eeeeee;
 }
+
+.sec-contain {
+    margin-left: 435px;
+}

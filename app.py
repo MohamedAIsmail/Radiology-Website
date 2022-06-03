@@ -1,13 +1,13 @@
 from dataclasses import dataclass
+import os
 from pydoc import doc
 from flask import Flask, redirect, url_for, request, render_template, session, flash, jsonify
+from datetime import date
 import sys
 from jsonschema import ValidationError
 from numpy import true_divide
 from werkzeug.utils import secure_filename
 import mysql.connector  
-
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 
 mydb = mysql.connector.connect(
     host="localhost",
@@ -20,7 +20,8 @@ mycursor = mydb.cursor(buffered=True)
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
-
+UPLOAD_FOLDER = 'static/uploads/'
+app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
 
 
 @app.route('/')
@@ -528,8 +529,6 @@ def viewAppointment():
         val =(PID,)
         mycursor.execute(sql,val)
         myresult = mycursor.fetchall()
-        
-        
 
     return render_template('view-appointment -patient.html', data=myresult) 
 
@@ -573,63 +572,64 @@ def alloweFiles(filename:str):
 
 @app.route('/write_report', methods=['GET', 'POST'])
 def write_report():
+
     if 'loggedin' in session:
-        PID = session['RID']
+        DID = session['RID']
+
         if request.method == 'POST':
-            #Get doctor name
+
+            # Get doctor name
             sql = "SELECT doctorFname,doctorLname FROM DOCTORS WHERE DID=%s"
-            val=(PID,)
+            val=(DID,)
             mycursor.execute(sql,val)
             Doctor=mycursor.fetchall()
+
             # Get the data from post request
             file = request.files['file']
             Diagnosis = request.form['Diagnosis']
-            Patient = request.form['Patient']
-            PID = request.form['PID']
-            PID=int(PID)
-            date = request.form['date']
+            PID = request.form['PatientIDChosen']
+            
+            DATE = date.today()
             Procedures = request.form['Procedures']
-            #get all patients IDs
-            mycursor.execute("SELECT PID FROM patients")
-            allIDS = mycursor.fetchall()
-            flag=False
-            #Make sure the entered is right
-            for x in range(len(allIDS)):
-                id = allIDS[x]
-                print(id[0])
-                if id[0] == PID:
-                    flag=True
-            #if patient exists
-            if flag:
-                if alloweFiles(file.filename):
 
-                # Save the file to ./static/uploads
-                    filename=secure_filename(file.filename)
-                    file_path=os.path.join(app.config['UPLOAD_FOLDER'],filename)
-                    file.save(file_path)
-                else:
-                    flash('Allowed Image types: png, jpg, jpeg')
-                    return render_template('write_report.html')
+            # Get all patients IDs
+            mycursor.execute("SELECT patientFname FROM patients WHERE PID = %s", (PID,))
+            Patientname = mycursor.fetchone()
 
-
-                print(Doctor[0])
-
-
-                sql = "INSERT INTO REPORT (DoctorName , PatientName , PID, Date , Diagnosis, Procedures,img) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-                for x in Doctor:
-                    Dfname = x[0]
-                    Dlname = x[1]
-                try:
-                    val = (Dfname+" "+Dlname,Patient,PID,date,Diagnosis,Procedures,file_path)
-                    mycursor.execute(sql, val)
-                    mydb.commit()
-                    print(val)
-                except:
-                    return render_template('write_report.html')
+            
+            # Save the file to ./static/uploads
+            if alloweFiles(file.filename):
+                filename=secure_filename(file.filename)
+                file_path=os.path.join(app.config['UPLOAD_FOLDER'],filename)
+                file.save(file_path)
             else:
-                flash('Wrong Patient ID')
+                flash('Allowed Image types: png, jpg, jpeg')
+                return redirect(url_for('ReturningPatient'))
 
-    return render_template('write_report.html')
+            sql = "INSERT INTO REPORT (DoctorName , PatientName , PID, Date , Diagnosis, Procedures,img) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            for x in Doctor:
+                Dfname = x[0]
+                Dlname = x[1]
+            try:
+                val = (Dfname+" "+Dlname, Patientname[0], PID, DATE, Diagnosis, Procedures, file_path)
+                mycursor.execute(sql, val)
+                mydb.commit()
+                
+                flash("Report sent successfuly")
+            except:
+                return redirect(url_for('ReturningPatient'))
+            
+    return redirect(url_for('ReturningPatient'))
+
+@app.route("/ReturningPatient", methods =['GET', 'POST'])
+
+def ReturningPatient():
+    if 'loggedin' in session:
+        DID = session['RID']
+        mycursor.execute("SELECT DISTINCT PID FROM APPOINTMENT WHERE APPOINTMENT.DID= %s", (DID,))
+        myresult = mycursor.fetchall()
+
+    return render_template('write_report.html', data=myresult)    
 
 if __name__ == '__main__':
     app.run(debug=True)

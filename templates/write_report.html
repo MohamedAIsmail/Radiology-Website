@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Write a report</title>
     <link rel="stylesheet" href="../static/css/Add-complaints.css">
+    <link rel="stylesheet" href="../static/css/write_report.css">
+
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -17,8 +20,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<div class="sidebar">
+    <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">
                 <h2>Radisphere<span class="dot">. </h2></span>
@@ -28,10 +32,10 @@
         <ul class="nav-list">
 
             <li id="Admin">
-                <a href="{{url_for('doctor_profile')}}" >
-                    <i class="fa-solid fa-user-doctor" ></i>
+                <a href="{{url_for('doctor_profile')}}">
+                    <i class="fa-solid fa-user-doctor"></i>
 
-                    <span class="links_name" >Doctor profile</span>
+                    <span class="links_name">Doctor profile</span>
                     <span class="tooltip"> Doctor profile</span>
 
                 </a>
@@ -64,10 +68,10 @@
             </li>
 
             <li id="#">
-                <a href="" class=" active" style="background: white;">
-                    <i class="fa-solid fa-user-doctor" style="color:#11101D;"></i>
+                <a href="{{url_for('ReturningPatient')}}" class="active" style="background: white;">
+                    <i class="fa-solid fa-pen" style="color:#11101D;"></i>
 
-                    <span class="links_name" style="color:#11101D;">Write A Report</span>
+                    <span class="links_name" style="color:#11101D;">Write a Report</span>
                     <span class="tooltip"> Write A Report</span>
 
                 </a>
@@ -79,101 +83,105 @@
 
 
 
-      <!-- Box info -->
-    <section class="home-section h-75">
+            <!-- Box info -->
+            <section class="home-section h-75">
 
-        <div class="container h-75">
+                <div class="container h-75">
 
-            <div class="row justify-content-center h-75">
-                <div class="col-md-14 h-75">
-                    <div class="wrapper h-75">
+                    <div class="row justify-content-center h-75">
+                        <div class="col-md-14 h-75">
+                            <div class="wrapper h-75">
 
-                        <div class="row no-gutters h-75">
-                            <div class="col-md-8 h-75">
-                                <div class="contact-wrap w-100 p-md-5 p-4">
-                                    <h3 class="mb-4">Report</h3>
-                                    <div id="form-message-warning" class="mb-4"></div>
-                                    <div id="form-message-success" class="mb-4">
-                                        Your report was sent, thank you!
-                                    </div>
-                                    <form action="/write_report" method="POST" id="contactForm" name="contactForm" class="contactForm" enctype="multipart/form-data">
-                                        <div class="row">
-                                            {% for msg in get_flashed_messages()%}
-                                            <div class="alert alert-danger" role="alert">
-                                              {{msg}}
-                                            </div>
+                                <div class="row no-gutters h-75">
+                                    <div class="col-md-8 h-75">
+                                        <div class="contact-wrap w-100 p-md-5 p-4">
+                                            <h3 class="mb-4">Report</h3>
+                            
+                                            <form action="{{url_for('write_report')}}" method="POST" id="contactForm"
+                                                name="contactForm" class="contactForm" enctype="multipart/form-data">
+                                                <div class="row">
 
-                                            {% endfor %}
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="subject">Diagnosis</label>
-                                                    <input type="text" class="form-control" name="Diagnosis" id="subject"
-                                                        placeholder="Subject" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="subject">Patient Name</label>
-                                                    <input type="text" class="form-control" name="Patient" id="name" placeholder="Patient Name" required />
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="subject">Patient ID</label>
-                                                    <input type="text" class="form-control" name="PID" id="ID" placeholder="Patient Name" required />
-                                                </div>
-                                            </div>
-                                             <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="#">Scan</label>
-                                                    <input type="file" name="file" required>
-                                                </div>
-                                            </div>
-                                            <div class="input-container">
-                                                <span>Date</span>
-                                                <input type="date" name="date" required />
-                                            </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="label" for="subject">Diagnosis</label>
+                                                            <input type="text" class="form-control" name="Diagnosis"
+                                                                id="subject" placeholder="Diagnosis" required />
+                                                        </div>
+                                                    </div>
 
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="label" for="#">Procedures</label>
-                                                    <textarea name="Procedures" class="form-control" id="Procedures" cols="30"
-                                                        rows="9" placeholder="Message"></textarea>
-                                                </div>
-                                            </div>
-                                             <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <input type="submit" value="Send Report" class="btn btn-primary">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="label" for="subject">Patient ID</label>
+                                                            <select name="PatientIDChosen" id="sii">
+                                                                <option> Select PatientID </option>
 
-                                                    <div class="submitting"></div>
+                                                                {% for r in data %}
+                                                                <option value="{{ r.0 }}">{{ r.0 }}</option>
+                                                                {% endfor %}
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="label" for="#">Procedures</label>
+                                                            <textarea name="Procedures" class="form-control"
+                                                                id="Procedures" cols="30" rows="5"
+                                                                placeholder="Message"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="label" for="#">Scan </label><br>
+                                                            <input type="file" name="file" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <input type="submit" value="Send Report"
+                                                                class="btn btn-primary">
+
+                                                            <div class="submitting"></div>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </form>
+                                            {% with messages = get_flashed_messages() %}
+                                                {% if messages %}           
+                                                    {% for message in messages %}
+                                                    <li>{{ message }}</li>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endwith %}
                                         </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="col-md-5 d-flex align-items-stretch">
-                                <div class="info-wrap w-100 p-5 img" style="background-image: url(images/img.jpg);">
+                                    </div>
+                                    <div class="col-md-5 d-flex align-items-stretch">
+                                        <div class="info-wrap w-100 p-5 img"
+                                            style="background-image: url(images/img.jpg);">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
 
 
-    </section>
-
+            </section>
 
 
 
 
 
 
-    <script src="../static/js/Admin_profile.js"></script>
+
+            <script src="../static/js/Admin_profile.js"></script>
 
 
 </body>
+
 </html>

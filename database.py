@@ -89,14 +89,12 @@ def recreatedb(bool):
   mycursor.executemany(sql,value)
   mydb.commit()
 
-  # sql = "INSERT INTO  REPORT ('DoctorName', 'PatientName' ,'PID', 'Date', 'Diagnosis', 'Procedures', 'img') VALUES (%s,%s,%s,%s,%s,%s,%s)"
-  # value = [
-  #   ('Dina Salama', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something',
-  #    'static/uploads/No17.jpg'),
-  # ]
-
-  # mycursor.executemany(sql, value)
-  # mydb.commit()
+  sql = "INSERT INTO  REPORT (DoctorName, PatientName,PID, Date, Diagnosis, Procedures, img) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+  value = [
+    ('Dina Salama', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something','static/uploads/No17.jpg'),
+  ]
+  mycursor.executemany(sql, value)
+  mydb.commit()
 
 def connect():
   mydb = mysql.connector.connect(
