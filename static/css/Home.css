@@ -222,28 +222,25 @@ a.active::after {
 /* Styling the contact and opening hours */
 
 .contact {
+    position: relative;
     text-align: center;
     background: #F8F8F8;
     padding: 120px 70px 70px 70px;
-}
+    }
 
 .contact2 {
-    margin-left: 100px;
+    margin-left: 60px;
     display: flex;
+    justify-content: center;
 }
-
-.box-container {
-    position: relative;
-}
-
 
 .box1 {
     position: absolute;
-    padding: 0 30px;
-    width: 550px;
-    height: 330px;
+    padding: 30px 40px;
+    width: 42%;
+    height: 370px;
     background: white;
-    margin-right: 80px;
+    margin-right: 60px;
     box-shadow: 10px 5px 5px rgb(227, 219, 219);
     display: inline-block;
     border-radius: 10px;
@@ -251,6 +248,49 @@ a.active::after {
     text-align: center;
 
 }
+
+.box1 h2 {
+    font-family: "Poppins", sans-serif;
+}
+
+.phone {
+    font-size: 40px;
+    margin-bottom: 35px;
+    color: rgb(20 36 44);
+    transition: all 0.3s ease-in-out;
+}
+
+.box1 p {
+    margin-bottom: 20px;
+    font-family: "Popaspins", sans-serif;
+    font-weight: bold;
+    text-align: left;
+    line-height: 30px;
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+}
+
+.paragraphContact {
+    margin-top: 30px;
+}
+
+.spacing0 {
+    word-spacing: 170px;
+}
+
+.spacing1 {
+    word-spacing: 283px;
+}
+
+.spacing2 {
+    word-spacing: 260px;
+}
+
+.spacing3 {
+    word-spacing: 275px;
+}
+
 
 .effect {
     position: relative;
@@ -287,32 +327,6 @@ a.active::after {
     z-index: 2;
 }
 
-
-.box1 h2 {
-    font-family: "Poppins", sans-serif;
-}
-
-.phone {
-    font-size: 40px;
-    margin-top: 20px;
-    color: rgb(20 36 44);
-    transition: all 0.3s ease-in-out;
-}
-
-.box1 p {
-    margin-bottom: 20px;
-    font-family: "Popaspins", sans-serif;
-    font-weight: bold;
-    text-align: left;
-    line-height: 60px;
-    margin-left: 20px;
-    font-family: "Open Sans", sans-serif;
-    color: #444444;
-}
-
-
-
-
 .contact h2 {
     font-size: 40px;
     position: relative;
@@ -345,7 +359,7 @@ a.active::after {
     bottom: -38px;
 }
 
-.contact p {
+.reach {
     width: 550px;
     font-size: 18px;
     margin: 0 auto 50px;
@@ -353,15 +367,6 @@ a.active::after {
     line-height: 15px;
     color: #777;
     font-weight: bold
-}
-
-.paragraphContact {
-    margin-top: 20px;
-}
-
-.contact span {
-
-    word-spacing: 200px;
 }
 
 /* Treatment Slider */
@@ -444,13 +449,15 @@ a.active::after {
     width: 360px;
     background-color: #14242c;
     height: 450px;
-    margin-left: 850px;
+    /* margin-left: 850px; */
+    margin-left: 70%;
     display: inline-block;
     position: absolute;
 }
 
 .About-left-block {
-    width: 790px;
+    padding-right: 20px;
+    width: 65%;
     background-color: #ffffff;
     height: 450px;
     display: inline-block;
@@ -476,6 +483,7 @@ a.active::after {
 }
 
 .About-us {
+    margin-top: -100px;
     background-color: #F8F8F8;
 
 }
@@ -591,10 +599,47 @@ footer {
 
 
 
-@media (max-width: 1300px) {
+@media (max-width: 1920px) {
+
+    .nav ul {
+        margin-left: 550px;
+    }
+
+}
+
+
+@media (max-width: 1280px) {
 
     .nav ul {
         margin-left: 350px;
+    }
+
+
+    .contact {
+        padding: 120px 20px 70px 20px;
+    }
+
+    .box1 {
+        width: 50%;
+    }
+    
+    .box1 p {
+        margin-bottom: 20px;
+        line-height: 30px;
+        font-size: 16px;
+    }
+
+    .About-right-block {
+        height: 500px;
+    }
+
+    .About-left-block {
+        height: 500px;
+    }
+
+    .Doctor-img {
+    height: 450px;
+    transform: translate(50px, 51px);
     }
 
 }
@@ -627,6 +672,50 @@ footer {
         padding: 40px;
     }
 
+
+    .contact {
+        padding: 120px 0px 70px 0px;
+    }
+
+    .box1 {
+        margin-right: 40px;
+    }
+    
+    .box1 p {
+        margin-bottom: 20px;
+        line-height: 30px;
+        font-size: 16px;
+    }
+
+    .contact2 {
+        margin-left: 32px;
+    }
+
+    .spacing0 {
+        word-spacing: 100px;
+    }
+    
+    .spacing1 {
+        word-spacing: 200px;
+    }
+    
+    .spacing2 {
+        word-spacing: 180px;
+    }
+    
+    .spacing3 {
+        word-spacing: 195px;
+    }
+
+    .About-right-block {
+        display: none;
+    }
+
+    .About-left-block {
+        width: 100%;
+        height: 450px;
+    }
+
 }
 
 @media (max-width: 768px) {
@@ -656,6 +745,27 @@ footer {
     .intro-text {
         width: 40%;
         padding: 20px;
+    }
+
+    .contact2 {
+        width: 120%;
+        flex-direction: column;
+        margin-left: 135px;
+    }
+
+    .box1 {
+        margin-bottom: 20px;
+        margin-right: 10px;
+    }
+
+    .About-left-block h2 {
+        font-size: 2.6rem;
+    }
+
+    .About-left-block p {
+        font-size: 14px;
+        margin-top: 5px;
+        line-height: 30px;
     }
 
 }
@@ -691,6 +801,65 @@ footer {
         left: 40px;
     }
 
+
+    .contact2 {
+        margin-left: 115px;
+    }
+
+    .box1 {
+        margin-bottom: 20px;
+        margin-right: 10px;
+    }
+    
+    .box1 p {
+        margin-bottom: 20px;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    .phone {
+        margin-bottom: 25px;
+    }
+
+    .spacing0 {
+        word-spacing: 40px;
+    }
+    
+    .spacing1 {
+        word-spacing: 130px;
+    }
+    
+    .spacing2 {
+        word-spacing: 113px;
+    }
+    
+    .spacing3 {
+        word-spacing: 125px;
+    }
+
+    .About-left-block h2 {
+        font-size: 1.8rem;
+        margin-top: 100px;
+    }
+
+    .About-left-block p {
+        font-size: 14px;
+        margin-top: 15px;
+        line-height: 20px;
+    }
+
+    .About-upper-block {
+        width: 120px;
+        height: 120px;
+    }
+
+    .About-upper-block h3 {
+        font-size: 5rem;
+        font-weight: 700;
+        margin: auto 0;
+        transform: translate(50px, 20px);
+    }
+
 }
 
 
@@ -714,4 +883,38 @@ footer {
         height: 70px;
     }
     
+    .box1 {
+        height: 460px;
+    }
+
+    .contact2 {
+        margin-left: 80px;
+    }
+
+    .About-left-block {
+        height: 420px;
+    }
+    .About-left-block h2 {
+        font-size: 1.2rem;
+        margin-top: 70px;
+    }
+
+    .About-left-block p {
+        font-size: 12px;
+        margin-top: 15px;
+        line-height: 15px;
+    }
+
+    .About-upper-block {
+        width: 80px;
+        height: 80px;
+    }
+
+    .About-upper-block h3 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: auto 0;
+        transform: translate(35px, 20px);
+    }
+
 }
