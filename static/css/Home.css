@@ -35,7 +35,7 @@ html {
 /* Animation for loading body */
 
 body {
-    animation: transitionIn .75s;
+    /* animation: transitionIn .75s; */
 }
 
 /* Styling The top navigation bar */
@@ -84,8 +84,6 @@ body {
 
 .nav h2 {
     color: #222222;
-
-
     font-size: 32px;
     margin: 0;
     padding: 0;
@@ -141,17 +139,9 @@ a.active::after {
 .logo {
     width: 150px;
     height: 150px;
-
+    cursor:default;
     position: relative;
     transform: translate(0, 4px);
-}
-
-.logo:hover {
-
-
-    transform: scale(1.2);
-    transition: .5s;
-
 }
 
 .fixed-top {
@@ -174,7 +164,7 @@ a.active::after {
 }
 
 .intro {
-    min-height: 85vh;
+    min-height: 90vh;
     background-image: url("../img/intro.jpg");
     background-size: cover;
     position: relative;
@@ -194,16 +184,39 @@ a.active::after {
 
 .intro-text {
     animation: transitionZoom 1.5s;
-    transition-timing-function: calc();
     position: absolute;
-    right: 0px;
-    top: 35%;
+    left: 60%;
+    top: 25%;
     width: 40%;
     padding: 75px;
     color: white;
     z-index: 1;
     background-color: rgb(20 36 44 / 90%);
+    border-radius: 2px;
 }
+
+.intro-text h1 {
+    font-size: 46px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.intro-text h1::after {
+    content: "";
+    display: block;
+    width: 85%;
+    height: 7px;
+    margin-top: 15px;
+    background: -webkit-linear-gradient(to right, rgb(57, 103, 126), rgb(20 36 44));
+    background: linear-gradient(to right, rgb(57, 103, 126), rgb(20 36 44));
+}
+
+.intro-text p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+
 
 
 /* Styling the contact and opening hours */
@@ -505,7 +518,7 @@ a.active::after {
 footer {
     background-color: rgb(20 36 44);
     height: auto;
-    width: 100vw;
+    width: 100%;
     padding-top: 40px;
     color: white;
 }
@@ -526,10 +539,10 @@ footer {
 }
 
 .footer-content p {
-    max-width: 500px;
+    max-width: 700px;
     margin: 10px auto;
     line-height: 28px;
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .socials {
@@ -574,4 +587,131 @@ footer {
     text-transform: uppercase;
     opacity: .4;
     font-weight: 200;
+}
+
+
+
+@media (max-width: 1300px) {
+
+    .nav ul {
+        margin-left: 350px;
+    }
+
+}
+
+@media (max-width: 992px) {
+    
+    .nav ul {
+        margin-left: 230px;
+    }
+
+    .nav {
+    margin-left: -30px;
+    }
+
+    .nav ul li {
+    padding: 25px 20px;
+    }
+
+    .intro-text p {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .intro-text h1 {
+        font-size: 40px;
+    }
+
+    .intro-text {
+        width: 40%;
+        padding: 40px;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .nav ul {
+        margin-left: 150px;
+    }
+
+    .nav {
+        margin-left: -50px;
+    }
+
+    .nav ul li {
+        padding: 25px 10px;
+    }
+
+
+    .intro-text p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .intro-text h1 {
+        font-size: 30px;
+    }
+
+    .intro-text {
+        width: 40%;
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .nav ul li {
+        padding: 25px 8px;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    .nav ul {
+        margin-left: 80px;
+    }
+
+    .nav h2 {
+        font-size: 28px;
+    }
+
+        .intro-text p {
+        font-size: 16px;
+        line-height: 1.4;
+    }
+
+    .intro-text h1 {
+        font-size: 30px;
+    }
+
+    .intro-text {
+        width: 80%;
+        padding: 20px;
+        left: 40px;
+    }
+
+}
+
+
+@media (max-width: 390px) {
+
+    .nav h2 {
+        display: none;
+    }
+
+    .nav ul {
+        margin-left: -15%;
+    }
+
+    .nav ul li {
+        padding: 25px 8px;
+        line-height: 1.5;
+        font-size: 14px;
+    }
+
+    .navbar {
+        height: 70px;
+    }
+    
 }
