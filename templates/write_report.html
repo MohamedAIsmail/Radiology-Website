@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Write a report</title>
+    <link rel="stylesheet" href="../static/css/Add-complaints.css">
+    <link rel="icon" href="../static/img/logo.png" type="image/icon type">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li id="Admin">
+                <a href="{{url_for('doctor_profile')}}" >
+                    <i class="fa-solid fa-user-doctor" ></i>
+
+                    <span class="links_name" >Doctor profile</span>
+                    <span class="tooltip"> Doctor profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="{{url_for('viewPatient')}}">
+                    <i class="fa-solid fa-user"></i>
+
+                    <span class="links_name">View patient</span>
+                </a>
+                <span class="tooltip">View patient</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="{{url_for('viewDocAppointment')}}">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">View appointments</span>
+                </a>
+                <span class="tooltip">View appointments</span>
+            </li>
+
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/patient.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="job">Doctor</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+            </li>
+
+            <li id="#">
+                <a href="" class=" active" style="background: white;">
+                    <i class="fa-solid fa-user-doctor" style="color:#11101D;"></i>
+
+                    <span class="links_name" style="color:#11101D;">Write A Report</span>
+                    <span class="tooltip"> Write A Report</span>
+
+                </a>
+            </li>
+        </ul>
+    </div>
+    <section class="home-section">
+        <div class="panel">
+
+
+
+      <!-- Box info -->
+    <section class="home-section h-75">
+
+        <div class="container h-75">
+
+            <div class="row justify-content-center h-75">
+                <div class="col-md-14 h-75">
+                    <div class="wrapper h-75">
+
+                        <div class="row no-gutters h-75">
+                            <div class="col-md-8 h-75">
+                                <div class="contact-wrap w-100 p-md-5 p-4">
+                                    <h3 class="mb-4">Report</h3>
+                                    <div id="form-message-warning" class="mb-4"></div>
+                                    <div id="form-message-success" class="mb-4">
+                                        Your report was sent, thank you!
+                                    </div>
+                                    <form action="/write_report" method="POST" id="contactForm" name="contactForm" class="contactForm" enctype="multipart/form-data">
+                                        <div class="row">
+                                            {% for msg in get_flashed_messages()%}
+                                            <div class="alert alert-danger" role="alert">
+                                              {{msg}}
+                                            </div>
+
+                                            {% endfor %}
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Diagnosis</label>
+                                                    <input type="text" class="form-control" name="Diagnosis" id="subject"
+                                                        placeholder="Subject" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Patient Name</label>
+                                                    <input type="text" class="form-control" name="Patient" id="name" placeholder="Patient Name" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="subject">Patient ID</label>
+                                                    <input type="text" class="form-control" name="PID" id="ID" placeholder="Patient Name" required />
+                                                </div>
+                                            </div>
+                                             <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#">Scan</label>
+                                                    <input type="file" name="file" required>
+                                                </div>
+                                            </div>
+                                            <div class="input-container">
+                                                <span>Date</span>
+                                                <input type="date" name="date" required />
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="label" for="#">Procedures</label>
+                                                    <textarea name="Procedures" class="form-control" id="Procedures" cols="30"
+                                                        rows="9" placeholder="Message"></textarea>
+                                                </div>
+                                            </div>
+                                             <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <input type="submit" value="Send Report" class="btn btn-primary">
+
+                                                    <div class="submitting"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-5 d-flex align-items-stretch">
+                                <div class="info-wrap w-100 p-5 img" style="background-image: url(images/img.jpg);">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </section>
+
+
+
+
+
+
+
+    <script src="../static/js/Admin_profile.js"></script>
+
+
+</body>
+</html>
