@@ -47,8 +47,10 @@ def recreatedb(bool):
   # *********************************** ADD TO DOCTOR *******************************************
   sql="INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
-    ('Dina','Salama','D1','1234', 'Dina','21','female','011266672701','99999999','dinakhalid404@gmail.com'),
-    ('Fady', 'Nour', 'D2', '1324', 'Fady', '33', 'male', '010555672701', '100000', 'fady20@gmail.com'),
+    ('Dina','Salama','D1','1234', 'X-Ray','21','Female','011266672701','10000','dinakhalid404@gmail.com'),
+    ('Fady', 'Nour', 'D2', '1324', 'CT', '33', 'Male', '010555672701', '15000', 'fady20@gmail.com'),
+    ('Mohamed','Ismail','D10','9999', 'MRI','21','Male','01142068704','20000','mohamedaismail214@gmail.com'),
+    ('Mo', 'Moustafa', 'D3', '1111', 'UltraSound', '22', 'Male', '01115674821', '5000', 'momoustafa@gmail.com'),
 
   ]
 
@@ -87,13 +89,14 @@ def recreatedb(bool):
   mycursor.executemany(sql,value)
   mydb.commit()
 
-  sql = "INSERT INTO  REPORT ('DoctorName', 'PatientName' ,'PID', 'Date', 'Diagnosis', 'Procedures', 'img') VALUES (%s,%s,%s,%s,%s,%s,%s)"
-  value = [
-    ('Dina Salama', 'Ereny', 1, '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something',
-     'static/uploads/No17.jpg')
-  ]
-  mycursor.executemany(sql, value)
-  mydb.commit()
+  # sql = "INSERT INTO  REPORT ('DoctorName', 'PatientName' ,'PID', 'Date', 'Diagnosis', 'Procedures', 'img') VALUES (%s,%s,%s,%s,%s,%s,%s)"
+  # value = [
+  #   ('Dina Salama', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something',
+  #    'static/uploads/No17.jpg'),
+  # ]
+
+  # mycursor.executemany(sql, value)
+  # mydb.commit()
 
 def connect():
   mydb = mysql.connector.connect(
@@ -106,3 +109,4 @@ def connect():
   mycursor = mydb.cursor()
   return mycursor, mydb
 
+recreatedb(1)
