@@ -1,17 +1,25 @@
-import os
-from flask import Flask, redirect, url_for, request, render_template, session, flash
+from dataclasses import dataclass
+from pydoc import doc
+from flask import Flask, redirect, url_for, request, render_template, session, flash, jsonify
+import sys
+from jsonschema import ValidationError
+from numpy import true_divide
 from werkzeug.utils import secure_filename
-import database
+import mysql.connector  
 
-mycursor, mydb=database.connect()
+SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
+
+mydb = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    passwd="123456",
+    database="Raddb"
+  )
 
 mycursor = mydb.cursor(buffered=True)
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
-UPLOAD_FOLDER = 'static/uploads/'
-app.config['UPLOAD_FOLDER']=UPLOAD_FOLDER
-
 
 
 
@@ -292,6 +300,11 @@ def addDoctor():
         mobilephone = request.form['docMob']
         salary = request.form['Salary']
         Email = request.form['docEmail']
+
+        # sql = "INSERT INTO APPOINTMENT (DID) VALUES (%s)"
+        # val = (DID)
+        # mycursor.execute(sql, val)
+
         sql = "INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         val = (doctorFname, doctorLname, DID, doctorpassword, clinicname, age, gender, mobilephone, salary, Email)
         mycursor.execute(sql, val)
@@ -352,12 +365,15 @@ def analysis():
      patientNumbers = mycursor.fetchone()
      mycursor.execute("SELECT COUNT(*) FROM COMPLAINTS")
      feedbackNumbers= mycursor.fetchone()
+     mycursor.execute("SELECT COUNT(*) FROM APPOINTMENT")
+     appNumbers= mycursor.fetchone()
+     
 
         # Get the highest doctor's salary
         
-     mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
-     docdata=mycursor.fetchmany(size=3)
-     return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, docdatas=docdata, feedbackdata=feedbackNumbers)
+    #  mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
+    #  docdata=mycursor.fetchmany(size=3)
+     return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, feedbackdata=feedbackNumbers, appointmentdata=appNumbers)
 
 
 
@@ -416,19 +432,11 @@ def ReserveAppointment():
         PID = session['RID']
 
         if request.method == 'POST':
-            doctorChosen = request.form.get('doctorChosen')
-            
+
+            ClinicNAME = request.form.get('clinicChosen')
             DATE = request.form['date']
             TIME = request.form['time']
-            print(doctorChosen)
             
-            sql= "SELECT DID FROM Doctors where doctorFname = %s"
-            val= (doctorChosen,)
-            mycursor.execute(sql,val)
-            docID = mycursor.fetchone()
-            doctorID= docID[0]
-
-
             sql ="SELECT patientFname, patientLname, mobilephone, Email FROM patients WHERE PID = %s"
             val= (PID,)
             mycursor.execute(sql,val)
@@ -440,17 +448,70 @@ def ReserveAppointment():
                 mobilephone= x[2]
                 Pemail=x[3]
 
-            sql ="INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, Email, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s)"
-            val = (Pfname, Plname , DATE, TIME, mobilephone, Pemail, doctorID , PID)
-            mycursor.execute(sql, val)
-            mydb.commit()
+            if dateChecker(DATE,TIME,ClinicNAME):
+
+                sql ="INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, ClinicName, Email, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                val = (Pfname, Plname , DATE, TIME, mobilephone,ClinicNAME, Pemail, dateChecker(DATE,TIME,ClinicNAME) , PID)
+                mycursor.execute(sql, val)
+                mydb.commit()
+                flash('Your appointment is reserved!')
+            
+            else:
+                flash('Date has been already taken!')
 
     return redirect(url_for('Returningdoc'))
 
+
+def dateChecker(date,time,scans):
+
+    scanChosen = scans
+    i=0
+    DATE = date
+    TIME = time
+    breakoutflag = False
+
+    sql ="SELECT DID FROM doctors WHERE clinicname = %s"
+    val= (scanChosen,)
+    mycursor.execute(sql,val)
+    docInfo=mycursor.fetchall()
+    print(docInfo)
+    
+    for r in docInfo:
+        mycursor.execute("SELECT EXISTS(SELECT DID FROM APPOINTMENT WHERE DID = %s)", (r[0],) )
+        docChecking= mycursor.fetchall()
+         
+        for x in docChecking:
+            if(x[0] == 1):
+                mycursor.execute("SELECT Date, Time, APPOINTMENT.DID FROM APPOINTMENT JOIN Doctors ON APPOINTMENT.DID = %s AND Doctors.clinicname= %s ", (r[0],scanChosen,))
+                dateCheck= mycursor.fetchall()
+                
+                print(dateCheck)                 
+                for x in dateCheck:
+                    Date= x[0]
+                    Time= x[1]
+                    DID = x[2]
+
+                    if (Date == DATE) & (Time == TIME) :
+                        breakoutflag= True
+                        break
+
+                if breakoutflag:
+                    break
+                                
+                DocID=DID
+                return DocID 
+                
+            else:
+                return r[0]       
+
+    return False            
+      
+
+                
 @app.route("/Returningdoc", methods =['GET', 'POST'])
 
 def Returningdoc():
-     mycursor.execute("SELECT doctorFname FROM doctors")
+     mycursor.execute("SELECT DISTINCT clinicname FROM doctors")
      myresult = mycursor.fetchall()
 
      return render_template('Patient-reserve.html', data=myresult)
@@ -483,7 +544,7 @@ def viewDocAppointment():
 
         sql = "SELECT APPNUMBER, PFname, Date, Time FROM Appointment WHERE DID = %s"
         val =(DID,)
-        mycursor.executemany(sql,val)
+        mycursor.execute(sql,val)
         myresult=mycursor.fetchall()
         
 
@@ -502,9 +563,7 @@ def viewPatient():
         myresult=mycursor.fetchall()
         
 
-    return render_template('patient-view.html', data=myresult)
-
-
+    return render_template('patient-view.html', data=myresult) 
 
 # -------------------------------- WRITE A REPORT DOCTOR -------------------------------------------
 allowedExtentions={'png','jpg','jpeg'}

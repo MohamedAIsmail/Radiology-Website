@@ -52,6 +52,15 @@
                 </a>
                 <span class="tooltip">View appointments</span>
             </li>
+            <li id="Adoctor">
+                <a href="{{url_for('write_report')}}"]>
+                    <i class="fa-solid fa-pen"></i>
+                    
+                    <span class="links_name" >Write A Report</span>
+                    <span class="tooltip"> Write A Report</span>
+
+                </a>
+            </li>
             <li class="profile">
                 <div class="profile-details">
                     <img src="../static/img/patient.png" alt="profileImg">
@@ -60,15 +69,6 @@
                     </div>
                 </div>
                 <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
-            </li>
-            <li id="#">
-                <a href="{{url_for('write_report')}}"]>
-                    <i class="fa-solid fa-user-doctor" ></i>
-
-                    <span class="links_name" >Write A Report</span>
-                    <span class="tooltip"> Write A Report</span>
-
-                </a>
             </li>
         </ul>
     </div>
@@ -93,9 +93,8 @@
 
                 </tr>
                 <tbody>
+                    {% for r in data %}
                     <tr>
-                        {% for r in data %}
-
                         <td>{{ r.0 }}</td>
                         <td class="people">
                             <img src="../static/img/patient2.png" alt="">
@@ -106,10 +105,8 @@
                         <td>{{ r.2 }}</td>
                         <td>{{ r.3 }}</td>
 
-                        {% endfor %}
-
-
                     </tr>
+                    {% endfor %}
                 </tbody>
 
             </table>

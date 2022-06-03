@@ -90,9 +90,9 @@
                 </tr>
 
                 <tbody>
-
+                    {% for r in data %}
                     <tr>
-                        {% for r in data %}
+                        
 
                         <td>{{ r.0 }}</td>
 
@@ -104,10 +104,10 @@
                                 {{ r.4 }}
                             </div>
                         </td>
-                        {% endfor %}
+                        
 
                     </tr>
-
+                    {% endfor %}
                 </tbody>
 
 

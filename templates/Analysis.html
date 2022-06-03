@@ -13,6 +13,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
@@ -143,32 +144,76 @@
                     </div>
 
                 </div>
+
+                
+
+                </div>
             </div>
+            <div class="big-contain">
+                    <div class="centerBox">
+
+                        <div class="categoryWrapper">
+                            <i class="fa-solid fa-triangle-exclamation doc2"></i>
+                            <h1>Devices
+
+                            </h1>
+                            <button>
+                                <span>
+                                    <span>
+                                        <span data-attr-span="{{ feedbackdata.0 }}">
+                                            {{ feedbackdata.0 }}
+                                        </span>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="centerBox">
+
+                        <div class="categoryWrapper">
+                            <i class="fa-solid fa-calender-check"></i>
+                            <h1>Appointments
+
+                            </h1>
+                            <button>
+                                <span>
+                                    <span>
+                                        <span data-attr-span="{{ appointmentdata.0 }}">
+                                            {{ appointmentdata.0 }}
+                                        </span>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="centerBox">
+
+                        <div class="categoryWrapper">
+                            <i class="fa-solid fa-calender-check"></i>
+                            <h1>Reports
+
+                            </h1>
+                            <button>
+                                <span>
+                                    <span>
+                                        <span data-attr-span="{{ feedbackdata.0 }}">
+                                            {{ feedbackdata.0 }}
+                                        </span>
+                                    </span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>    
+
             <div class="salary">
 
 
-                <table>
-
-                    <caption> Doctors With Highest Salary
-                    </caption>
-
-                    <tr>
-
-                        <th>ID</th>
-                        <th>doctors' name</th>
-
-                        <th>salary</th>
-
-                    </tr>
-                    {% for r in docdatas %}
-                    <tr>
-                        <td> {{r.0}} </td>
-                        <td> {{r.1}} </td>
-                        <td> {{r.2}} </td>
-                    </tr>
-                    {% endfor %}
-
-            </div>
+                
 
 
     </section>

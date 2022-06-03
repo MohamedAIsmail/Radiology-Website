@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root"
+    passwd="123456"
   )
 
   mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -27,7 +27,7 @@ def recreatedb(bool):
 
   mycursor.execute("CREATE TABLE PATIENTS (patientFname VARCHAR(100), patientLname VARCHAR(100), PID int NOT NULL AUTO_INCREMENT, patientpassword VARCHAR(100),age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12),  Email VARCHAR(30), medicine VARCHAR(3), surgery VARCHAR(3), bloodTransfer VARCHAR(3), virusCorB VARCHAR(3), disease VARCHAR(3) ,PRIMARY KEY(PID))")
 
-  mycursor.execute("CREATE TABLE DOCTORS (doctorFname VARCHAR(100), doctorLname VARCHAR(100), DID VARCHAR(20), PID int, doctorpassword VARCHAR(100), clinicname VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30),PRIMARY KEY(DID), FOREIGN KEY (PID) REFERENCES PATIENTS(PID))")
+  mycursor.execute("CREATE TABLE DOCTORS (doctorFname VARCHAR(100), doctorLname VARCHAR(100), DID VARCHAR(20), PID int, doctorpassword VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30), clinicname VARCHAR(100), PRIMARY KEY(DID), FOREIGN KEY (PID) REFERENCES PATIENTS(PID))")
 
   mycursor.execute("CREATE TABLE ADMINS (adminFname VARCHAR(100), adminLname VARCHAR(100), AID VARCHAR(20), adminpassword VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30),PRIMARY KEY(AID))")
 
@@ -35,7 +35,7 @@ def recreatedb(bool):
 
   mycursor.execute("CREATE TABLE COMPLAINTS (Name VARCHAR(200), CONTACTNUMBER VARCHAR(12), EMAIL VARCHAR(200), SUBJECT VARCHAR(100), MESSAGE VARCHAR(300), CNUMBER int NOT NULL AUTO_INCREMENT, PRIMARY KEY(CNUMBER), PID int, FOREIGN KEY (PID) REFERENCES PATIENTS(PID) )")
 
-  mycursor.execute("CREATE TABLE APPOINTMENT (PFname VARCHAR(100), PLname VARCHAR(100), Date DATE NOT NULL, Time TIME NOT NULL, mobilephone VARCHAR(12), ClinicName VARCHAR(100), Email VARCHAR(30), APPNUMBER int NOT NULL AUTO_INCREMENT,PRIMARY KEY(APPNUMBER), DID VARCHAR(20), PID int, FOREIGN KEY (PID) REFERENCES PATIENTS(PID),FOREIGN KEY (DID) REFERENCES DOCTORS(DID) ) ")
+  mycursor.execute("CREATE TABLE APPOINTMENT (PFname VARCHAR(100), PLname VARCHAR(100), Date VARCHAR(100), Time VARCHAR(100), mobilephone VARCHAR(12), ClinicName VARCHAR(100), Email VARCHAR(30), APPNUMBER int NOT NULL AUTO_INCREMENT,PRIMARY KEY(APPNUMBER), DID VARCHAR(20), PID int, FOREIGN KEY (PID) REFERENCES PATIENTS(PID),FOREIGN KEY (DID) REFERENCES DOCTORS(DID) ) ")
 
   # mycursor.execute("Show tables;")
  
@@ -99,7 +99,7 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 

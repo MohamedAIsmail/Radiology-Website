@@ -139,10 +139,10 @@
                             </div>
                         </div>
 
-                        <span>Doctor</span>
+                        <span>Type of Scan</span>
                         <div class="input-container">
-                            <select name="doctorChosen" id="Doctor">
-                                <option value="Doctor">Select Doctor</option>
+                            <select name="clinicChosen" id="Doctor">
+                                <option value="Doctor">Select Scan</option>
                                 {% for r in data %}
                                 <option value="{{ r.0 }}">{{ r.0 }}</option>
                                 {% endfor %}
@@ -152,25 +152,18 @@
                         <button type="submit" name="Booking">Confirm Booking</button>
 
                     </form>
+
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}           
+                            {% for message in messages %}
+                            <li>{{ message }}</li>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
                 </div>
             </div>
 
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
