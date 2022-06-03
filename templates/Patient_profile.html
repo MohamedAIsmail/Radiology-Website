@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Patient profile</title>
+    <title> Patient Page</title>
     <link rel="stylesheet" href="../static/css/Patient_profile.css">
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
     <!-- Boxicons CDN Link -->
@@ -52,6 +52,12 @@
                 <span class="tooltip">Reserve apointment</span>
             <li id="Vclinic">
                 <a href="{{url_for('Addcomplaints')}}">
+                    <i class="fa-solid fa-file-medical"></i></i> <span class="links_name">View Report</span>
+                </a>
+                <span class="tooltip">View Report</span>
+            </li>
+                <li id="Vclinic">
+                <a href="{{url_for('Addcomplaints')}}">
                     <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
                 </a>
                 <span class="tooltip">Add feedback</span>
@@ -78,7 +84,7 @@
         <div class="box1 effect">
             <!-- profile picture -->
             <div class="circular--landscape"> <img
-                    src="https://filmdaze.net/wp-content/uploads/2018/03/ladybird825.jpg" />
+                    src="../static/img/patient1.png" />
             </div>
             <!-- info -->
             <h1>Patient inforamtion</h1>

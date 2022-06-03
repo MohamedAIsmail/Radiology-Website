@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Patient profile</title>
+    <title> Patient Page</title>
     <link rel="stylesheet" href="../static/css/Add-complaints.css">
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
     <!-- Boxicons CDN Link -->
@@ -58,6 +58,12 @@
                     <span class="links_name">Reserve apointment</span>
                 </a>
                 <span class="tooltip">Reserve apointment</span>
+            <li id="Vclinic">
+                <a href="{{url_for('Addcomplaints')}}">
+                    <i class="fa-solid fa-file-medical"></i></i> <span class="links_name">View Report</span>
+                </a>
+                <span class="tooltip">View Report</span>
+            </li>
             <li id="Vclinic">
                 <a href="{{url_for('Addcomplaints')}}" style="background: white;">
                     <i class="fa-solid fa-comment" style="color:#11101D;"></i> <span class="links_name"

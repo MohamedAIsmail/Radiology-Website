@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title> Patient profile</title>
+    <title> Patient Page</title>
     <link rel="stylesheet" href="../static/css/Patient-reserve.css">
         <link rel="stylesheet" href="../static/css/Patient_profile.css">
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
@@ -20,7 +20,7 @@
 <body>
 
     <!-- side barrr -->
-
+    
     <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">
@@ -29,16 +29,16 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
-
+    
             <li class="active" id="Admin">
                 <a href="{{url_for('Patient_profile')}}">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Profile</span>
-                    <span class="tooltip">Profile</span>
-
+                        <span class=" tooltip">Profile</span>
+    
                 </a>
             </li>
-
+    
             <li id="Adoctor">
                 <a href="{{url_for('viewAppointment')}}">
                     <i class="fa-solid fa-calendar-check"></i>
@@ -47,12 +47,18 @@
                 <span class="tooltip">View apointments</span>
             </li>
             <li id="Vdoctor">
-                <a href="{{url_for('Returningdoc')}}" style="background: white;"">
-                        <i class=" fa-solid fa-hospital-user" style="color:#11101D;""></i>
-                    <span class=" links_name"style="color:#11101D;"" >Reserve apointment</span>
-                </li>
+                <a href="{{url_for('Returningdoc')}}">
+                    <i class="fa-solid fa-hospital-user"></i></i>
+                    <span class="links_name">Reserve apointment</span>
                 </a>
-                <span class=" tooltip">Reserve apointment</span>
+                <span class="tooltip">Reserve apointment</span>
+            <li id="Vclinic">
+                <a href="{{url_for('Addcomplaints')}}" style="background: white;">
+                    <i class="fa-solid fa-file-medical" style="color:#11101D;"></i></i>
+                    <span class="links_name" style="color:#11101D;">View Report</span>
+                </a>
+                <span class="tooltip">View Report</span>
+            </li>
             <li id="Vclinic">
                 <a href="{{url_for('Addcomplaints')}}">
                     <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
@@ -72,13 +78,12 @@
         </ul>
     </div>
 
-
         <!-- Report -->
     <section class="home-section">
 
 
- <div class="box1 medical">
-            <!-- profile picture -->
+        <div class="box1 medical">
+                    <!-- profile picture -->
 
                 <div class="scan-container">
                 <img src={{data.8}} alt="">
@@ -105,10 +110,9 @@
                 <div class="bio-row">
                     <p class="right-box"><span>Date </span>: {{ data.5 }}</p>
                 </div>
-                      <div class="bio-row">
-                            <p><span>Procedures </span>: {{ data.7 }}</p>
-                        </div>
-
+                <div class="bio-row">
+                    <p><span>Procedures </span>: {{ data.7 }}</p>
+                </div>
             </div>
 
         </div>
