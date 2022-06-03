@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456"
+    passwd="root"
   )
 
   mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
@@ -31,7 +31,7 @@ def recreatedb(bool):
 
   mycursor.execute("CREATE TABLE ADMINS (adminFname VARCHAR(100), adminLname VARCHAR(100), AID VARCHAR(20), adminpassword VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30),PRIMARY KEY(AID))")
 
-  mycursor.execute("CREATE TABLE REPORT (DoctorName VARCHAR(200), PatientName VARCHAR(200),PID int, Date DATE NOT NULL, Diagnosis VARCHAR(300), Procedures VARCHAR(300), img VARCHAR(300),FOREIGN KEY (PID) REFERENCES PATIENTS(PID))")
+  mycursor.execute("CREATE TABLE REPORT (RPID int NOT NULL AUTO_INCREMENT, DoctorName VARCHAR(200),DID VARCHAR(20), PatientName VARCHAR(200),PID int, Date DATE NOT NULL, Diagnosis VARCHAR(300), Procedures VARCHAR(300), img VARCHAR(300),FOREIGN KEY (PID) REFERENCES PATIENTS(PID),FOREIGN KEY (DID) REFERENCES DOCTORS(DID),PRIMARY KEY(RPID))")
 
   mycursor.execute("CREATE TABLE COMPLAINTS (Name VARCHAR(200), CONTACTNUMBER VARCHAR(12), EMAIL VARCHAR(200), SUBJECT VARCHAR(100), MESSAGE VARCHAR(300), CNUMBER int NOT NULL AUTO_INCREMENT, PRIMARY KEY(CNUMBER), PID int, FOREIGN KEY (PID) REFERENCES PATIENTS(PID) )")
 
@@ -80,6 +80,8 @@ def recreatedb(bool):
   mycursor.executemany(sql,value)
   mydb.commit()
 
+
+  # *********************************** ADD TO COMPLAINTS *******************************************
   sql="INSERT INTO  COMPLAINTS (Name , CONTACTNUMBER , EMAIL , SUBJECT, MESSAGE) VALUES (%s,%s,%s,%s,%s)"
   value = [
     ('Dina','01126672701','dina@gmail.com','تطبيل','اجمد بروجكت دا ولا ايه؟'),
@@ -89,9 +91,11 @@ def recreatedb(bool):
   mycursor.executemany(sql,value)
   mydb.commit()
 
-  sql = "INSERT INTO  REPORT (DoctorName, PatientName,PID, Date, Diagnosis, Procedures, img) VALUES (%s,%s,%s,%s,%s,%s,%s)"
+  # *********************************** ADD TO REPORT *******************************************
+  sql = "INSERT INTO  REPORT (DoctorName,DID , PatientName,PID, Date, Diagnosis, Procedures, img) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
-    ('Dina Salama', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something','static/uploads/No17.jpg'),
+    ('Dina Salama', 'D1', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something',
+     '../static/uploads/No17.jpg'),
   ]
   mycursor.executemany(sql, value)
   mydb.commit()
@@ -100,11 +104,10 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
   mycursor = mydb.cursor()
   return mycursor, mydb
 
-recreatedb(1)

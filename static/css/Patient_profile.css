@@ -23,6 +23,26 @@ html {
     transition: all 0.5s ease;
 }
 
+.scan-container {
+    left: 450px;
+    top: 300px;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+    position: absolute;
+    width: 0px;
+    min-height: 370px;
+    z-index: 2;
+}
+
+.scan-container img {
+    position: absolute;
+    width: 370px;
+    height: 370px;
+    border-radius: 20px;
+}
+
 .sidebar.open {
     width: 250px;
 }

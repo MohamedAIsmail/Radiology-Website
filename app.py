@@ -12,7 +12,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
@@ -534,7 +534,6 @@ def viewAppointment():
 
 
 # -------------------------------- VIEW APPOINTMENT DOCTOR -------------------------------------------
-
 @app.route("/ViewAppointment-Doctor", methods =['GET', 'POST'])
 def viewDocAppointment():
 
@@ -562,7 +561,21 @@ def viewPatient():
         myresult=mycursor.fetchall()
         
 
-    return render_template('patient-view.html', data=myresult) 
+    return render_template('patient-view.html', data=myresult)
+
+
+# -------------------------- VIEW A REPORT ---------------------------
+@app.route("/ViewAReport", methods=['GET'])
+def viewAReport():
+    # if 'loggedin' in session:
+    RID = 1
+    sql = "SELECT * FROM REPORT WHERE RPID = %s"
+    val = (RID,)
+    mycursor.execute(sql, val)
+    myresult = mycursor.fetchall()
+    print(myresult)
+
+    return render_template('viewAReport.html', data=myresult[0])
 
 # -------------------------------- WRITE A REPORT DOCTOR -------------------------------------------
 allowedExtentions={'png','jpg','jpeg'}
@@ -600,7 +613,7 @@ def write_report():
             # Save the file to ./static/uploads
             if alloweFiles(file.filename):
                 filename=secure_filename(file.filename)
-                file_path=os.path.join(app.config['UPLOAD_FOLDER'],filename)
+                file_path=os.path.join("../",app.config['UPLOAD_FOLDER'],filename)
                 file.save(file_path)
             else:
                 flash('Allowed Image types: png, jpg, jpeg')
@@ -611,7 +624,7 @@ def write_report():
                 Dfname = x[0]
                 Dlname = x[1]
             try:
-                val = (Dfname+" "+Dlname, Patientname[0], PID, DATE, Diagnosis, Procedures, file_path)
+                val = (Dfname+" "+Dlname,DID, Patientname[0], PID, DATE, Diagnosis, Procedures, file_path)
                 mycursor.execute(sql, val)
                 mydb.commit()
                 

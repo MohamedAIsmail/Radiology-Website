@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Patient profile</title>
+    <link rel="stylesheet" href="../static/css/Patient-reserve.css">
+        <link rel="stylesheet" href="../static/css/Patient_profile.css">
+    <link rel="icon" href="../static/img/logo.png" type="image/icon type">
+    <!-- Boxicons CDN Link -->
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+
+
+<body>
+
+    <!-- side barrr -->
+
+    <div class="sidebar">
+        <div class="logo-details">
+            <div class="logo_name">
+                <h2>Radisphere<span class="dot">. </h2></span>
+            </div>
+            <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+
+            <li class="active" id="Admin">
+                <a href="{{url_for('Patient_profile')}}">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="links_name">Profile</span>
+                    <span class="tooltip">Profile</span>
+
+                </a>
+            </li>
+
+            <li id="Adoctor">
+                <a href="{{url_for('viewAppointment')}}">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="links_name">View apointments</span>
+                </a>
+                <span class="tooltip">View apointments</span>
+            </li>
+            <li id="Vdoctor">
+                <a href="{{url_for('Returningdoc')}}" style="background: white;"">
+                        <i class=" fa-solid fa-hospital-user" style="color:#11101D;""></i>
+                    <span class=" links_name"style="color:#11101D;"" >Reserve apointment</span>
+                </li>
+                </a>
+                <span class=" tooltip">Reserve apointment</span>
+            <li id="Vclinic">
+                <a href="{{url_for('Addcomplaints')}}">
+                    <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
+                </a>
+                <span class="tooltip">Add feedback</span>
+            </li>
+            </li>
+            <li class="profile">
+                <div class="profile-details">
+                    <img src="../static/img/patient.png" alt="profileImg">
+                    <div class="name_job">
+                        <div class="job">Patient</div>
+                    </div>
+                </div>
+                <i class='bx bx-log-out' id="log_out" onclick="location.href='Login'"></i></i>
+            </li>
+        </ul>
+    </div>
+
+
+        <!-- Report -->
+    <section class="home-section">
+
+
+ <div class="box1 medical">
+            <!-- profile picture -->
+
+                <div class="scan-container">
+                <img src={{data.8}} alt="">
+
+            </div>
+            <!-- info -->
+            <h1>Report details</h1>
+            <div class="row">
+                <div class="bio-row">
+                    <p><span>DoctorName </span>: {{ data.1 }}</p>
+                </div>
+                <div class="bio-row ">
+                    <p class="right-box"><span>Doctor ID</span>: {{ data.2 }}</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>PatientName </span>: {{ data.3 }}</p>
+                </div>
+                <div class="bio-row ">
+                    <p class="right-box"><span>Patient ID</span>: {{ data.4 }}</p>
+                </div>
+                <div class="bio-row">
+                    <p><span>Diagnosis </span>: {{ data.6 }}</p>
+                </div>
+                <div class="bio-row">
+                    <p class="right-box"><span>Date </span>: {{ data.5 }}</p>
+                </div>
+                      <div class="bio-row">
+                            <p><span>Procedures </span>: {{ data.7 }}</p>
+                        </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="../static/js/Admin_profile.js"></script>
+
+</body>
+
+</html>
