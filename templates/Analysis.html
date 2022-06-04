@@ -16,9 +16,16 @@
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
 </head>
 
 <body>
+
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+
+</script>
+
     <!-- side barrr -->
 
     <div class="sidebar">
@@ -79,8 +86,6 @@
     </div>
     <section class="home-section">
         <div class="panel">
-
-
 
 
 
@@ -193,15 +198,52 @@
         </div>
         </div>
 
+        <div>
+        <canvas id="myChart" style="width:100%;max-width:700px;margin-left: auto;margin-right: auto;"></canvas>
+            <script src="../static/js/Analysis.js"></script>
 
 
+<script>
+
+var days ={{alldays}};
+var months ={{allmonths}};
+i=0;
+var xValues=[]
+for (let i = 0; i < months.length; i++) {
+  xValues.push(months[i]+"-"+days[i]);
+}
+
+var yValues = {{appNum}};
 
 
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: {{appNum}}
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+    }
+  }
+});
+</script>
+
+
+</div>
 
     </section>
 
 
-    <script src="../static/js/Analysis.js"></script>
+
+
 
 </body>
 

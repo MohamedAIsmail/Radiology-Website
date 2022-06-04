@@ -364,13 +364,18 @@ def analysis():
      feedbackNumbers= mycursor.fetchone()
      mycursor.execute("SELECT COUNT(*) FROM APPOINTMENT")
      appNumbers= mycursor.fetchone()
-     
 
+    mycursor.execute("SELECT Date, COUNT(Date) FROM APPOINTMENT group by date order by date")
+    graph1 = mycursor.fetchall()
+    appNum=[x[1] for x in graph1]
+    alldays=[int(x[0][-2:]) for x in graph1]
+    allmonths=[int(x[0][5:7]) for x in graph1]
+    print(type(alldays[0]),alldays,allmonths)
         # Get the highest doctor's salary
         
     #  mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
     #  docdata=mycursor.fetchmany(size=3)
-     return render_template('Analysis.html', adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, feedbackdata=feedbackNumbers, appointmentdata=appNumbers)
+    return render_template('Analysis.html', appNum=appNum, alldays=alldays, allmonths=allmonths, arrlenth=len(appNum), adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum = patientNumbers, feedbackdata=feedbackNumbers, appointmentdata=appNumbers)
 
 
 
@@ -449,6 +454,7 @@ def ReserveAppointment():
 
                 sql ="INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, ClinicName, Email, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
                 val = (Pfname, Plname , DATE, TIME, mobilephone,ClinicNAME, Pemail, dateChecker(DATE,TIME,ClinicNAME) , PID)
+                print(val)
                 mycursor.execute(sql, val)
                 mydb.commit()
                 flash('Your appointment is reserved!')

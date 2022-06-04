@@ -11,3 +11,5 @@ searchBtn.addEventListener("click", () => { // Sidebar open when you click on th
     sidebar.classList.toggle("open");
     menuBtnChange();
 });
+
+

@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456"
+    passwd="root"
   )
 
   mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
@@ -43,6 +43,7 @@ def recreatedb(bool):
  
   # for x in myresult:
   #     print(x)
+
 
   # *********************************** ADD TO DOCTOR *******************************************
   sql="INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -103,12 +104,31 @@ def recreatedb(bool):
   ]
   mycursor.executemany(sql, value)
   mydb.commit()
+  # *********************************** ADD TO APPOINTMENT *******************************************
+  sql = "INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, ClinicName, Email, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+  value = [
+    ('Ereny', 'Eleya', '2022-06-12', '12:00', '012888888888', 'CT', 'ereny2022@gmail.com', 'D2', '1'),
+    ('Ereny', 'Eleya', '2022-06-03', '12:00', '012888888888', 'CT', 'ereny2022@gmail.com', 'D2', '1'),
+    ('Ahmed', 'Mohammed', '2022-06-11', '12:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
+    ('Ereny', 'Eleya', '2022-06-05', '12:00', '012888888888', 'X-Ray', 'ereny2022@gmail.com', 'D1', '1'),
+    ('Ereny', 'Eleya', '2022-06-03', '12:00', '012888888888', 'MRI', 'ereny2022@gmail.com', 'D10', '1'),
+    ('Ahmed', 'Mohammed', '2022-06-11', '01:00', '012123456789', 'CT', 'amohammed@gmail.com', 'D2', '2'),
+    ('Ereny', 'Eleya', '2022-06-04', '12:00', '012888888888', 'CT', 'ereny2022@gmail.com', 'D2', '1'),
+    ('Ereny', 'Eleya', '2022-06-03', '12:00', '012888888888', 'X-Ray', 'ereny2022@gmail.com', 'D1', '1'),
+    ('Ahmed', 'Mohammed', '2022-06-11', '12:00', '012123456789', 'MRI', 'amohammed@gmail.com', 'D10', '2'),
+    ('Ereny', 'Eleya', '2022-06-11', '12:00', '012888888888', 'X-Ray', 'ereny2022@gmail.com', 'D1', '1'),
+    ('Maryam', 'Ahmed', '2022-06-03', '12:00', '010888834888', 'CT', 'maro2020@gmail.com', 'D2', '3'),
+    ('Maryam', 'Ahmed', '2022-06-05', '12:00', '010888834888', 'X-Ray', 'maro2020@gmail.com', 'D1', '3'),
+    ('Maryam', 'Ahmed', '2022-06-12', '12:00', '010888834888', 'MRI', 'maro2020@gmail.com', 'D10', '3'),
 
+  ]
+  mycursor.executemany(sql,value)
+  mydb.commit()
 def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
   )
 
