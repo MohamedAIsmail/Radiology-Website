@@ -7,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -282,7 +282,8 @@ def edit_medical_pinfo():
 
     return render_template('edit-medical-info.html')     
 
-    # ------ ADD DOCTOR -----
+# -------------------- ADD DOCTOR -----------------
+
 @app.route('/addDoctor', methods=['GET','POST'])
 def addDoctor():
     if request.method == 'POST':
@@ -571,8 +572,8 @@ def viewAllReports():
 
 # -------------------------- VIEW A REPORT ---------------------------
 @app.route("/ViewAReport/<int:RPID>", methods=['GET'])
-def viewAReport(RPID):
 
+def viewAReport(RPID):
     sql = "SELECT * FROM REPORT WHERE RPID = %s"
     val = (RPID,)
     mycursor.execute(sql, val)
@@ -605,7 +606,7 @@ def write_report():
             file = request.files['file']
             Diagnosis = request.form['Diagnosis']
             PID = request.form['PatientIDChosen']
-            
+
             DATE = date.today()
             Procedures = request.form['Procedures']
 
@@ -613,33 +614,33 @@ def write_report():
             mycursor.execute("SELECT patientFname FROM patients WHERE PID = %s", (PID,))
             Patientname = mycursor.fetchone()
 
-            
             # Save the file to ./static/uploads
             if alloweFiles(file.filename):
                 filename=secure_filename(file.filename)
-                file_path=os.path.join("../",app.config['UPLOAD_FOLDER'],filename)
+                file_path=os.path.join(app.config['UPLOAD_FOLDER'],filename)
                 file.save(file_path)
             else:
                 flash('Allowed Image types: png, jpg, jpeg')
                 return redirect(url_for('ReturningPatient'))
 
-            sql = "INSERT INTO REPORT (DoctorName , PatientName , PID, Date , Diagnosis, Procedures,img) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+            sql = "INSERT INTO REPORT (DoctorName , PatientName , DID, PID, Date , Diagnosis, Procedures, img) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
             for x in Doctor:
                 Dfname = x[0]
                 Dlname = x[1]
             try:
-                val = (Dfname+" "+Dlname,DID, Patientname[0], PID, DATE, Diagnosis, Procedures, file_path)
+                Finalpath="../"+file_path
+                val = (Dfname+" "+Dlname, Patientname[0], DID, PID, DATE, Diagnosis, Procedures, Finalpath)
                 mycursor.execute(sql, val)
                 mydb.commit()
                 
-                flash("Report sent successfuly")
+                flash("Report sent succesfully")
             except:
+                flash("Report has some problems!")
                 return redirect(url_for('ReturningPatient'))
             
     return redirect(url_for('ReturningPatient'))
 
 @app.route("/ReturningPatient", methods =['GET', 'POST'])
-
 def ReturningPatient():
     if 'loggedin' in session:
         DID = session['RID']
@@ -647,6 +648,7 @@ def ReturningPatient():
         myresult = mycursor.fetchall()
 
     return render_template('write_report.html', data=myresult)    
+
 
 if __name__ == '__main__':
     app.run(debug=True)

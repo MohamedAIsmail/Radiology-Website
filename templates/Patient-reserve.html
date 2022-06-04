@@ -53,7 +53,7 @@
                 </a>
                 <span class=" tooltip">Reserve apointment</span>
             <li id="Vclinic">
-                <a href="{{url_for('Addcomplaints')}}">
+                <a href="{{url_for('viewAllReports')}}">
                     <i class="fa-solid fa-file-medical"></i></i> <span class="links_name">View Report</span>
                 </a>
                 <span class="tooltip">View Report</span>
@@ -138,11 +138,11 @@
                         <div class="double">
                             <div class="input-container">
                                 <span>Date</span>
-                                <input type="date" name="date" required />
+                                <input type="date" name="date" placeholder=" Date of Appointment" required />
                             </div>
                             <div class="input-container">
                                 <span>Time</span>
-                                <input type="time" name="time" required />
+                                <input type="time" name="time" placeholder=" Time of Appointment" required />
                             </div>
                         </div>
 

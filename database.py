@@ -4,7 +4,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root"
+    passwd="123456"
   )
 
   mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 
@@ -92,7 +92,7 @@ def recreatedb(bool):
   mydb.commit()
 
   # *********************************** ADD TO REPORT *******************************************
-  sql = "INSERT INTO  REPORT (DoctorName,DID , PatientName,PID, Date, Diagnosis, Procedures, img) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+  sql = "INSERT INTO  REPORT (DoctorName, DID, PatientName, PID, Date, Diagnosis, Procedures, img) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
   value = [
     ('Dina Salama', 'D1', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something',
      '../static/uploads/No17.jpg'),
@@ -108,7 +108,7 @@ def connect():
   mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="root",
+    passwd="123456",
     database="Raddb"
   )
 
