@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="https://npmcdn.com/flatpickr/dist/themes/material_blue.css">
 </head>
 
 
@@ -52,10 +53,10 @@
                 </a>
                 <span class=" tooltip">Reserve apointment</span>
             <li id="Vclinic">
-                <a href="/viewAllReports">
-                    <i class="fa-solid fa-file-medical"></i></i> <span class="links_name">View All Reports</span>
+                <a href="{{url_for('Addcomplaints')}}">
+                    <i class="fa-solid fa-file-medical"></i></i> <span class="links_name">View Report</span>
                 </a>
-                <span class="tooltip">View All Reports</span>
+                <span class="tooltip">View Report</span>
             </li>
                 <li id="Vclinic">
                 <a href="{{url_for('Addcomplaints')}}">
@@ -180,6 +181,32 @@
 
 
 
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        flatpickr("input[type=date]", 
+        {
+            minDate: "today"
+        }
+        
+        );
+        
+    </script>
+
+    <script>
+        flatpickr("input[type=time]", 
+        {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            minTime: "8:00",
+            maxTime: "18:00",
+            time_24hr: true
+        }
+        
+        );
+        
+    </script>
 
     <script src="../static/js/Admin_profile.js"></script>
 
