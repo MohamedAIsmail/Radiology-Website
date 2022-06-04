@@ -1,11 +1,6 @@
-from dataclasses import dataclass
 import os
-from pydoc import doc
-from flask import Flask, redirect, url_for, request, render_template, session, flash, jsonify
+from flask import Flask, redirect, url_for, request, render_template, session, flash
 from datetime import date
-import sys
-from jsonschema import ValidationError
-from numpy import true_divide
 from werkzeug.utils import secure_filename
 import mysql.connector  
 
@@ -466,7 +461,6 @@ def ReserveAppointment():
 def dateChecker(date,time,scans):
 
     scanChosen = scans
-    i=0
     DATE = date
     TIME = time
     breakoutflag = False
@@ -563,14 +557,24 @@ def viewPatient():
 
     return render_template('patient-view.html', data=myresult)
 
+#------- VIEW DOCTORS ---------
+
+@app.route('/viewAllReports', methods = [ 'GET'])
+def viewAllReports():
+    if 'loggedin' in session:
+        PID = session['RID']
+        val=(PID,)
+        mycursor.execute("SELECT RPID, DoctorName, Diagnosis, img FROM REPORT where PID=%s",val)
+        myresult = mycursor.fetchall()
+
+    return render_template('viewAllReports.html',data=myresult)
 
 # -------------------------- VIEW A REPORT ---------------------------
-@app.route("/ViewAReport", methods=['GET'])
-def viewAReport():
-    # if 'loggedin' in session:
-    RID = 1
+@app.route("/ViewAReport/<int:RPID>", methods=['GET'])
+def viewAReport(RPID):
+
     sql = "SELECT * FROM REPORT WHERE RPID = %s"
-    val = (RID,)
+    val = (RPID,)
     mycursor.execute(sql, val)
     myresult = mycursor.fetchall()
     print(myresult)

@@ -4,9 +4,9 @@
 
 <head>
 
-    <title>Patient Page</title>
-    <link rel="stylesheet" href="../static/css/Admin_profile.css">
+    <title>Patient page</title>
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
+    <link rel="stylesheet" href="../static/css/Admin_profile.css">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +17,12 @@
 
 </head>
 
+<!-- side barrr -->
+
 <body>
+
+    <!-- side barrr -->
+
     <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">
@@ -31,15 +36,15 @@
                 <a href="{{url_for('Patient_profile')}}">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Profile</span>
-                    <span class="tooltip">Profile</span>
+                        <span class=" tooltip">Profile</span>
 
                 </a>
             </li>
 
             <li id="Adoctor">
-                <a href="{{url_for('viewAppointment')}}" style="background: white;"">
-                    <i class=" fa-solid fa-calendar-check" style="color:#11101D;"></i>
-                    <span class="links_name" style="color:#11101D;">View apointments</span>
+                <a href="{{url_for('viewAppointment')}}">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span class="links_name">View apointments</span>
                 </a>
                 <span class="tooltip">View apointments</span>
             </li>
@@ -50,12 +55,13 @@
                 </a>
                 <span class="tooltip">Reserve apointment</span>
             <li id="Vclinic">
-                <a href="/viewAllReports">
-                    <i class="fa-solid fa-file-medical"></i></i> <span class="links_name">View Report</span>
+                <a href="/viewAllReports" style="background: white;">
+                    <i class="fa-solid fa-file-medical" style="color:#11101D;"></i></i>
+                    <span class="links_name" style="color:#11101D;">View Report</span>
                 </a>
-                <span class="tooltip">View All Reports</span>
+                <span class="tooltip">View Report</span>
             </li>
-                <li id="Vclinic">
+            <li id="Vclinic">
                 <a href="{{url_for('Addcomplaints')}}">
                     <i class="fa-solid fa-comment"></i></i> <span class="links_name">Add feedback</span>
                 </a>
@@ -73,60 +79,50 @@
             </li>
         </ul>
     </div>
-    <section class="home-section">
-        <div class="panel">
 
 
 
 
-            <!-- box info -->
+        <!-- box info -->
 
-            <table action="{{url_for('viewAppointment')}}" method="POST">
+        <table action="{{url_for('viewdoctor')}}" method="POST">
 
 
-
+            <thead>
                 <tr>
 
-                    <th>Appointment Number</th>
-
-                    <th>Appointment's Day </th>
-                    <th>Appointment's Time</th>
-                    <th>Doctor's Name</th>
+                    <th>Report ID</th>
+                    <th>Diagnosis</th>
+                    <th>Doctor Name</th>
 
                 </tr>
+            </thead>
 
-                <tbody>
-                    {% for r in data %}
-                    <tr>
-                        
+            <tbody>
+                {% for r in data %}
 
-                        <td>{{ r.0 }}</td>
-
-                        <td>{{ r.2 }}</td>
-                        <td>{{ r.3 }}</td>
+                    <td>{{r.0}} </td>
                         <td class="people">
-                            <img src="../static/img/doctor.png" alt="">
-                            <div class="info">
-                                {{ r.4 }}
-                            </div>
-                        </td>
-                        
-
-                    </tr>
-                    {% endfor %}
-                </tbody>
-
-
-            </table>
-        </div>
+                        <img src="{{r.3}}" alt="">
+                        <div class="info">
+                           <a href="/ViewAReport/{{r.0}}" class="row-link" onclick={{r.0}}>{{r.2}}</a>
+                        </div>
+                    </td>
+                    </td>
+                    <td>{{r.1}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
 
 
-    </section>
+</section>
 
 
-    <script src="../static/js/Admin_profile.js"></script>
+<script src="../static/js/Admin_profile.js"></script>
 
 
 

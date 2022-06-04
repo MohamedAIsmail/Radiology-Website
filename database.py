@@ -96,6 +96,10 @@ def recreatedb(bool):
   value = [
     ('Dina Salama', 'D1', 'Ereny', '1', '2022-06-03', 'Danger!!', 'Increase in cuteness level you HAVE to do something',
      '../static/uploads/No17.jpg'),
+    ('Fady Nour', 'D2', 'Ereny', '1', '2022-06-04', 'Trivial Report', 'noʎ ǝɹɐ ʍoɥ',
+     '../static/uploads/no5.jpg'),
+    ('Mo Moustafa', 'D3', 'Ereny', '1', '2022-06-05', 'UltraSound', 'What is the sound of the sea?',
+     '../static/uploads/no4.jpg'),
   ]
   mycursor.executemany(sql, value)
   mydb.commit()
@@ -111,3 +115,4 @@ def connect():
   mycursor = mydb.cursor()
   return mycursor, mydb
 
+recreatedb(1)
