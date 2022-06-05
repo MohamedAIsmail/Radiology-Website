@@ -7,13 +7,15 @@
     <title>Admin page</title>
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
     <link rel="stylesheet" href="../static/css/Admin_profile.css">
+    <link rel="stylesheet" href="../static/css/View-doctor.css">
+
+
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="../static/css/View-doctor.css">
 
 </head>
 
@@ -95,6 +97,8 @@
                     <th>Mobile Phone </th>
                     <th>Email </th>
                     <th>salary</th>
+                    <th></th>
+
                 </tr>
             </thead>
 
@@ -112,9 +116,13 @@
                     <td>{{r.3}}</td>
                     <td>{{r.4}}</td>
                     <td>{{r.5}}</td>
-                <form method="POST" action="{{url_for('editDoctor')}}">
-                    <td> <button type="submit" name="chooseDoctor" value="{{r.0}}" onclick="location.href='EditDoctor'">Update Salary</button> </td>
-                </form>
+                    <form method="POST" action="{{url_for('editDoctor')}}">
+                        <td>
+                            <div class="btn3"> <button type="submit" name="chooseDoctor" value="{{r.0}}"
+                                    onclick="location.href='EditDoctor'"">Update
+                                    Salary</button></div>
+                        </td>
+                    </form>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -130,7 +138,7 @@
 </section>
 
 
-<script src="../static/js/Admin_profile.js"></script>
+<script src=" ../static/js/Admin_profile.js"></script>
 
 
 
@@ -139,6 +147,6 @@
 
 
 
-</body>
+                                    </body>
 
 </html>

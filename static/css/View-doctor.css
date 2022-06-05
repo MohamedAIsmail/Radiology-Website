@@ -11,7 +11,7 @@ html {
 table {
     position: absolute;
     left: -50px;
-    background :none;
+    background: none;
     transform: translate(25%, 50px);
     width: 1000px;
     border-collapse: collapse;
@@ -62,7 +62,7 @@ p {
 
 .people {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 40% 80%;
 }
 
 .info {
@@ -75,14 +75,22 @@ tr:hover {
     filter: drop-shadow(0px 2px 6px rgba(0, 0, 0, 0.416));
 }
 
+button {
+    font-size: 10px;
+    padding: 8px 17px;
+    margin-left: 50px;
+    margin-top: 2px;
+}
+
+.btn3 {}
 
 @media (min-width: 300px) {
 
 
     .info {
-            font-size: 8px;
-            margin-left: 20px;
-        }
+        font-size: 8px;
+        margin-left: 20px;
+    }
 
     img {
         width: 30px;
@@ -93,11 +101,11 @@ tr:hover {
     th {
         font-size: 8px;
     }
-    
+
     img {
-            width: 40px;
-            height: 40px;
-        }
+        width: 40px;
+        height: 40px;
+    }
 
     table {
         left: -100px;
@@ -108,9 +116,9 @@ tr:hover {
 
 @media (min-width: 576px) {
     table {
-            left: -50px;
-            width: 400px;
-        }
+        left: -50px;
+        width: 400px;
+    }
 
     .info {
         font-size: 12px;
@@ -169,4 +177,3 @@ tr:hover {
         width: 1000px;
     }
 }
-

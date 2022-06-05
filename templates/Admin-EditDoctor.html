@@ -95,6 +95,7 @@
                     <th>Mobile Phone </th>
                     <th>Email </th>
                     <th>salary</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -112,10 +113,10 @@
                     <td>{{r.3}}</td>
                     <td>{{r.4}}</td>
                     <form method="POST" action="{{url_for('editDoctorSalary')}}">
-                        <td> <input type="text" id="newSalary" name="newSalary"  required> </td>
+                        <td> <input type="text" id="newSalary" name="newSalary" required> </td>
                         <td> <button type="submit" name="chooseDoctor" value="{{r.0}}">Update Salary</button> </td>
                     </form>
-                    
+
                 </tr>
                 {% endfor %}
             </tbody>
