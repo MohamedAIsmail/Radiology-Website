@@ -371,7 +371,7 @@ def analysis():
         doctorNumbers = mycursor.fetchone()
         mycursor.execute("SELECT COUNT(*) FROM patients")
         patientNumbers = mycursor.fetchone()
-        mycursor.execute("SELECT COUNT(*) FROM COMPLAINTS")
+        mycursor.execute("SELECT COUNT(*) FROM COMPLAINS")
         feedbackNumbers = mycursor.fetchone()
         mycursor.execute("SELECT COUNT(*) FROM APPOINTMENT")
         appNumbers = mycursor.fetchone()
@@ -396,7 +396,7 @@ def analysis():
     return render_template('Analysis.html',scanName=scanName,scanNum=scanNum, appNum=appNum, alldays=alldays, allmonths=allmonths, adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum=patientNumbers, feedbackdata=feedbackNumbers, appointmentdata=appNumbers)
 
 
-# ------------------- ADD COMPLAINT -------------------
+# ------------------- ADD COMPLAIN -------------------
 
 @app.route("/Add-complaints", methods=['POST', 'GET'])
 def Addcomplaints():
@@ -411,7 +411,7 @@ def Addcomplaints():
             message = request.form['message']
             
 
-            sql = "INSERT INTO complaints (PID, SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s)"
+            sql = "INSERT INTO COMPLAINS (PID, SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s)"
             val = (PID, subject, message, patients[0])
             mycursor.execute(sql, val)
             mydb.commit()
@@ -420,14 +420,14 @@ def Addcomplaints():
     return render_template('Add-complaints.html')
 
 
-# ---------------------- VIEW COMPLAINTS -----------------------
+# ---------------------- VIEW COMPLAINT -----------------------
 
 @app.route('/View-complaints.html', methods=['POST', 'GET'])
 def Viewcomplaints():
 
-    mycursor.execute("SELECT patientFname, patientLname, PATIENTS.Email, CONTACTNUMBER, SUBJECT, MESSAGE FROM COMPLAINTS JOIN PATIENTS ON Complaints.PID = Patients.PID")
+    mycursor.execute("SELECT patientFname, patientLname, PATIENTS.Email, CONTACTNUMBER, SUBJECT, MESSAGE FROM COMPLAINS JOIN PATIENTS ON COMPLAINS.PID = Patients.PID")
     myresult = mycursor.fetchall()
-    
+
     return render_template('View-complaints.html', data=myresult)
 
 # -------------- RESERVE APPOINTMENTS -------------
