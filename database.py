@@ -5,7 +5,7 @@ def recreatedb(bool):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="123456"
+        passwd="root"
     )
 
     mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="123456",
+        passwd="root",
         database="Raddb"
     )
 
@@ -141,6 +141,22 @@ def recreatedb(bool):
             'X-Ray', 'maro2020@gmail.com', 'D1', '3'),
         ('Maryam', 'Ahmed', '2022-06-12', '12:00',
             '010888834888', 'MRI', 'maro2020@gmail.com', 'D10', '3'),
+        ('Ereny', 'Eleya', '2022-06-03', '12:00', '012888888888', 'CT', 'ereny2022@gmail.com', 'D2', '1'),
+        ('Ereny', 'Eleya', '2022-06-04', '12:00', '012888888888', 'CT', 'ereny2022@gmail.com', 'D2', '1'),
+        ('Ahmed', 'Mohammed', '2022-06-05', '12:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
+        ('Ereny', 'Eleya', '2022-06-06', '12:00', '012888888888', 'X-Ray', 'ereny2022@gmail.com', 'D1', '1'),
+        ('Ereny', 'Eleya', '2022-06-07', '12:00', '012888888888', 'MRI', 'ereny2022@gmail.com', 'D10', '1'),
+        ('Ahmed', 'Mohammed', '2022-06-08', '01:00', '012123456789', 'CT', 'amohammed@gmail.com', 'D2', '2'),
+        ('Nour', 'Emad', '2022-06-09', '12:00', '011888888222', 'CT', 'nonoemad@gmail.com', 'D2', '4'),
+        ('Nour', 'Emad', '2022-06-10', '12:00', '011888888222', 'X-Ray', 'nonoemad@gmail.com', 'D1', '4'),
+        ('Nour', 'Emad', '2022-06-06', '12:30', '011888888222', 'MRI', 'nonoemad@gmail.com', 'D10', '4'),
+        ('Nour', 'Emad', '2022-06-11', '1:30', '011888888222', 'X-Ray', 'nonoemad@gmail.com', 'D1', '4'),
+        ('Nour', 'Emad', '2022-06-03', '1:00', '011888888222', 'CT', 'nonoemad@gmail.com', 'D2', '4'),
+        ('Nour', 'Emad', '2022-06-05', '5:00', '011888888222', 'X-Ray', 'nonoemad@gmail.com', 'D1', '4'),
+        ('Nour', 'Emad', '2022-06-12', '4:00', '011888888222', 'MRI', 'nonoemad@gmail.com', 'D10', '4'),
+        ('Ahmed', 'Mohammed', '2022-06-07', '3:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
+        ('Ahmed', 'Mohammed', '2022-06-08', '2:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
+        ('Ahmed', 'Mohammed', '2022-06-10', '1:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
 
     ]
     mycursor.executemany(sql, value)

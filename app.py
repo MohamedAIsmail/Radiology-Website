@@ -7,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
 )
 
@@ -364,18 +364,24 @@ def analysis():
         mycursor.execute("SELECT COUNT(*) FROM APPOINTMENT")
         appNumbers = mycursor.fetchone()
 
+    # Get the number of appointments each day
     mycursor.execute(
         "SELECT Date, COUNT(Date) FROM APPOINTMENT group by date order by date")
     graph1 = mycursor.fetchall()
     appNum = [x[1] for x in graph1]
     alldays = [int(x[0][-2:]) for x in graph1]
     allmonths = [int(x[0][5:7]) for x in graph1]
-    print(type(alldays[0]), alldays, allmonths)
-    # Get the highest doctor's salary
+    # Get the number of scan types
+    mycursor.execute('select ClinicName, count(ClinicName) from appointment group by ClinicName')
+    pie = mycursor.fetchall()
+    scanName=[x[0] for x in pie]
+    scanNum=[x[1] for x in pie]
+    print(scanName,scanNum)
 
+    # Get the highest doctor's salary
     #  mycursor.execute("SELECT DID, doctorFname, salary FROM doctors ORDER BY salary DESC")
     #  docdata=mycursor.fetchmany(size=3)
-    return render_template('Analysis.html', appNum=appNum, alldays=alldays, allmonths=allmonths, arrlenth=len(appNum), adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum=patientNumbers, feedbackdata=feedbackNumbers, appointmentdata=appNumbers)
+    return render_template('Analysis.html',scanName=scanName,scanNum=scanNum, appNum=appNum, alldays=alldays, allmonths=allmonths, adminNum=adminNumbers, doctorNum=doctorNumbers, patientNum=patientNumbers, feedbackdata=feedbackNumbers, appointmentdata=appNumbers)
 
 
 # ------------------- ADD COMPLAINT -------------------

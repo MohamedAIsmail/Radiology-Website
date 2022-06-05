@@ -198,11 +198,14 @@
         </div>
 
         <div class="chart1">
-            <h1 style="    margin-left: 140px;     padding:40px       ">appointments due to diffrent days in the month
+            <h1 style="    margin-left: 140px;     padding:40px       ">Appointments due to diffrent days in the month
             </h1>
             <canvas id="myChart">
 
             </canvas>
+            <h1 style="    margin-left: 140px;     padding:40px       ">    Frequency of Devices used
+            </h1>
+            <canvas id="pieChart"></canvas>
             <script src="../static/js/Analysis.js"></script>
 
 
@@ -216,28 +219,90 @@
                     xValues.push(months[i] + "-" + days[i]);
                 }
 
-                var yValues = {{ appNum }};
+    // setup line chart
+    const data = {
+      labels: xValues,
+      datasets: [{
+        label: 'Number of Appointments',
+        data: {{ appNum }},
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+        ],
+        borderWidth: 1
+      }]
+    };
 
+    // config
+    const config = {
+      type: 'line',
+      data,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
 
-                new Chart("myChart", {
-                    type: "line",
-                    data: {
-                        labels: xValues,
-                        datasets: [{
-                            fill: false,
-                            lineTension: 0,
-                            backgroundColor: "rgba(0,0,255,1.0)",
-                            borderColor: "rgba(0,0,255,0.1)",
-                            data: {{ appNum }}
-                }]
-  },
-                    options: {
-                    legend: { display: false },
-                    scales: {
-                    }
-                }
-});
+    // render Line block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    var xPie=['{{scanName.0}}','{{scanName.1}}','{{scanName.2}}']
+    yPie = {{ scanNum }}
+    // setup Pie chart
+    const dataPie = {
+      labels: xPie,
+      datasets: [{
+        label: 'Number of Appointments',
+        data: yPie,
+        backgroundColor: [
+          'rgba(255, 26, 104, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 26, 104, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)'
+
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    // config
+    const configPie = {
+      type: 'pie',
+      data:dataPie,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+
+    // render Pie block
+    const pieChart = new Chart(
+      document.getElementById('pieChart'),
+      configPie
+    );
+
             </script>
+
+
+
+
+
+
 
 
         </div>
