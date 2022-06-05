@@ -84,7 +84,7 @@
 
         <!-- box info -->
 
-        <table action="{{url_for('viewdoctor')}}">
+        <table>
 
 
             <thead>
@@ -111,10 +111,9 @@
                     <td>{{r.2}}</td>
                     <td>{{r.3}}</td>
                     <td>{{r.4}}</td>
-                    <td>{{r.5}}</td>
-                <form method="POST" action="{{url_for('editDoctor')}}">
-                    <td> <button type="submit" name="chooseDoctor" value="{{r.0}}" onclick="location.href='EditDoctor'">Update Salary</button> </td>
-                </form>
+                
+                    <td> <input type="text" id="newSalary" name="newSalary"  required> </td>
+                    
                 </tr>
                 {% endfor %}
             </tbody>

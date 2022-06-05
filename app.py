@@ -7,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="1234",
+    passwd="123456",
     database="Raddb"
 )
 
@@ -323,24 +323,31 @@ def addDoctor():
 #     return redirect(url_for('Home'))
 
 
-# ------- VIEW DOCTORS ---------
+# ----------- VIEW DOCTORS ---------
 
 @app.route('/View-doctor', methods=['POST', 'GET'])
 def viewdoctor():
+    mycursor.execute(
+        "SELECT DID, doctorFname, clinicname,mobilephone,Email,salary FROM doctors")
+    myresult = mycursor.fetchall()
+  
+    return render_template('View-doctor.html', data=myresult)
 
-    if request.method == 'POST':
-        return render_template('Admin_profile.html')
-    else:
-        mycursor.execute(
-            "SELECT DID, doctorFname, clinicname,mobilephone,Email,salary FROM doctors")
-        row_headers = [x[0] for x in mycursor.description]
-        myresult = mycursor.fetchall()
-        data = {
-            'message': "data retrieved",
-            'rec': myresult,
-            'header': row_headers
-        }
-        return render_template('View-doctor.html', data=myresult)
+# ---------------- EDIT DOCTOR INFORMATION ----------------
+@app.route("/EditDoctor", methods=['GET', 'POST'])
+def editDoctor():
+    if 'loggedin' in session:
+        AID = session["RID"]
+
+        if request.method == 'POST':
+            DIDchosen = request.form['chooseDoctor']
+            mycursor.execute("SELECT DID, doctorFname, clinicname,mobilephone,Email FROM doctors WHERE DID = %s" , (DIDchosen,))
+            myresult = mycursor.fetchall()
+
+        
+
+
+    return render_template('Admin-EditDoctor.html', data=myresult)
 
 
 @app.route('/Analysis', methods=['POST', 'GET'])
