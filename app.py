@@ -7,7 +7,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    passwd="123456",
+    passwd="root",
     database="Raddb"
 )
 
@@ -427,8 +427,15 @@ def Viewcomplaints():
 
     mycursor.execute("SELECT patientFname, patientLname, PATIENTS.Email, CONTACTNUMBER, SUBJECT, MESSAGE FROM COMPLAINS JOIN PATIENTS ON COMPLAINS.PID = Patients.PID")
     myresult = mycursor.fetchall()
+    Pfnames = [x[0] for x in myresult]
+    Plnames = [x[1] for x in myresult]
+    names = [(Pfnames[i] + " " + Plnames[i]) for i in range(len(Pfnames))]
+    print(myresult)
+    myresult2 = [list(myresult[i]) for i in range(len(myresult))]
+    for i in range(len(names)):
+        myresult2[i][0] = names[i]
 
-    return render_template('View-complaints.html', data=myresult)
+    return render_template('View-complaints.html', data=myresult2)
 
 # -------------- RESERVE APPOINTMENTS -------------
 
