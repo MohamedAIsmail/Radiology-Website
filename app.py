@@ -289,6 +289,8 @@ def edit_medical_pinfo():
 @app.route('/addDoctor', methods=['GET', 'POST'])
 def addDoctor():
     if request.method == 'POST':
+        
+
         doctorFname = request.form['doctorFname']
         doctorLname = request.form['doctorLname']
         DID = request.form['RID']
@@ -300,15 +302,22 @@ def addDoctor():
         salary = request.form['Salary']
         Email = request.form['docEmail']
 
-        # sql = "INSERT INTO APPOINTMENT (DID) VALUES (%s)"
-        # val = (DID)
-        # mycursor.execute(sql, val)
+            # sql = "INSERT INTO APPOINTMENT (DID) VALUES (%s)"
+            # val = (DID)
+            # mycursor.execute(sql, val)
+        if 'loggedin' in session:
+            AID = session['RID'] 
+            
+            sql = "INSERT INTO DOCTORS(doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone ,   Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+            val = (doctorFname, doctorLname, DID, doctorpassword,
+                clinicname, age, gender, mobilephone, Email)
+            mycursor.execute(sql, val)
+            mydb.commit()
+            sql = "INSERT INTO UpdateDoctor(Salary , DID ,AID ) VALUES (%s,%s,%s)"
+            val = (salary, DID,AID )
+            mycursor.execute(sql, val)
+            mydb.commit()
 
-        sql = "INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = (doctorFname, doctorLname, DID, doctorpassword,
-               clinicname, age, gender, mobilephone, salary, Email)
-        mycursor.execute(sql, val)
-        mydb.commit()
 
     return render_template('Admin-AddDoctor.html')
 

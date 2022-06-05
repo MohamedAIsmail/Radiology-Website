@@ -186,7 +186,8 @@
     <script>
         flatpickr("input[type=date]", 
         {
-            minDate: "today"
+            minDate: "today",
+            maxDate: new Date().fp_incr(60) // 60 days from now
         }
         
         );
