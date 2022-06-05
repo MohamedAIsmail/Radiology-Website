@@ -21,6 +21,7 @@
 
 <body>
 
+    
     <!-- side barrr -->
 
     <div class="sidebar">
@@ -81,6 +82,7 @@
     </div>
 
 
+<section class="home-section">
 
 
         <!-- box info -->
@@ -102,10 +104,10 @@
                 {% for r in data %}
 
                     <td>{{r.0}} </td>
-                        <td class="people">
+                        <td class="report">
                         <img src="{{r.3}}" alt="">
                         <div class="info">
-                           <a href="/ViewAReport/{{r.0}}" class="row-link" onclick={{r.0}}>{{r.2}}</a>
+                        <a href="/ViewAReport/{{r.0}}" class="row-link" onclick={{r.0}}>{{r.2}}</a>
                         </div>
                     </td>
                     </td>
@@ -114,10 +116,6 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
-
-
-
 
 </section>
 

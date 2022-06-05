@@ -82,7 +82,11 @@ button {
     margin-top: 2px;
 }
 
-.btn3 {}
+
+.report {
+    display: grid;
+    grid-template-columns: 20% 80%;
+}
 
 @media (min-width: 300px) {
 
