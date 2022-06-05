@@ -28,7 +28,7 @@ def recreatedb(bool):
 
     mycursor.execute("CREATE TABLE ADMINS (adminFname VARCHAR(100), adminLname VARCHAR(100), AID VARCHAR(20), adminpassword VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), Email VARCHAR(30),PRIMARY KEY(AID))")
 
-    mycursor.execute("CREATE TABLE DOCTORS (doctorFname VARCHAR(100), doctorLname VARCHAR(100), DID VARCHAR(20), PID int, doctorpassword VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), salary INT,  Email VARCHAR(30), clinicname VARCHAR(100), PRIMARY KEY(DID), FOREIGN KEY (PID) REFERENCES PATIENTS(PID), AID VARCHAR(20), FOREIGN KEY (AID) REFERENCES ADMINS(AID) )")
+    mycursor.execute("CREATE TABLE DOCTORS (doctorFname VARCHAR(100), doctorLname VARCHAR(100), DID VARCHAR(20), doctorpassword VARCHAR(100), age INT DEFAULT NULL, gender VARCHAR(10), mobilephone VARCHAR(12), Email VARCHAR(30), clinicname VARCHAR(100), PRIMARY KEY(DID), AID VARCHAR(20), FOREIGN KEY (AID) REFERENCES ADMINS(AID) )")
 
     mycursor.execute("CREATE TABLE REPORT (RPID int NOT NULL AUTO_INCREMENT, DoctorName VARCHAR(200),DID VARCHAR(20), PatientName VARCHAR(200),PID int, Date DATE NOT NULL, Diagnosis VARCHAR(300), Procedures VARCHAR(300), img VARCHAR(300),FOREIGN KEY (PID) REFERENCES PATIENTS(PID),FOREIGN KEY (DID) REFERENCES DOCTORS(DID),PRIMARY KEY(RPID))")
 
@@ -45,17 +45,30 @@ def recreatedb(bool):
     # for x in myresult:
     #     print(x)
 
+
+        # *********************************** ADD TO ADMIN *******************************************
+    sql = "INSERT INTO ADMINS (adminFname , adminLname , AID , adminpassword , age , gender , mobilephone ,Email) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
+    value = [
+        ('Maha', 'Mohammed', 'A1', '3333', '22', 'female',
+         '012111111111', 'dmaha@gmail.com'),
+        ('Mohamed', 'Gamal', 'A2', '9999', '29', 'male',
+            '010555777777', 'mgamal@gmail.com'),
+    ]
+
+    mycursor.executemany(sql, value)
+    mydb.commit()
+
     # *********************************** ADD TO DOCTOR *******************************************
-    sql = "INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone , salary ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    sql = "INSERT INTO DOCTORS (doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender, mobilephone, Email, AID ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
     value = [
         ('Dina', 'Salama', 'D1', '1234', 'X-Ray', '21', 'Female',
-         '011266672701', '10000', 'dinakhalid404@gmail.com'),
+         '011266672701', 'dinakhalid404@gmail.com', 'A1'),
         ('Fady', 'Nour', 'D2', '1324', 'CT', '33', 'Male',
-            '010555672701', '15000', 'fady20@gmail.com'),
+            '010555672701', 'fady20@gmail.com', 'A2'),
         ('Mohamed', 'Ismail', 'D10', '9999', 'MRI', '21', 'Male',
-            '01142068704', '20000', 'mohamedaismail214@gmail.com'),
+            '01142068704', 'mohamedaismail214@gmail.com', 'A2'),
         ('Mo', 'Moustafa', 'D3', '1111', 'UltraSound', '22',
-            'Male', '01115674821', '5000', 'momoustafa@gmail.com'),
+            'Male', '01115674821', 'momoustafa@gmail.com', 'A1'),
 
     ]
 
@@ -79,17 +92,6 @@ def recreatedb(bool):
     mycursor.executemany(sql, value)
     mydb.commit()
 
-    # *********************************** ADD TO ADMIN *******************************************
-    sql = "INSERT INTO ADMINS (adminFname , adminLname , AID , adminpassword , age , gender , mobilephone ,  Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
-    value = [
-        ('Maha', 'Mohammed', 'A1', '3333', '22', 'female',
-         '012111111111', 'dmaha@gmail.com'),
-        ('Mohamed', 'Gamal', 'A2', '9999', '29', 'male',
-            '010555777777', 'mgamal@gmail.com'),
-    ]
-
-    mycursor.executemany(sql, value)
-    mydb.commit()
 
     # *********************************** ADD TO REPORT *******************************************
     sql = "INSERT INTO  REPORT (DoctorName, DID, PatientName, PID, Date, Diagnosis, Procedures, img) VALUES (%s,%s,%s,%s,%s,%s,%s,%s)"
@@ -103,6 +105,7 @@ def recreatedb(bool):
     ]
     mycursor.executemany(sql, value)
     mydb.commit()
+
     # *********************************** ADD TO APPOINTMENT *******************************************
     sql = "INSERT INTO APPOINTMENT (PFname, PLname, Date, Time, mobilephone, ClinicName, Email, DID, PID) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
     value = [
@@ -149,6 +152,17 @@ def recreatedb(bool):
         ('Ahmed', 'Mohammed', '2022-06-08', '2:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
         ('Ahmed', 'Mohammed', '2022-06-10', '1:00', '012123456789', 'X-Ray', 'amohammed@gmail.com', 'D1', '2'),
 
+    ]
+    mycursor.executemany(sql, value)
+    mydb.commit()
+
+    # *********************************** ADD TO UPDATE *******************************************
+    sql = "INSERT INTO UPDATEDOCTOR (Salary, AID, DID) VALUES (%s, %s, %s)"
+    value = [
+        ('10000', 'A1', 'D1'),
+        ('10000', 'A1', 'D3'),
+        ('10000', 'A2', 'D2'),
+        ('10000', 'A2', 'D10'),
     ]
     mycursor.executemany(sql, value)
     mydb.commit()

@@ -344,11 +344,23 @@ def editDoctor():
             mycursor.execute("SELECT DID, doctorFname, clinicname,mobilephone,Email FROM doctors WHERE DID = %s" , (DIDchosen,))
             myresult = mycursor.fetchall()
 
-        
-
-
     return render_template('Admin-EditDoctor.html', data=myresult)
 
+
+@app.route("/", methods=['GET', 'POST'])
+def editDoctorSalary():
+    if 'loggedin' in session:
+        AID = session["RID"]
+        
+        if request.method == 'POST':
+            newSalary = request.form['newSalary']
+            DIDchosen = request.form['chooseDoctor']
+            mycursor.execute("SELECT DID, doctorFname, clinicname,mobilephone,Email FROM doctors WHERE DID = %s" , (DIDchosen,))
+            myresult = mycursor.fetchall()
+    
+    return render_template('View-doctor.html', data=myresult)
+
+# --------------------------- SHOW ANALYSIS PAGE ------------------
 
 @app.route('/Analysis', methods=['POST', 'GET'])
 def analysis():
