@@ -7,6 +7,7 @@
     background-attachment: fixed;
     background-size: cover;
     scrollbar-background: fixed;
+    height: 280vh;
 }
 
 html {
@@ -320,4 +321,28 @@ tr:nth-child(even) {
     margin-left: 250px;
 }
 
-chart1 {}
+.chart-ap {
+    background-color: #fff ;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 40px;
+}
+
+.chart-ap h1 {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.chart-pie {
+    background-color: #fff;
+    border-radius: 20px;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
+
+.chart-pie h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
