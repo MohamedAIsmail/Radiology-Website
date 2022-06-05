@@ -103,12 +103,17 @@ def login():
 
 @app.route('/Register', methods=['POST', 'GET'])
 def Register():
+    mycursor.execute("SELECT PID FROM patients ORDER BY PID DESC")
+    record = mycursor.fetchone()
+    id = record[0]
     if request.method == 'POST':  # check if there is post data
         if request.form.get('action') == 'Reg':
             patientFname = request.form['patientFname']
             patientLname = request.form['patientLname']
             Email = request.form['patientEmail']
+            patientmobPhone = request.form['patientphone']
             patientpassword = request.form['patientpassword']
+
 
             # for no duplicate emails
             mycursor.execute("SELECT Email FROM patients")
@@ -120,22 +125,16 @@ def Register():
                     break
                 else:
                     flag = True
+
+
             if(flag):
-                sql = "INSERT INTO patients (patientFname, patientLname, Email, patientpassword) VALUES(%s,%s,%s,%s)"
-                val = (patientFname, patientLname, Email, patientpassword)
+                sql = "INSERT INTO patients (patientFname, patientLname, mobilephone, Email, patientpassword) VALUES(%s, %s, %s, %s, %s)"
+                val = (patientFname, patientLname,patientmobPhone, Email, patientpassword)
                 mycursor.execute(sql, val)
                 mydb.commit()
 
-        # -- This part contains an error which we will solve later but it works fine!
+    return render_template('Login.html', newID=id)
 
-                mycursor.execute("SELECT PID FROM patients ORDER BY PID DESC")
-                record = mycursor.fetchone()
-                id = record[0]
-                message = "You have successfully registered ! \n" + \
-                    "Your ID is: " + str(id)
-                flash(message)
-
-    return render_template('Login.html')
 
 
 # ---- ADMIN PROFILE ----

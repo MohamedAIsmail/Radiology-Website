@@ -58,7 +58,7 @@
             </div>
 
             <div class="form-container sign-up-container">
-                <form method="POST" action="{{url_for('Register')}}">
+                <form method="POST" action="{{url_for('Register')}}" onsubmit="EnquireButton()">
 
                     <h1>Create Account</h1>
                     <div class="social-container">
@@ -134,6 +134,13 @@
             </div>
 
         </div>
+
+        <script>
+            var ID = {{ newID }};
+            function EnquireButton() {
+                    alert("Your id is:" + (ID + 1));
+                }
+        </script>
 
         <script src="../static/js/Login.js"></script>
     </body>
