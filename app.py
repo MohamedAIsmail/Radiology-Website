@@ -184,8 +184,8 @@ def doctor_profile():
     if 'loggedin' in session:
 
         DID = session['RID']
-        sql = "SELECT * FROM DOCTORS WHERE DID=%s"
-        val = (DID,)
+        sql = "SELECT doctorFname, doctorLname, doctors.DID, age, gender, Email, mobilephone, updatedoctor.Salary FROM DOCTORS JOIN updatedoctor WHERE doctors.DID=%s AND updatedoctor.DID = %s"
+        val = (DID, DID)
         mycursor.execute(sql, val)
         account = mycursor.fetchone()
         return render_template("doctor_profile.html", data=account)
@@ -323,42 +323,36 @@ def addDoctor():
 #     return redirect(url_for('Home'))
 
 
-# ----------- VIEW DOCTORS ---------
+# ----------------- VIEW DOCTORS -----------------
 
 @app.route('/View-doctor', methods=['POST', 'GET'])
 def viewdoctor():
-    mycursor.execute(
-        "SELECT DID, doctorFname, clinicname,mobilephone,Email,salary FROM doctors")
+
+    mycursor.execute("SELECT doctors.DID, doctorFname, clinicname, mobilephone, Email, updatedoctor.Salary FROM doctors JOIN updatedoctor WHERE doctors.DID = updatedoctor.DID")
     myresult = mycursor.fetchall()
-  
+
     return render_template('View-doctor.html', data=myresult)
 
 # ---------------- EDIT DOCTOR INFORMATION ----------------
 @app.route("/EditDoctor", methods=['GET', 'POST'])
 def editDoctor():
-    if 'loggedin' in session:
-        AID = session["RID"]
-
-        if request.method == 'POST':
-            DIDchosen = request.form['chooseDoctor']
-            mycursor.execute("SELECT DID, doctorFname, clinicname,mobilephone,Email FROM doctors WHERE DID = %s" , (DIDchosen,))
-            myresult = mycursor.fetchall()
+    if request.method == 'POST':
+        DIDchosen = request.form['chooseDoctor']
+        mycursor.execute("SELECT doctors.DID, doctorFname, clinicname, mobilephone, Email FROM doctors WHERE doctors.DID = %s" , (DIDchosen,))
+        myresult = mycursor.fetchall()
 
     return render_template('Admin-EditDoctor.html', data=myresult)
 
-
-@app.route("/", methods=['GET', 'POST'])
+@app.route("/salaryEdited", methods=['GET', 'POST'])
 def editDoctorSalary():
     if 'loggedin' in session:
         AID = session["RID"]
-        
         if request.method == 'POST':
             newSalary = request.form['newSalary']
             DIDchosen = request.form['chooseDoctor']
-            mycursor.execute("SELECT DID, doctorFname, clinicname,mobilephone,Email FROM doctors WHERE DID = %s" , (DIDchosen,))
-            myresult = mycursor.fetchall()
+            mycursor.execute("UPDATE updatedoctor SET Salary = %s WHERE DID = %s AND AID = %s" , (newSalary, DIDchosen, AID))
     
-    return render_template('View-doctor.html', data=myresult)
+    return redirect(url_for('viewdoctor')) 
 
 # --------------------------- SHOW ANALYSIS PAGE ------------------
 
@@ -409,22 +403,19 @@ def Addcomplaints():
     if 'loggedin' in session:
         PID = session['RID']
         if request.method == 'POST':
-            sql = "SELECT patientFname, Email, mobilephone FROM PATIENTS WHERE PID=%s"
+            sql = "SELECT mobilephone FROM PATIENTS WHERE PID = %s"
             val = (PID,)
             mycursor.execute(sql, val)
-            patients = mycursor.fetchall()
-
+            patients = mycursor.fetchone()
             subject = request.form['subject']
             message = request.form['message']
+            
 
-            print(patients[0])
-
-            sql = "INSERT INTO complaints (Name , EMAIL , SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s, %s)"
-            for x in patients:
-                val = (x[0], x[1], subject, message, x[2])
+            sql = "INSERT INTO complaints (PID, SUBJECT , MESSAGE, CONTACTNUMBER) VALUES (%s, %s, %s, %s)"
+            val = (PID, subject, message, patients[0])
             mycursor.execute(sql, val)
             mydb.commit()
-            print(val)
+
 
     return render_template('Add-complaints.html')
 
@@ -434,19 +425,10 @@ def Addcomplaints():
 @app.route('/View-complaints.html', methods=['POST', 'GET'])
 def Viewcomplaints():
 
-    if request.method == 'POST':
-        return render_template('Admin_profile.html')
-    else:
-        mycursor.execute(
-            "SELECT Name, EMAIL, CONTACTNUMBER,SUBJECT,MESSAGE FROM COMPLAINTS")
-        row_headers = [x[0] for x in mycursor.description]
-        myresult = mycursor.fetchall()
-        data = {
-            'message': "data retrieved",
-            'rec': myresult,
-            'header': row_headers
-        }
-        return render_template('View-complaints.html', data=myresult)
+    mycursor.execute("SELECT patientFname, patientLname, PATIENTS.Email, CONTACTNUMBER, SUBJECT, MESSAGE FROM COMPLAINTS JOIN PATIENTS ON Complaints.PID = Patients.PID")
+    myresult = mycursor.fetchall()
+    
+    return render_template('View-complaints.html', data=myresult)
 
 # -------------- RESERVE APPOINTMENTS -------------
 
@@ -581,7 +563,7 @@ def viewPatient():
     if 'loggedin' in session:
         DID = session['RID']
 
-        sql = "SELECT  Appointment.PID, PFname, Appointment.mobilephone, Appointment.Email FROM APPOINTMENT JOIN PATIENTS ON APPOINTMENT.PID = PATIENTS.PID AND APPOINTMENT.DID = %s"
+        sql = "SELECT DISTINCT Appointment.PID, PFname, Appointment.mobilephone, Appointment.Email FROM APPOINTMENT JOIN PATIENTS ON APPOINTMENT.PID = PATIENTS.PID AND APPOINTMENT.DID = %s"
         val = (DID,)
         mycursor.execute(sql, val)
         myresult = mycursor.fetchall()
