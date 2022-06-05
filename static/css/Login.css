@@ -152,7 +152,7 @@ input {
 }
 
 .container {
-    left: 250px;
+    left: 180px;
     top: 10px;
     background-color: #fff;
     border-radius: 10px;
@@ -310,15 +310,15 @@ input {
 }
 
 .back {
-    left: 20px;
-    top: 30px;
+    left: 40px;
+    top: 60px;
     position: absolute;
     text-align: center;
 }
 
 .back img {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     transition: all 0.3s;
 }
 
@@ -332,7 +332,7 @@ input {
     height: 100px;
 } */
 
-/* .back img:active{
-    width: 90px;
-    height: 90px;
-} */
+.back img:active{
+    width: 75px;
+    height: 75px;
+}

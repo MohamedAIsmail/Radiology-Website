@@ -22,7 +22,7 @@
             <a href="http://127.0.0.1:5000/"><img src="../static/img/back.png" alt=""></a>
         </div>
 
-        <div class="container right-panel-active" id="container">
+        <div class="container" id="container">
 
             <div class="form-container sign-in-container">
                 <form method="POST" action="{{url_for('login')}}" enctype="multipart/form-data">
@@ -30,12 +30,12 @@
                     <h1>Login</h1>
                 
                     <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
                     </div>
                 
-                    <span>or use your account</span>
+                    <span>Please enter your account</span>
 
                     <div class="input-container">
                         <div class="icon">
@@ -51,7 +51,7 @@
                         <input type="password" placeholder="Enter your password" name="Pass" required />
                     </div>
 
-                    <a href="#" class="forgot">Forgot password? lol ya 3abeet</a>
+                    <!-- <a href="#" class="forgot">Forgot password?</a> -->
                     <button type="submit" name="action" >Login</button>
                 
                 </form>
@@ -62,11 +62,11 @@
 
                     <h1>Create Account</h1>
                     <div class="social-container">
-                        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                        <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
 			        </div>
-                    <span>or use your email for registration</span>
+                    <span>Use your email for registration</span>
                     
                     <div class="input-container">
                         <div class="icon">
@@ -102,13 +102,6 @@
                     </div>
 
                     <button type="submit" name="action" value="Reg" >Sign Up</button>
-                    <!-- {% with messages = get_flashed_messages() %}
-                        {% if messages %}
-                            {% for message in messages %}
-                                <h3>{{ message }}</h3>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %} -->
                 </form>
             </div>
 
