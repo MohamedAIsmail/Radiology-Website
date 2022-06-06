@@ -1,0 +1,26 @@
+html {
+    overflow: hidden;
+}
+
+
+
+.scan-container {
+
+    transform: translate(250px, -190px);
+}
+
+.box1 {
+    height: 600px;
+    width: 1100px;
+    transform: translate(50px, 75px)
+}
+
+p span {
+    width: 120px;
+    display: inline-block;
+    font-weight: bold;
+}
+
+p {
+    width: 500px;
+}

@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <title> Patient Page</title>
     <link rel="stylesheet" href="../static/css/Patient-reserve.css">
-        <link rel="stylesheet" href="../static/css/Patient_profile.css">
+    <link rel="stylesheet" href="../static/css/Patient_profile.css">
+    <link rel="stylesheet" href="../static/css/viewrepo2.css">
+
     <link rel="icon" href="../static/img/logo.png" type="image/icon type">
     <!-- Boxicons CDN Link -->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -20,7 +22,7 @@
 <body>
 
     <!-- side barrr -->
-    
+
     <div class="sidebar">
         <div class="logo-details">
             <div class="logo_name">
@@ -29,16 +31,16 @@
             <i class='bx bx-menu' id="btn"></i>
         </div>
         <ul class="nav-list">
-    
+
             <li class="active" id="Admin">
                 <a href="/Patient_profile">
                     <i class="fa-solid fa-user"></i>
                     <span class="links_name">Profile</span>
-                        <span class=" tooltip">Profile</span>
-    
+                    <span class=" tooltip">Profile</span>
+
                 </a>
             </li>
-    
+
             <li id="Adoctor">
                 <a href="/ViewAppointment-Patient">
                     <i class="fa-solid fa-calendar-check"></i>
@@ -78,47 +80,48 @@
         </ul>
     </div>
 
-        <!-- Report -->
+    <!-- Report -->
     <section class="home-section">
+        <div class="panel">
 
-        <div class="box1 medical">
-                    <!-- profile picture -->
+            <!-- profile picture -->
 
-                <div class="scan-container">
-                <img src={{data.8}} alt="">
 
-            </div>
             <!-- info -->
-            <h1>Report details</h1>
-            <div class="row">
-                <div class="bio-row">
-                    <p><span>DoctorName </span>: {{ data.1 }}</p>
-                </div>
-                <div class="bio-row ">
-                    <p class="right-box"><span>Doctor ID</span>: {{ data.2 }}</p>
-                </div>
-                <div class="bio-row">
-                    <p><span>PatientName </span>: {{ data.3 }}</p>
-                </div>
-                <div class="bio-row ">
-                    <p class="right-box"><span>Patient ID</span>: {{ data.4 }}</p>
-                </div>
-                <div class="bio-row">
-                    <p><span>Diagnosis </span>: {{ data.6 }}</p>
-                </div>
-                <div class="bio-row">
-                    <p class="right-box"><span>Date </span>: {{ data.5 }}</p>
-                </div>
-                <div class="bio-row">
+            <div class="box1 " data-aos="fade-up" data-aos-duration="2000">
+
+                <!-- info -->
+                <h1>Report details</h1>
+                <div class="row">
+
+                    <p><span>Doctor name </span>: {{ data.1 }}</p>
+
+
+                    <p><span>Doctor ID </span>: {{ data.2 }}</p>
+
+
+                    <p><span>Patient Name</span>: {{ data.3 }}</p>
+
+
+                    <p><span>Patient ID</span>: {{ data.4 }}</p>
+
+
+                    <p><span>Diagnosis</span>: {{ data.6 }}</p>
+
+
+                    <p><span>Date </span>: {{ data.5 }}</p>
                     <p><span>Procedures </span>: {{ data.7 }}</p>
+
+                </div>
+                <div class="scan-container">
+                    <img src={{data.8}} alt="">
+
+
                 </div>
             </div>
-
         </div>
 
-
-
-
+    </section>
 
     <script src="../static/js/Admin_profile.js"></script>
 
