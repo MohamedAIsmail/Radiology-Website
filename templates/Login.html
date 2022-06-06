@@ -23,6 +23,12 @@
         </div>
 
         <div class="container" id="container">
+            <script>
+                var active = {{reg}};
+                if (active) {
+                    container.classList.add("right-panel-active");
+                }
+            </script>
 
             <div class="form-container sign-in-container">
                 <form method="POST" action="{{url_for('login')}}" enctype="multipart/form-data">
