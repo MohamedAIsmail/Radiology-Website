@@ -26,15 +26,25 @@
 
             <div class="form-container sign-in-container">
                 <form method="POST" action="{{url_for('login')}}" enctype="multipart/form-data">
+
                     <img class="avatar" src="../static/img/avatar.svg">
+
                     <h1>Login</h1>
-                
+
                     <div class="social-container">
                         <!-- <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
                         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a> -->
                     </div>
-                
+                    <div>
+                 {% with messages = get_flashed_messages(with_categories=true) %}
+                                                {% if messages %}
+                                                    {% for category, message in messages %}
+                                                    <div class="{{ category }}">{{ message }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endwith %}
+                        </div>
                     <span>Please enter your account</span>
 
                     <div class="input-container">
