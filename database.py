@@ -5,7 +5,7 @@ def recreatedb(bool):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="123456"
+        passwd="root"
     )
 
     mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="123456",
+        passwd="root",
         database="Raddb"
     )
 
@@ -172,7 +172,7 @@ def connect():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="123456",
+        passwd="root",
         database="Raddb"
     )
 
@@ -180,4 +180,34 @@ def connect():
     return mycursor, mydb
 
 
-recreatedb(1)
+
+def isEmail(email,cursor,isDoc=0):
+    # for no duplicate emails
+    if isDoc:
+        cursor.execute("SELECT Email FROM DOCTORS")
+    else:
+        cursor.execute("SELECT Email FROM patients")
+    allemails = cursor.fetchall()
+    for x in range(0, len(allemails)):
+        em = allemails[x]
+        if em[0] == email:
+            flag = False  # -- Email already exists we shall display a message for that
+            break
+        else:
+            flag = True
+    return flag
+
+
+def isID(id,cursor):
+    # for no duplicate emails
+    cursor.execute("SELECT DID FROM DOCTORS")
+
+    allIDs = cursor.fetchall()
+    for x in range(0, len(allIDs)):
+        em = allIDs[x]
+        if em[0] == id:
+            flag = False  # -- Email already exists we shall display a message for that
+            break
+        else:
+            flag = True
+    return flag

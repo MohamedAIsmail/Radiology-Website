@@ -2,14 +2,19 @@ import os
 from flask import Flask, redirect, url_for, request, render_template, session, flash
 from datetime import date
 from werkzeug.utils import secure_filename
-import mysql.connector
+import re
+import database
 
-mydb = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    passwd="123456",
-    database="Raddb"
-)
+regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+
+
+mycursor, mydb=database.connect()
+
+def isValidMail(email):
+    if re.fullmatch(regex, email):
+      return True
+    else:
+      return False
 
 mycursor = mydb.cursor(buffered=True)
 
@@ -53,6 +58,7 @@ def login():
                 return redirect(url_for('Admin_profile'))
             else:
                 msg = 'Incorrect username/password!'
+                flash(msg, 'error')
 
 
 # ----- DOCTOR LOGIN -----
@@ -75,6 +81,7 @@ def login():
                 return redirect(url_for('doctor_profile'))
             else:
                 msg = 'Incorrect username/password!'
+                flash(msg, 'error')
                 # ---- PATIENT LOGIN ----
 
         else:
@@ -95,8 +102,8 @@ def login():
                 return redirect(url_for('Patient_profile'))
             else:
                 msg = 'Incorrect username/password!'
-
-    return render_template('Login.html')
+                flash(msg, 'error')
+    return render_template('Login.html',reg=0)
 
 # ---------------------- REGISTERING ----------------------
 
@@ -106,6 +113,7 @@ def Register():
     mycursor.execute("SELECT PID FROM patients ORDER BY PID DESC")
     record = mycursor.fetchone()
     id = record[0]
+
     if request.method == 'POST':  # check if there is post data
         if request.form.get('action') == 'Reg':
             patientFname = request.form['patientFname']
@@ -114,26 +122,20 @@ def Register():
             patientmobPhone = request.form['patientphone']
             patientpassword = request.form['patientpassword']
 
-
-            # for no duplicate emails
-            mycursor.execute("SELECT Email FROM patients")
-            allemails = mycursor.fetchall()
-            for x in range(0, len(allemails)):
-                em = allemails[x]
-                if em[0] == Email:
-                    flag = False        # -- Email already exists we shall display a message for that
-                    break
+            if (isValidMail(Email)):
+                flag=database.isEmail(Email,mycursor)
+                if(flag):
+                    sql = "INSERT INTO patients (patientFname, patientLname, mobilephone, Email, patientpassword) VALUES(%s, %s, %s, %s, %s)"
+                    val = (patientFname, patientLname,patientmobPhone, Email, patientpassword)
+                    mycursor.execute(sql, val)
+                    mydb.commit()
+                    flash('You successfully registered, your ID is {}'.format(id+1),'message')
                 else:
-                    flag = True
+                    flash('The Email is already in use','error')
+            else:
+                    flash('Please Use a valid mail','error')
 
-
-            if(flag):
-                sql = "INSERT INTO patients (patientFname, patientLname, mobilephone, Email, patientpassword) VALUES(%s, %s, %s, %s, %s)"
-                val = (patientFname, patientLname,patientmobPhone, Email, patientpassword)
-                mycursor.execute(sql, val)
-                mydb.commit()
-
-    return render_template('Login.html', newID=id)
+    return render_template('Login.html', newID=id,reg=1)
 
 
 
@@ -314,18 +316,31 @@ def addDoctor():
             # val = (DID)
             # mycursor.execute(sql, val)
         if 'loggedin' in session:
-            AID = session['RID'] 
-            
-            sql = "INSERT INTO DOCTORS(doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone ,   Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-            val = (doctorFname, doctorLname, DID, doctorpassword,
-                clinicname, age, gender, mobilephone, Email)
-            mycursor.execute(sql, val)
-            mydb.commit()
-            sql = "INSERT INTO UpdateDoctor(Salary , DID ,AID ) VALUES (%s,%s,%s)"
-            val = (salary, DID,AID )
-            mycursor.execute(sql, val)
-            mydb.commit()
+            if (DID[0] == 'D'):
+                if (database.isID(DID, mycursor)):
+                    if (isValidMail(Email)):
+                        flag = database.isEmail(Email, mycursor, 1)
+                        if (flag):
+                            AID = session['RID']
 
+                            sql = "INSERT INTO DOCTORS(doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone ,   Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                            val = (doctorFname, doctorLname, DID, doctorpassword,
+                                clinicname, age, gender, mobilephone, Email)
+                            mycursor.execute(sql, val)
+                            mydb.commit()
+                            sql = "INSERT INTO UpdateDoctor(Salary , DID ,AID ) VALUES (%s,%s,%s)"
+                            val = (salary, DID,AID )
+                            mycursor.execute(sql, val)
+                            mydb.commit()
+                        else:
+                            flash('The Email is already in use', 'error')
+                    else:
+                        flash('Please Use a valid mail', 'error')
+                else:
+                    flash('ID already taken')
+            else:
+
+                flash('Invalid ID, It should start with D', 'error')
 
     return render_template('Admin-AddDoctor.html')
 

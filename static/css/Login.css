@@ -17,6 +17,13 @@
     }
 }
 
+.error {
+    color: red
+}
+.message {
+    color: #b8860b
+}
+
 body {
     position: relative;
     animation: transitionIn .75s;
