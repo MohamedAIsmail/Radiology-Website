@@ -58,7 +58,7 @@ def login():
                 return redirect(url_for('Admin_profile'))
             else:
                 msg = 'Incorrect username/password!'
-                flash(msg, 'error')
+                flash(msg, 'logerror')
 
 
 # ----- DOCTOR LOGIN -----
@@ -81,7 +81,7 @@ def login():
                 return redirect(url_for('doctor_profile'))
             else:
                 msg = 'Incorrect username/password!'
-                flash(msg, 'error')
+                flash(msg, 'logerror')
                 # ---- PATIENT LOGIN ----
 
         else:
@@ -102,7 +102,7 @@ def login():
                 return redirect(url_for('Patient_profile'))
             else:
                 msg = 'Incorrect username/password!'
-                flash(msg, 'error')
+                flash(msg, 'logerror')
     return render_template('Login.html',reg=0)
 
 # ---------------------- REGISTERING ----------------------

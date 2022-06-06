@@ -20,6 +20,10 @@
 .error {
     color: red
 }
+.logerror {
+    color: red
+}
+
 .message {
     color: #b8860b
 }
