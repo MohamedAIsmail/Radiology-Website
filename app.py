@@ -125,11 +125,15 @@ def Register():
             if (isValidMail(Email)):
                 flag=database.isEmail(Email,mycursor)
                 if(flag):
-                    sql = "INSERT INTO patients (patientFname, patientLname, mobilephone, Email, patientpassword) VALUES(%s, %s, %s, %s, %s)"
-                    val = (patientFname, patientLname,patientmobPhone, Email, patientpassword)
-                    mycursor.execute(sql, val)
-                    mydb.commit()
-                    flash('You successfully registered, your ID is {}'.format(id+1),'message')
+                    if (len(patientmobPhone)==11 and patientmobPhone[0:2]=="01"):
+
+                        sql = "INSERT INTO patients (patientFname, patientLname, mobilephone, Email, patientpassword) VALUES(%s, %s, %s, %s, %s)"
+                        val = (patientFname, patientLname,patientmobPhone, Email, patientpassword)
+                        mycursor.execute(sql, val)
+                        mydb.commit()
+                        flash('You successfully registered, your ID is {}'.format(id+1),'message')
+                    else:
+                        flash('Please write a real phone number', 'error')
                 else:
                     flash('The Email is already in use','error')
             else:
@@ -321,18 +325,21 @@ def addDoctor():
                     if (isValidMail(Email)):
                         flag = database.isEmail(Email, mycursor, 1)
                         if (flag):
-                            AID = session['RID']
+                            if (len(mobilephone) == 11 and mobilephone[0:2] == "01"):
+                                AID = session['RID']
 
-                            sql = "INSERT INTO DOCTORS(doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone ,   Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-                            val = (doctorFname, doctorLname, DID, doctorpassword,
-                                clinicname, age, gender, mobilephone, Email)
-                            mycursor.execute(sql, val)
-                            mydb.commit()
-                            sql = "INSERT INTO UpdateDoctor(Salary , DID ,AID ) VALUES (%s,%s,%s)"
-                            val = (salary, DID,AID )
-                            mycursor.execute(sql, val)
-                            mydb.commit()
-                            flash('Added Successfully', 'message')
+                                sql = "INSERT INTO DOCTORS(doctorFname , doctorLname , DID , doctorpassword ,clinicname ,age , gender , mobilephone ,   Email ) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+                                val = (doctorFname, doctorLname, DID, doctorpassword,
+                                    clinicname, age, gender, mobilephone, Email)
+                                mycursor.execute(sql, val)
+                                mydb.commit()
+                                sql = "INSERT INTO UpdateDoctor(Salary , DID ,AID ) VALUES (%s,%s,%s)"
+                                val = (salary, DID,AID )
+                                mycursor.execute(sql, val)
+                                mydb.commit()
+                                flash('Added Successfully', 'message')
+                            else:
+                                flash('Please write a real phone number', 'error')
                         else:
                             flash('The Email is already in use', 'error')
                     else:
