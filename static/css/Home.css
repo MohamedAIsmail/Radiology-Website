@@ -35,7 +35,7 @@ html {
 /* Animation for loading body */
 
 body {
-    /* animation: transitionIn .75s; */
+    animation: transitionIn .75s;
 }
 
 /* Styling The top navigation bar */
