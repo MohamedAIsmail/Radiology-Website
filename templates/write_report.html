@@ -96,7 +96,13 @@
                                     <div class="col-md-8 h-75">
                                         <div class="contact-wrap w-100 p-md-5 p-4">
                                             <h3 class="mb-4">Report</h3>
-                            
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                                                {% if messages %}
+                                                    {% for category, message in messages %}
+                                                    <div class="{{ category }}">{{ message }}</div>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            {% endwith %}
                                             <form action="{{url_for('write_report')}}" method="POST" id="contactForm"
                                                 name="contactForm" class="contactForm" enctype="multipart/form-data">
                                                 <div class="row">
@@ -149,13 +155,6 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            {% with messages = get_flashed_messages() %}
-                                                {% if messages %}           
-                                                    {% for message in messages %}
-                                                    <li>{{ message }}</li>
-                                                    {% endfor %}
-                                                {% endif %}
-                                            {% endwith %}
                                         </div>
                                     </div>
                                     <div class="col-md-5 d-flex align-items-stretch">

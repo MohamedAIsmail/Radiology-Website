@@ -332,6 +332,7 @@ def addDoctor():
                             val = (salary, DID,AID )
                             mycursor.execute(sql, val)
                             mydb.commit()
+                            flash('Added Successfully', 'message')
                         else:
                             flash('The Email is already in use', 'error')
                     else:
@@ -447,7 +448,7 @@ def Addcomplaints():
             val = (PID, subject, message, patients[0])
             mycursor.execute(sql, val)
             mydb.commit()
-
+            flash('Thank you for your feedback, we will take it in our consideration', 'message')
 
     return render_template('Add-complaints.html')
 
@@ -678,7 +679,7 @@ def write_report():
                 file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
                 file.save(file_path)
             else:
-                flash('Allowed Image types: png, jpg, jpeg')
+                flash('Allowed Image types: png, jpg, jpeg','error')
                 return redirect(url_for('ReturningPatient'))
 
             sql = "INSERT INTO REPORT (DoctorName , PatientName , DID, PID, Date , Diagnosis, Procedures, img) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
@@ -692,9 +693,9 @@ def write_report():
                 mycursor.execute(sql, val)
                 mydb.commit()
 
-                flash("Report sent succesfully")
+                flash("Report sent succesfully",'message')
             except:
-                flash("Report has some problems!")
+                flash("Report has some problems!",'error')
                 return redirect(url_for('ReturningPatient'))
 
     return redirect(url_for('ReturningPatient'))

@@ -41,6 +41,12 @@
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
+.error {
+    color: red
+}
+.message {
+    color: #b8860b
+}
 
 html {
     font-family: sans-serif;

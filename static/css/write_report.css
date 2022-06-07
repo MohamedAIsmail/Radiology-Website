@@ -5,6 +5,13 @@ html {}
     background: #fff;
     height: 670px;
 }
+.error {
+    color: red
+}
+.message {
+    color: #b8860b
+}
+
 
 .wrapper {
     transform: translate(-250px, 150px);
