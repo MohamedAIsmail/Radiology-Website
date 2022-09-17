@@ -6,16 +6,6 @@
 - [Overview](#overview)
   - [Introduction](#introduction)
   - [Run the Project](#run-the-project)
-- [Frontend](#frontend)
-  - [CSS](#css)
-  - [Colors](#colors-used)
-  - [Grid](#grid)
-  - [Fonts](#fonts)
-  - [Borders](#borders)
-  - [Helper Functions](#helper-functions)
-  - [Routing System](#routing-system)
-  - [Resources and credits](#resources-and-credits)
-- [Backend](#backend)
 - [Team](#team)
 
 
