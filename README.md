@@ -36,7 +36,7 @@ Radiology website system with a responsive and neat user interface that helps al
 
 ### Run The project
 
-You need to install Flask and SQL on your computer to be able to run the project.
+You need to install Flask and mySQL on your computer to be able to run the project.
 
 
 ## Team
