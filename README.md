@@ -1,37 +1,67 @@
-Hello Everyone!
-
-This will be our task tracker!
-When done with your part just type  #Done next to it..
-
-Required to be done in: 
-
----- Front End ----<br>
-
-- Home Page ---- #Done <br>
-- Admin profile page including (viewing all the doctors, patients, complains, analysis) and the page to update on them <br>
-- Login & Register for (Doctors, Patients and only 1 user for the admin ---- #Done <br>
-- Profile page for the patient to (view his appointments and their dates, send complains about the doctors, view the report that has been written to him) <br>
-- Profile page for the doctor to (write a report for the patients, view the patients) <br>
+# Radiology Department System
+***
 
 
----- Back End ---- <br>
+## Table of contents
+- [Overview](#overview)
+  - [Introduction](#introduction)
+  - [Run the Project](#run-the-project)
+- [Frontend](#frontend)
+  - [CSS](#css)
+  - [Colors](#colors-used)
+  - [Grid](#grid)
+  - [Fonts](#fonts)
+  - [Borders](#borders)
+  - [Helper Functions](#helper-functions)
+  - [Routing System](#routing-system)
+  - [Resources and credits](#resources-and-credits)
+- [Backend](#backend)
+- [Team](#team)
 
-- Login & Register <br>
-- View data on profile <br>
-- Update data <br>
-- Appointment --> Google calender is used and only one patient at a time! <br>
-- Report --> Each doctor can write a report or more for each patient (Images included) <br>
-- Patient can view all reports wrote to him (Date written next to the patient) <br>
-- Analysis at the admin page (plots includes the number of patients along the month) <br>
-- View all doctors, patients and complaints for the admin <br>
+
+## Overview
+
+### Introduction
+
+Radiology website system with a responsive and neat user interface that helps all the users acheive what they need easily, As in this system you can have set of features that facilitates the operation and communication processes for the doctors and patients.
+
+> As a **Patient** you can
+- Reserve an appointment with the available doctor at a certain time according to doctor's availability.
+- View your appointments.
+- View all the reports that the doctor has written to you which may include images.
+- Add feedback about your experience which will only reach the admin.
+
+> As a **Doctor** you can
+- View your patients infromations.
+- View all your appointments reserved.
+- Write a report to your patients.
+
+> As an **Admin** you can
+- Add doctors accounts and their salary.
+- View all the doctors working in the department and update their salary if needed.
+- View full statistics about total number of patients, doctors, feedbacks, appointments, reports in the department.
+- View all appointments reserved in a month. 
+- View usage count of devices in a month (so a montly repair could be scheduled).
+- View all the patient's feedbacks.
+
+### Run The project
+
+You need to install Flask and SQL on your computer to be able to run the project.
 
 
----- Data Base ----
+## Team
+#### Radiology Department System
+Database (SBE2242) class project created by:
+
+- Mohamed Ahmed Ismail 
+- Mohamed Mostafa
+- Mohab Ali
+- Maha Medhat
+- Dina Khalid
+- Ereny Eleya
+
+### Submitted to:
+- Dr. Ahmed Hesham Kandil & Eng. Eman Ibrahim
 
 
-
-
-Links that may help us <br>
-
-https://sbme-tutorials.github.io/database-tutorials/fall2021/index <br>
-https://sbme-tutorials.github.io/database-tutorials/fall2021/notes/SBEw08
+All rights reserved © 2022 to Team 6 - Systems & Biomedical Engineering, Cairo University (Class 2024)
