@@ -16,7 +16,7 @@
 
 Radiology website system with a responsive and neat user interface that helps all the users acheive what they need easily, As in this system you can have set of features that facilitates the operation and communication processes for the doctors and patients.
 
-# Screenshots
+### Screenshots
 
 > <img src="Screenshots/1.png">
 > <img src="Screenshots/2.png">
@@ -30,7 +30,7 @@ Radiology website system with a responsive and neat user interface that helps al
 - View all the reports that the doctor has written to you which may include images.
 - Add feedback about your experience which will only reach the admin.
 
-# Screenshots
+### Screenshots
 > <img src="Screenshots/P1.png">
 > <img src="Screenshots/P2.png">
 > <img src="Screenshots/P3.png">
@@ -41,7 +41,7 @@ Radiology website system with a responsive and neat user interface that helps al
 - View all your appointments reserved.
 - Write a report to your patients.
 
-# Screenshots
+### Screenshots
 > <img src="Screenshots/D1.png">
 > <img src="Screenshots/D2.png">
 > <img src="Screenshots/D3.png">
@@ -55,7 +55,7 @@ Radiology website system with a responsive and neat user interface that helps al
 - View usage count of devices in a month (so a montly repair could be scheduled).
 - View all the patient's feedbacks.
 
-# Screenshots
+### Screenshots
 > <img src="Screenshots/A1.png">
 > <img src="Screenshots/A2.png">
 > <img src="Screenshots/A3.png">
