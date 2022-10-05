@@ -5,7 +5,7 @@ def recreatedb(bool):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="1234"
+        passwd="123456"
     )
 
     mycursor = mydb.cursor()
@@ -18,7 +18,7 @@ def recreatedb(bool):
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="1234",
+        passwd="123456",
         database="Raddb"
     )
 
@@ -172,7 +172,7 @@ def connect():
     mydb = mysql.connector.connect(
         host="localhost",
         user="root",
-        passwd="1234",
+        passwd="123456",
         database="Raddb"
     )
 
@@ -211,3 +211,5 @@ def isID(id,cursor):
         else:
             flag = True
     return flag
+
+recreatedb(1)
